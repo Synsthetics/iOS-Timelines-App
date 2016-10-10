@@ -1,0 +1,57 @@
+//
+//  API.swift
+//  Timeline
+//
+//  Created by Princess Sampson on 10/9/16.
+//  Copyright © 2016 Arcore. All rights reserved.
+//
+
+import Foundation
+
+/// Encapsulates webservice base URL, and exposes methods for getting session-ready URLRequest instances
+struct API {
+    fileprivate static let baseURL = "http://herokuurl.com"
+    static let session = URLSession.shared
+    
+    /// Encapsulates webservice endpoints.
+    enum Endpoint: String {
+        case login = "/login"
+        case register = "/register"
+    }
+    
+}
+
+extension API {
+    
+    /// Returns a URLRequest object ready for use with URLSession.dataTask(with:)
+    /// - parameter endpoint: The desired webservice endpoint
+    /// - parameter body: Instance to serialize and add to request body
+    /// - parameter method: HTTP method for this request
+    static func request(to endpoint: API.Endpoint, with body: Request, how method: String) -> URLRequest {
+        let destination = url(for: endpoint)
+        var request = URLRequest(url: destination)
+        
+        addJSONHeaders(to: &request)
+        
+        request.httpMethod = method
+        request.httpBody = body.json()
+        
+        return request
+    }
+    
+    /// URL object for webservice endpoint
+    private static func url(for endpoint: API.Endpoint) -> URL {
+        let resource = baseURL.appending(endpoint.rawValue)
+        let url = URL(string: resource)
+        
+        return url!
+    }
+    
+    /// Set provided request instance's Content-Type and Accept headers to application/json
+    /// - parameter request: The request to add the headers to
+    private static func addJSONHeaders(to request: inout URLRequest) {
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+    }
+    
+}
