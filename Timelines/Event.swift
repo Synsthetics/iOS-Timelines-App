@@ -9,20 +9,26 @@
 import Foundation
 
 class Event: Comparable {
+    var name: String
     var start: Date
     var duration: TimeInterval
     var end: Date
     var owners: [User] = []
     var attendees: [User] = []
+    var details: String
     
-    init(start: Date, duration: TimeInterval, owners: User...) {
+    init(name: String, details: String, start: Date, duration: TimeInterval, owners: User...) {
+        self.name = name
+        self.details = details
         self.start = start
         self.duration = duration
         self.end = Date(timeInterval: self.duration, since: self.start)
         self.owners = owners
     }
     
-    init(start: Date, end: Date, owners: User...) {
+    init(name: String, details: String, start: Date, end: Date, owners: User...) {
+        self.name = name
+        self.details = details
         self.start = start
         self.end = end
         self.duration = self.end.timeIntervalSince(self.start)
