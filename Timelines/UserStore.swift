@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+class UserStore {
+    
+    static var mainUser: User?
+    
+}

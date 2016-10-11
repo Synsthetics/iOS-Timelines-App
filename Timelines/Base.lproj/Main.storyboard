@@ -37,7 +37,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-ce-rvE">
                                                 <state key="normal" title="Login"/>
                                                 <connections>
-                                                    <segue destination="RVj-PT-F0K" kind="presentation" id="q3v-oL-bO3"/>
+                                                    <action selector="attemptLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VDd-3p-tuc"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKw-eX-dmy">
@@ -453,7 +453,4 @@
             <point key="canvasLocation" x="1332" y="150"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="LwR-Di-YUE"/>
-    </inferredMetricsTieBreakers>
 </document>

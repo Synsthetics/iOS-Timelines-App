@@ -10,13 +10,32 @@ import Foundation
 
 /// Encapsulates webservice base URL, and exposes methods for getting session-ready URLRequest instances
 struct API {
-    fileprivate static let baseURL = "http://herokuurl.com"
+    fileprivate static let baseURL = "http://synesthetictimelines.herokuapp.com"
+    static let queue: OperationQueue = OperationQueue()
     static let session = URLSession.shared
     
     /// Encapsulates webservice endpoints.
     enum Endpoint: String {
         case login = "/login"
         case register = "/register"
+    }
+    
+    struct AuthResponse {
+        var user: User?
+        var errorMessage: String?
+        
+        init(json: [String: Any]) {
+            if let user = User(json: json) {
+                self.user = user
+            } else if let errorMessage = json["errorMessage"] as? String {
+                self.errorMessage = errorMessage
+            }
+        }
+        
+        init(errorMessage: String) {
+            self.errorMessage = errorMessage
+        }
+        
     }
     
 }
@@ -54,4 +73,48 @@ extension API {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
     }
     
+}
+
+extension API {
+    
+    static func register(body: RegisterRequest, with completion: @escaping (AuthResponse) -> (Void)) {
+        let request = API.request(to: .register, with: body, how: "POST")
+        
+        let registerTask = API.session.dataTask(with: request) { (optData, optResponse, optError) in
+            
+            var authResponse: AuthResponse
+            
+            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+                authResponse = AuthResponse(json: responseJSON)
+            } else {
+                authResponse = AuthResponse(errorMessage: "Could not deserialize server response")
+            }
+            
+            completion(authResponse)
+        }
+        
+        registerTask.resume()
+    }
+    
+}
+
+extension API {
+    
+    static func login(body: LoginRequest, with completion: @escaping (AuthResponse) -> (Void)) {
+        let request = API.request(to: .login, with: body, how: "POST")
+        
+        let registerTask = API.session.dataTask(with: request) { (optData, optResponse, optError) in
+            var authResponse: AuthResponse
+            
+            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+                authResponse = AuthResponse(json: responseJSON)
+            } else {
+                authResponse = AuthResponse(errorMessage: "Could not deserialize server response")
+            }
+            
+            completion(authResponse)
+        }
+        
+        registerTask.resume()
+    }
 }
