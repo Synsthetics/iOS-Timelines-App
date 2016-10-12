@@ -11,18 +11,17 @@ class User {
     var email: String? = nil
     var contacts: [String] = []
     
-    init(username: String, email: String, contacts: [String]) {
+    init(username: String, email: String?) {
         self.username = username
         self.email = email
-        self.contacts = contacts
     }
     
     convenience init?(json: [String: Any]) {
-        guard let username = json["username"] as? String,
-              let email = json["email"] as? String,
-              let contacts = json["contacts"] as? [String] else {
+        guard let username = json["username"] as? String else {
             return nil
         }
-        self.init(username: username, email: email, contacts: contacts)
+        
+        let email = json["email"] as? String
+        self.init(username: username, email: email)
     }
 }

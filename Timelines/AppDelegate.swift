@@ -16,15 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+
+        
 //        API.register(body: RegisterRequest(email: "sampson@sampson.com", username: "sampson", password: "sampson")) { authResponse in
 //            print("\n\n\n\n\n\n\n\n\(authResponse)")
 //        }
         
-        API.login(body: LoginRequest(username: "sampson@sampson.com", password : "sampson")) { authResponse in
-                print("\n\n\n\n\n\n\n\(authResponse)")
-        }
-        
-        
+//        API.login(body: LoginRequest(username: "sampson@sampson.com", password : "sampson")) { authResponse in
+//                print("\n\n\n\n\n\n\n\(authResponse)")
+//        }
+//        
+//        
         return true
     }
     

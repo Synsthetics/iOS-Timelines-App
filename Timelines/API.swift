@@ -103,7 +103,7 @@ extension API {
     static func login(body: LoginRequest, with completion: @escaping (AuthResponse) -> (Void)) {
         let request = API.request(to: .login, with: body, how: "POST")
         
-        let registerTask = API.session.dataTask(with: request) { (optData, optResponse, optError) in
+        let task = API.session.dataTask(with: request) { (optData, optResponse, optError) in
             var authResponse: AuthResponse
             
             if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
@@ -115,6 +115,6 @@ extension API {
             completion(authResponse)
         }
         
-        registerTask.resume()
+        task.resume()
     }
 }
