@@ -18,6 +18,8 @@ struct API {
     enum Endpoint: String {
         case login = "/login"
         case register = "/register"
+        case requestFriend = "/requestFriend"
+        case confirmFriend = "/confirmFriend"
     }
     
     struct AuthResponse {
@@ -36,6 +38,20 @@ struct API {
             self.errorMessage = errorMessage
         }
         
+    }
+    
+    struct FriendRequestRepsonse {
+        var sent: Bool?
+        var errorMessage: String?
+        
+        init(json: [String: Any]) {
+            self.sent = json["sent"] as? Bool
+            self.errorMessage = json["errorMessage"] as? String
+        }
+        
+        init(errorMessage: String) {
+            self.errorMessage = errorMessage
+        }
     }
     
 }
@@ -117,4 +133,39 @@ extension API {
         
         task.resume()
     }
+    
 }
+
+extension API {
+    
+    static func requestFriend(body: FriendRequest, with completion: @escaping (Bool) -> (Void)) {
+        let request = API.request(to: .requestFriend, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var friendRequestRepsonse: FriendRequestRepsonse
+            
+            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+                friendRequestRepsonse = FriendRequestRepsonse(json: responseJSON)
+            } else {
+                friendRequestRepsonse = FriendRequestRepsonse(errorMessage: "Could not deserialize server response")
+            }
+            
+            completion(friendRequestRepsonse.sent!)
+        }
+        task.resume()
+    }
+    
+    static func friend(body: AcceptFriendRequest, with completion: @escaping (User) -> (Void)) {
+        let request = API.request(to: .confirmFriend, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            
+            
+            
+        }
+        task.resume()
+    }
+    
+}
+
+

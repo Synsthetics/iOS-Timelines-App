@@ -21,4 +21,22 @@ enum JSONKeys {
         
     }
     
+    enum FriendRequest: String {
+        case contactor
+        case contactee
+        
+        var key: String {
+            return self.rawValue
+        }
+    }
+    
+    enum AcceptFriend: String {
+        case accept = "accept"
+        case username = "username"
+        
+        var key: String {
+            return self.rawValue
+        }
+    }
+    
 }

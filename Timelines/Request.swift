@@ -53,3 +53,43 @@ struct LoginRequest: Request {
     }
     
 }
+
+struct FriendRequest: Request {
+    var contactor: User
+    var contactee: User
+    
+    init(contactor: User, contactee: User) {
+        self.contactor = contactor
+        self.contactee = contactee
+    }
+    
+    func dictionary() -> [String: Any] {
+        let data = [
+            JSONKeys.FriendRequest.contactor.key: contactor.id,
+            JSONKeys.FriendRequest.contactee.key: contactee.id
+        ]
+        
+        return data
+    }
+    
+}
+
+struct AcceptFriendRequest: Request {
+    var accept: Bool
+    var username: String?
+    
+    init(accept: Bool, user: User?) {
+        self.accept = accept
+        self.username = user?.username
+    }
+    
+    func dictionary() -> [String: Any] {
+        let data = [
+            JSONKeys.AcceptFriend.accept.key: accept,
+            JSONKeys.AcceptFriend.username.key: username
+        ] as [String : Any]
+        
+        return data
+    }
+    
+}
