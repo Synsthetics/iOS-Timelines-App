@@ -19,12 +19,14 @@ class Event: Comparable {
     var owners: [User] = []
     var attendees: [User] = []
     var details: String
+    var timezoneCreatedIn: String
     
-    init(name: String, details: String, start: Date, end: Date, owners: User...) {
+    init(name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owners: User...) {
         self.name = name
         self.details = details
         self.start = start
         self.end = end
+        self.timezoneCreatedIn = timezoneCreatedIn
         self.owners = owners
     }
     
