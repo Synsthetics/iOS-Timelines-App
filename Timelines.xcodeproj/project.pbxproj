@@ -29,6 +29,8 @@
 		6527932E1DAC13AE006BC707 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6527932B1DAC13AE006BC707 /* UserTests.swift */; };
 		652793301DAC14FE006BC707 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6527932F1DAC14FE006BC707 /* Event.swift */; };
 		652793321DAC1697006BC707 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652793311DAC1697006BC707 /* EventTests.swift */; };
+		6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592CAA31DAE7797003E7100 /* AlertView.swift */; };
+		65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F695251DAE84BE0048BFCF /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		6527932B1DAC13AE006BC707 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		6527932F1DAC14FE006BC707 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		652793311DAC1697006BC707 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
+		6592CAA31DAE7797003E7100 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		65F695251DAE84BE0048BFCF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +147,9 @@
 				652792E51DAC1291006BC707 /* LaunchScreen.storyboard */,
 				652792E81DAC1291006BC707 /* Info.plist */,
 				33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */,
+				65F695251DAE84BE0048BFCF /* RegisterViewController.swift */,
 				33A182C51DAD40E800D9DC53 /* UserStore.swift */,
+				6592CAA31DAE7797003E7100 /* AlertView.swift */,
 			);
 			path = Timelines;
 			sourceTree = "<group>";
@@ -313,9 +319,11 @@
 				652792DF1DAC1291006BC707 /* ViewController.swift in Sources */,
 				652793141DAC1324006BC707 /* JSONTools.swift in Sources */,
 				652793151DAC1324006BC707 /* LoginAPI.swift in Sources */,
+				65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */,
 				652793281DAC132A006BC707 /* FriendsAPI.swift in Sources */,
 				652793231DAC132A006BC707 /* API.swift in Sources */,
 				652793161DAC1324006BC707 /* RegisterAPI.swift in Sources */,
+				6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */,
 				652793181DAC1324006BC707 /* User.swift in Sources */,
 				652793171DAC1324006BC707 /* Request.swift in Sources */,
 				652793131DAC1324006BC707 /* JSONKeys.swift in Sources */,
