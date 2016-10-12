@@ -365,7 +365,7 @@
         <!--Register View Controller-->
         <scene sceneID="GnZ-un-bKw">
             <objects>
-                <viewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S7j-b6-aob" customClass="RegisterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S7j-b6-aob" customClass="RegisterViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H8Y-CI-d5V"/>
                         <viewControllerLayoutGuide type="bottom" id="K23-pn-WW9"/>
@@ -376,6 +376,11 @@
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RUL-sf-e8N">
                                 <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-AW-GUS">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w5Y-Yp-rp3">
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -396,7 +401,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dt-Ag-Dnc">
                                                 <state key="normal" title="Register"/>
                                                 <connections>
-                                                    <segue destination="RVj-PT-F0K" kind="presentation" id="LwR-Di-YUE"/>
+                                                    <action selector="attemptRegistration" destination="S7j-b6-aob" eventType="touchUpInside" id="qRf-g0-UZM"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -413,6 +418,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t9z-O5-s4i"/>
+                    <connections>
+                        <outlet property="emailField" destination="Q3d-AW-GUS" id="9tU-Ps-h8j"/>
+                        <outlet property="pass1Field" destination="M4O-Ld-lC5" id="9KA-UC-Juc"/>
+                        <outlet property="pass2Field" destination="nZc-Ev-LbP" id="l3a-bD-75p"/>
+                        <outlet property="userNameField" destination="w5Y-Yp-rp3" id="Iys-zD-gbk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFV-Xg-Ond" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
