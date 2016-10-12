@@ -31,6 +31,8 @@
 		652793321DAC1697006BC707 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652793311DAC1697006BC707 /* EventTests.swift */; };
 		6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592CAA31DAE7797003E7100 /* AlertView.swift */; };
 		65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F695251DAE84BE0048BFCF /* RegisterViewController.swift */; };
+		746114521DAE895700DF170B /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114511DAE895700DF170B /* NewEventViewController.swift */; };
+		746114541DAE898000DF170B /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114531DAE898000DF170B /* TableViewCells.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		652793311DAC1697006BC707 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		6592CAA31DAE7797003E7100 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		65F695251DAE84BE0048BFCF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		746114511DAE895700DF170B /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
+		746114531DAE898000DF170B /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 				65F695251DAE84BE0048BFCF /* RegisterViewController.swift */,
 				33A182C51DAD40E800D9DC53 /* UserStore.swift */,
 				6592CAA31DAE7797003E7100 /* AlertView.swift */,
+				746114511DAE895700DF170B /* NewEventViewController.swift */,
+				746114531DAE898000DF170B /* TableViewCells.swift */,
 			);
 			path = Timelines;
 			sourceTree = "<group>";
@@ -315,10 +321,12 @@
 			files = (
 				33A182C41DAD3F2B00D9DC53 /* LoginViewController.swift in Sources */,
 				652793241DAC132A006BC707 /* AppDelegate.swift in Sources */,
+				746114521DAE895700DF170B /* NewEventViewController.swift in Sources */,
 				652793301DAC14FE006BC707 /* Event.swift in Sources */,
 				652792DF1DAC1291006BC707 /* ViewController.swift in Sources */,
 				652793141DAC1324006BC707 /* JSONTools.swift in Sources */,
 				652793151DAC1324006BC707 /* LoginAPI.swift in Sources */,
+				746114541DAE898000DF170B /* TableViewCells.swift in Sources */,
 				65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */,
 				652793281DAC132A006BC707 /* FriendsAPI.swift in Sources */,
 				652793231DAC132A006BC707 /* API.swift in Sources */,

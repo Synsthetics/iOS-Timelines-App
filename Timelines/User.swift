@@ -7,6 +7,7 @@
 //
 
 class User {
+    var id: Int?
     var username: String
     var email: String? = nil
     var contacts: [String] = []
