@@ -229,6 +229,9 @@
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBl-Qm-vdh">
                                         <state key="normal" title="Create Event"/>
+                                        <connections>
+                                            <action selector="attemptEventCreation:" destination="yuA-cC-Oeg" eventType="touchUpInside" id="VUL-u6-yW0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
