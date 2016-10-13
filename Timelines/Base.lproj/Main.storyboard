@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qKM-Ke-loj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yuA-cC-Oeg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -124,7 +124,7 @@
                                         <rect key="frame" x="0.0" y="92" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50q-aW-Hcj" id="WGe-m4-rQU">
-                                            <frame key="frameInset" width="343" height="43.5"/>
+                                            <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -135,7 +135,7 @@
                                         <rect key="frame" x="0.0" y="136" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4iA-nt-1Bz" id="TO0-O6-g4C">
-                                            <frame key="frameInset" width="343" height="43.5"/>
+                                            <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -160,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="4428" y="150"/>
         </scene>
-        <!--View Controller-->
+        <!--New Event View Controller-->
         <scene sceneID="cdX-W7-7Fi">
             <objects>
-                <viewController storyboardIdentifier="CreateEventController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yuA-cC-Oeg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateEventController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yuA-cC-Oeg" customClass="NewEventViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hm3-Ve-LIJ"/>
                         <viewControllerLayoutGuide type="bottom" id="quj-i2-2g2"/>
@@ -206,9 +206,15 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Fu-Kv-dhm">
                                                                 <state key="normal" title="Start Date"/>
+                                                                <connections>
+                                                                    <action selector="changeDateStateToStart:" destination="yuA-cC-Oeg" eventType="touchUpInside" id="UIh-r0-JAC"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvv-i1-DMy">
                                                                 <state key="normal" title="End Date"/>
+                                                                <connections>
+                                                                    <action selector="changeDateStateToEnd:" destination="yuA-cC-Oeg" eventType="touchUpInside" id="v1h-cp-aJO"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -223,6 +229,9 @@
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBl-Qm-vdh">
                                         <state key="normal" title="Create Event"/>
+                                        <connections>
+                                            <action selector="attemptEventCreation:" destination="yuA-cC-Oeg" eventType="touchUpInside" id="VUL-u6-yW0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -241,6 +250,13 @@
                             <constraint firstItem="7o2-Ny-KM0" firstAttribute="centerX" secondItem="BIU-iT-keu" secondAttribute="centerX" id="xKx-xc-Q7o"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="ckC-WQ-BCL" id="WXl-2X-8Jb"/>
+                        <outlet property="detailsTextView" destination="L5r-vD-T37" id="XN7-l8-iUz"/>
+                        <outlet property="endDateLabel" destination="e1y-oN-QA5" id="Tjf-oX-wCo"/>
+                        <outlet property="nameTextField" destination="WQM-AP-mgH" id="eHi-Rj-ziv"/>
+                        <outlet property="startDateLabel" destination="Fyh-NA-geH" id="voV-0k-uE1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAV-YX-DZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -303,7 +319,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="327" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T8l-Ow-w4j" id="lZY-Y8-xsI">
-                                                            <frame key="frameInset" width="327" height="43.5"/>
+                                                            <frame key="frameInset" width="327" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
@@ -346,7 +362,7 @@
                                         <rect key="frame" x="0.0" y="92" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcY-ie-4tY" id="RuV-QM-lXM">
-                                            <frame key="frameInset" width="343" height="43.5"/>
+                                            <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
