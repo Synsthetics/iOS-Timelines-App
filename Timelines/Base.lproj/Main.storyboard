@@ -87,6 +87,25 @@
             <point key="canvasLocation" x="2924" y="150"/>
         </scene>
         <!--Item-->
+        <scene sceneID="lFU-KD-lxn">
+            <objects>
+                <viewController id="Ewa-MH-tzB" customClass="PendingRequestsViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1k9-AN-lWT"/>
+                        <viewControllerLayoutGuide type="bottom" id="pFg-eW-Yfi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EuE-tm-JaG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="qnI-D2-tTK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oC3-AE-EMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4436" y="-542"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="v4Q-aB-iyc">
             <objects>
                 <viewController storyboardIdentifier="EventViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OKB-cB-jIg" customClass="EventsViewController" sceneMemberID="viewController">
@@ -443,6 +462,7 @@
                     <connections>
                         <segue destination="OKB-cB-jIg" kind="relationship" relationship="viewControllers" id="Evf-MN-1B4"/>
                         <segue destination="Ugy-Ic-BVy" kind="relationship" relationship="viewControllers" id="Rm7-Sl-ZGs"/>
+                        <segue destination="Ewa-MH-tzB" kind="relationship" relationship="viewControllers" id="q8Z-U0-7Eq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcg-OO-9he" userLabel="First Responder" sceneMemberID="firstResponder"/>
