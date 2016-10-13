@@ -22,11 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            print("\n\n\n\n\n\n\n\n\(authResponse)")
 //        }
         
-//        API.login(body: LoginRequest(username: "sampson@sampson.com", password : "sampson")) { authResponse in
-//                print("\n\n\n\n\n\n\n\(authResponse)")
-//        }
-//        
-//        
+        API.login(body: LoginRequest(username: "sampson", password : "sampson")) { authResponse in
+            UserStore.mainUser = authResponse.user!
+        }
+
         return true
     }
     

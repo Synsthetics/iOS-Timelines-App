@@ -18,6 +18,7 @@ struct API {
     enum Endpoint: String {
         case login = "/login"
         case register = "/register"
+        case addEvent = "/addEvent"
         case requestFriend = "/requestFriend"
         case confirmFriend = "/confirmFriend"
     }
@@ -40,12 +41,26 @@ struct API {
         
     }
     
-    struct FriendRequestRepsonse {
+    struct RequestFriendResponse {
         var sent: Bool?
         var errorMessage: String?
         
         init(json: [String: Any]) {
             self.sent = json["sent"] as? Bool
+            self.errorMessage = json["errorMessage"] as? String
+        }
+        
+        init(errorMessage: String) {
+            self.errorMessage = errorMessage
+        }
+    }
+    
+    struct AddEventResponse {
+        var created: Bool?
+        var errorMessage: String?
+        
+        init(json: [String: Any]) {
+            self.created = json["created"] as? Bool
             self.errorMessage = json["errorMessage"] as? String
         }
         
@@ -97,7 +112,6 @@ extension API {
         let request = API.request(to: .register, with: body, how: "POST")
         
         let registerTask = API.session.dataTask(with: request) { (optData, optResponse, optError) in
-            
             var authResponse: AuthResponse
             
             if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
@@ -137,17 +151,39 @@ extension API {
 }
 
 extension API {
+
+    static func addEvent(body: AddEventRequest, with completion: @escaping (AddEventResponse) -> (Void)) {
+        let request = API.request(to: .addEvent, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var addEventResponse: AddEventResponse
+            
+            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+                addEventResponse = AddEventResponse(json: responseJSON)
+            } else {
+                addEventResponse = AddEventResponse(errorMessage: "Could not deserialize server response")
+            }
+            
+            completion(addEventResponse)
+            
+        }
+        task.resume()
+    }
+    
+}
+
+extension API {
     
     static func requestFriend(body: FriendRequest, with completion: @escaping (Bool) -> (Void)) {
         let request = API.request(to: .requestFriend, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
-            var friendRequestRepsonse: FriendRequestRepsonse
+            var friendRequestRepsonse: RequestFriendResponse
             
             if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
-                friendRequestRepsonse = FriendRequestRepsonse(json: responseJSON)
+                friendRequestRepsonse = RequestFriendResponse(json: responseJSON)
             } else {
-                friendRequestRepsonse = FriendRequestRepsonse(errorMessage: "Could not deserialize server response")
+                friendRequestRepsonse = RequestFriendResponse(errorMessage: "Could not deserialize server response")
             }
             
             completion(friendRequestRepsonse.sent!)
