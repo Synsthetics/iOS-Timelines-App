@@ -19,7 +19,7 @@ struct DateTools {
     static let localTimeFormatter: ISO8601DateFormatter = {
         let localTimeFormatter = ISO8601DateFormatter()
         localTimeFormatter.timeZone = TimeZone.autoupdatingCurrent
-        
+
         return localTimeFormatter
     }()
     
@@ -28,6 +28,13 @@ struct DateTools {
         formatter.timeZone = TimeZone(abbreviation: timezone)
         
         return formatter
+    }
+    
+    static func localTimes(for event: Event) -> (start: String, end: String) {
+        let start = DateTools.localTimeFormatter.date(from: event.startAsGMT())?.description(with: Locale.autoupdatingCurrent)
+        let end = DateTools.localTimeFormatter.date(from: event.endAsGMT())?.description(with: Locale.autoupdatingCurrent)
+        let times = (start: start!, end: end!)
+        return times
     }
     
     

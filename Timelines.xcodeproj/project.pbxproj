@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		33A182C41DAD3F2B00D9DC53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */; };
 		33A182C61DAD40E800D9DC53 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C51DAD40E800D9DC53 /* UserStore.swift */; };
+		33A182C81DB00B6600D9DC53 /* Timeblock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C71DB00B6600D9DC53 /* Timeblock.swift */; };
+		33A182CA1DB0198000D9DC53 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C91DB0198000D9DC53 /* EventInfoViewController.swift */; };
 		652792DF1DAC1291006BC707 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652792DE1DAC1291006BC707 /* ViewController.swift */; };
 		652792E21DAC1291006BC707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 652792E01DAC1291006BC707 /* Main.storyboard */; };
 		652792E41DAC1291006BC707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 652792E31DAC1291006BC707 /* Assets.xcassets */; };
@@ -31,8 +33,7 @@
 		652793321DAC1697006BC707 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652793311DAC1697006BC707 /* EventTests.swift */; };
 		65482F991DAFC35C00CE5C04 /* PendingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F981DAFC35C00CE5C04 /* PendingRequestsViewController.swift */; };
 		65482F9B1DAFD6C000CE5C04 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */; };
-		65482F9D1DAFD7DE00CE5C04 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F9C1DAFD7DE00CE5C04 /* EventStore.swift */; };
-		65482F9F1DAFD85C00CE5C04 /* FreeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F9E1DAFD85C00CE5C04 /* FreeEvent.swift */; };
+		65482F9D1DAFD7DE00CE5C04 /* TimeblockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F9C1DAFD7DE00CE5C04 /* TimeblockStore.swift */; };
 		6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592CAA31DAE7797003E7100 /* AlertView.swift */; };
 		65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F695251DAE84BE0048BFCF /* RegisterViewController.swift */; };
 		746114521DAE895700DF170B /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114511DAE895700DF170B /* NewEventViewController.swift */; };
@@ -60,6 +61,8 @@
 /* Begin PBXFileReference section */
 		33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33A182C51DAD40E800D9DC53 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		33A182C71DB00B6600D9DC53 /* Timeblock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeblock.swift; sourceTree = "<group>"; };
+		33A182C91DB0198000D9DC53 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		652792D91DAC1291006BC707 /* Timelines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timelines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		652792DE1DAC1291006BC707 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		652792E11DAC1291006BC707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,8 +91,7 @@
 		652793311DAC1697006BC707 /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		65482F981DAFC35C00CE5C04 /* PendingRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingRequestsViewController.swift; sourceTree = "<group>"; };
 		65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
-		65482F9C1DAFD7DE00CE5C04 /* EventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
-		65482F9E1DAFD85C00CE5C04 /* FreeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreeEvent.swift; sourceTree = "<group>"; };
+		65482F9C1DAFD7DE00CE5C04 /* TimeblockStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeblockStore.swift; sourceTree = "<group>"; };
 		6592CAA31DAE7797003E7100 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		65F695251DAE84BE0048BFCF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		746114511DAE895700DF170B /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
@@ -156,8 +158,7 @@
 				652793101DAC1324006BC707 /* User.swift */,
 				6527932F1DAC14FE006BC707 /* Event.swift */,
 				652792DE1DAC1291006BC707 /* ViewController.swift */,
-				65482F9C1DAFD7DE00CE5C04 /* EventStore.swift */,
-				65482F9E1DAFD85C00CE5C04 /* FreeEvent.swift */,
+				65482F9C1DAFD7DE00CE5C04 /* TimeblockStore.swift */,
 				652792E01DAC1291006BC707 /* Main.storyboard */,
 				65482F981DAFC35C00CE5C04 /* PendingRequestsViewController.swift */,
 				652792E31DAC1291006BC707 /* Assets.xcassets */,
@@ -171,6 +172,8 @@
 				746114531DAE898000DF170B /* TableViewCells.swift */,
 				746114551DAE8C3700DF170B /* DateTools.swift */,
 				65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */,
+				33A182C71DB00B6600D9DC53 /* Timeblock.swift */,
+				33A182C91DB0198000D9DC53 /* EventInfoViewController.swift */,
 			);
 			path = Timelines;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				33A182C41DAD3F2B00D9DC53 /* LoginViewController.swift in Sources */,
 				652793241DAC132A006BC707 /* AppDelegate.swift in Sources */,
 				65482F9B1DAFD6C000CE5C04 /* EventsViewController.swift in Sources */,
+				33A182CA1DB0198000D9DC53 /* EventInfoViewController.swift in Sources */,
 				746114521DAE895700DF170B /* NewEventViewController.swift in Sources */,
 				652793301DAC14FE006BC707 /* Event.swift in Sources */,
 				652792DF1DAC1291006BC707 /* ViewController.swift in Sources */,
@@ -344,15 +348,15 @@
 				652793151DAC1324006BC707 /* LoginAPI.swift in Sources */,
 				746114541DAE898000DF170B /* TableViewCells.swift in Sources */,
 				65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */,
-				65482F9F1DAFD85C00CE5C04 /* FreeEvent.swift in Sources */,
 				652793281DAC132A006BC707 /* FriendsAPI.swift in Sources */,
 				652793231DAC132A006BC707 /* API.swift in Sources */,
 				746114561DAE8C3700DF170B /* DateTools.swift in Sources */,
 				652793161DAC1324006BC707 /* RegisterAPI.swift in Sources */,
 				6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */,
 				652793181DAC1324006BC707 /* User.swift in Sources */,
+				33A182C81DB00B6600D9DC53 /* Timeblock.swift in Sources */,
 				65482F991DAFC35C00CE5C04 /* PendingRequestsViewController.swift in Sources */,
-				65482F9D1DAFD7DE00CE5C04 /* EventStore.swift in Sources */,
+				65482F9D1DAFD7DE00CE5C04 /* TimeblockStore.swift in Sources */,
 				652793171DAC1324006BC707 /* Request.swift in Sources */,
 				652793131DAC1324006BC707 /* JSONKeys.swift in Sources */,
 				33A182C61DAD40E800D9DC53 /* UserStore.swift in Sources */,

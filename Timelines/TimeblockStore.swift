@@ -1,5 +1,5 @@
 //
-//  EventStore.swift
+//  TimeblockStore.swift
 //  Timelines
 //
 //  Created by Daniel Kwolek on 10/13/16.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-class EventStore {
+class TimeblockStore {
+    
+    static var timeblocks: [Timeblock] = []
 
 }

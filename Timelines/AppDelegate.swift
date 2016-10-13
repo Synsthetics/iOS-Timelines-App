@@ -16,16 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-
-        
-//        API.register(body: RegisterRequest(email: "sampson@sampson.com", username: "sampson", password: "sampson")) { authResponse in
-//            print("\n\n\n\n\n\n\n\n\(authResponse)")
-//        }
+        //        API.register(body: RegisterRequest(email: "sampson", username: "sampson", password: "sampson")) { authResponse in
+        //        }
         
         API.login(body: LoginRequest(username: "sampson", password : "sampson")) { authResponse in
             UserStore.mainUser = authResponse.user!
+            
+            let now = Date()
+            
+            let aram = Event(name: "ARAM", details: "With Raikore", start: now, end: now.addingTimeInterval(2000), timezoneCreatedIn: "EST", owner: UserStore.mainUser!)
+            
+            let timeblock = Timeblock(start: now.addingTimeInterval(2001), end: now.addingTimeInterval(4000))
+            
+            let dnd = Event(name: "dnd", details: "With Raikore", start: now.addingTimeInterval(4001), end: now.addingTimeInterval(6000), timezoneCreatedIn: "EST", owner: UserStore.mainUser!)
+            
+            let sr5 = Event(name: "sr5", details: "With Raikore", start: now.addingTimeInterval(6001), end: now.addingTimeInterval(8000), timezoneCreatedIn: "EST", owner: UserStore.mainUser!)
+            
+            let tt3 = Event(name: "tt3", details: "With Raikore", start: now.addingTimeInterval(8001), end: now.addingTimeInterval(10000), timezoneCreatedIn: "EST", owner: UserStore.mainUser!)
+            
+            let timeblocks: [Timeblock] = [aram, timeblock, dnd, sr5, tt3]
+            TimeblockStore.timeblocks = timeblocks
         }
-
+        
         return true
     }
     
