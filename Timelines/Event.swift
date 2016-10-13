@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Event: Comparable {
+class Event {
     var id: Int?
     var name: String
     var start: Date
@@ -16,19 +16,23 @@ class Event: Comparable {
     var duration: TimeInterval {
         return end.timeIntervalSince(start)
     }
-    var owners: [User] = []
-    var attendees: [User] = []
+    var owner: User
+    var attendees: [User]?
     var details: String
     var timezoneCreatedIn: String
     
-    init(name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owners: User...) {
+    init(name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
         self.name = name
         self.details = details
         self.start = start
         self.end = end
         self.timezoneCreatedIn = timezoneCreatedIn
-        self.owners = owners
+        self.owner = owner
     }
+    
+}
+
+extension Event {
     
     func conflicts(with event: Event) -> Bool {
         let absoluteNoConflicts = self < event || self > event
@@ -39,6 +43,19 @@ class Event: Comparable {
         
         return true
     }
+    
+    /// Returns start time as GMT in ISO format
+    func startAsGMT() -> String {
+        return DateTools.gmtFormatter.string(from: start)
+    }
+    
+    /// Returns end time as GMT in ISO format
+    func endAsGMT() -> String {
+        return DateTools.gmtFormatter.string(from: end)
+    }
+}
+
+extension Event: Comparable {
     
     public static func ==(lhs: Event, rhs: Event) -> Bool {
         return lhs.start == rhs.start && lhs.end == rhs.end
