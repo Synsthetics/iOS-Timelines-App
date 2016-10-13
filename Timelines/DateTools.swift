@@ -23,5 +23,12 @@ struct DateTools {
         return localTimeFormatter
     }()
     
+    static func formatter(for timezone: String) -> ISO8601DateFormatter {
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: timezone)
+        
+        return formatter
+    }
+    
     
 }

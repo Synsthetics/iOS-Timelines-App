@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Request {
-    func dictionary() -> [String: Any]
+    func dictionary() -> [String : Any]
 }
 
 extension Request {
@@ -23,11 +23,11 @@ struct RegisterRequest: Request {
     let username: String
     let password: String
     
-    func dictionary() -> [String: Any] {
-        let data: [String: Any] = [
-            JSONKeys.RegisterRequest.email.key: email,
-            JSONKeys.RegisterRequest.username.key: username,
-            JSONKeys.RegisterRequest.password.key: password
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.RegisterRequest.email.key :  email,
+            JSONKeys.RegisterRequest.username.key : username,
+            JSONKeys.RegisterRequest.password.key : password
         ]
         
         return data
@@ -43,12 +43,12 @@ struct LoginRequest: Request {
         self.password = password
     }
     
-    func dictionary() -> [String: Any] {
-        let data = [
-            JSONKeys.RegisterRequest.username.key: username,
-            JSONKeys.RegisterRequest.password.key: password
+    func dictionary() -> [String : Any] {
+        let data: [String: Any] = [
+            JSONKeys.RegisterRequest.username.key : username,
+            JSONKeys.RegisterRequest.password.key : password
         ]
-
+        
         return data
     }
     
@@ -63,10 +63,10 @@ struct FriendRequest: Request {
         self.contactee = contactee
     }
     
-    func dictionary() -> [String: Any] {
-        let data = [
-            JSONKeys.FriendRequest.contactor.key: contactor.id,
-            JSONKeys.FriendRequest.contactee.key: contactee.id
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.FriendRequest.contactor.key : contactor.id,
+            JSONKeys.FriendRequest.contactee.key : contactee.id
         ]
         
         return data
@@ -76,20 +76,38 @@ struct FriendRequest: Request {
 
 struct AcceptFriendRequest: Request {
     var accept: Bool
-    var username: String?
+    var username: String
     
-    init(accept: Bool, user: User?) {
-        self.accept = accept
-        self.username = user?.username
-    }
-    
-    func dictionary() -> [String: Any] {
-        let data = [
-            JSONKeys.AcceptFriend.accept.key: accept,
-            JSONKeys.AcceptFriend.username.key: username
-        ] as [String : Any]
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.AcceptFriend.accept.key : accept,
+            JSONKeys.AcceptFriend.username.key : username
+        ]
         
         return data
     }
     
+}
+
+
+struct AddEventRequest: Request  {
+    let name: String
+    let start: String
+    let end: String
+    let owner: Int
+    let details: String
+    let timeZoneCreatedIn: String
+    
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.EventRequest.name.key : name,
+            JSONKeys.EventRequest.start.key : start,
+            JSONKeys.EventRequest.end.key : end,
+            JSONKeys.EventRequest.owner.key : owner,
+            JSONKeys.EventRequest.details.key : details,
+            JSONKeys.EventRequest.timeZoneCreatedIn.key : timeZoneCreatedIn
+        ]
+        
+        return data
+    }
 }
