@@ -15,9 +15,9 @@ class FreeCell: UITableViewCell {
 }
 
 class EventCell: UITableViewCell {
+    @IBOutlet var title: UILabel!
     @IBOutlet var startTime: UILabel!
     @IBOutlet var endTime: UILabel!
-    @IBOutlet var title: UILabel!
 }
 
 class FriendCell: UITableViewCell {

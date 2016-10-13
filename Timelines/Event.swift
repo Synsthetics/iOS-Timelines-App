@@ -8,14 +8,9 @@
 
 import Foundation
 
-class Event {
+class Event: Timeblock {
     var id: Int?
     var name: String
-    var start: Date
-    var end: Date
-    var duration: TimeInterval {
-        return end.timeIntervalSince(start)
-    }
     var owner: User
     var attendees: [User]?
     var details: String
@@ -24,10 +19,9 @@ class Event {
     init(name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
         self.name = name
         self.details = details
-        self.start = start
-        self.end = end
         self.timezoneCreatedIn = timezoneCreatedIn
         self.owner = owner
+        super.init(start: start, end: end)
     }
     
 }
