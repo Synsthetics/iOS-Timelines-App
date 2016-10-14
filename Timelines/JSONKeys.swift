@@ -41,8 +41,8 @@ enum JSONKeys {
     
     enum EventRequest: String {
         case name = "name"
-        case start = "start"
-        case end = "end"
+        case start = "startDate"
+        case end = "endDate"
         case owner = "owner"
         case details = "details"
         case timeZoneCreatedIn = "timeZoneCreatedIn"
