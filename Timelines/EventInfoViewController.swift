@@ -31,7 +31,7 @@ class EventInfoViewController: UIViewController {
         let times = DateTools.localTimes(for: self.event!)
         self.eventStartLabel.text = times.start
         self.eventEndLabel.text = times.end
-        self.eventDurationLabel.text = self.event!.duration.description
+        self.eventDurationLabel.text = "\(Int(self.event!.duration / 60.0))"
         self.eventDetailsTextView.text = self.event!.details
     }
     
