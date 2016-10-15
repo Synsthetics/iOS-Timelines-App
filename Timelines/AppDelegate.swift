@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //        API.register(body: RegisterRequest(email: "sampson", username: "sampson", password: "sampson")) { authResponse in
+        //        API.register(body: RegisterRequest(email: "tim", username: "tim", password: "tim")) {
+        //            authResponse in
         //        }
         
         API.login(body: LoginRequest(username: "sampson", password : "sampson")) { authResponse in

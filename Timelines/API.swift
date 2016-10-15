@@ -56,12 +56,15 @@ struct API {
     }
     
     struct AddEventResponse {
-        var created: Bool?
+        var event: Event?
         var errorMessage: String?
         
         init(json: [String: Any]) {
-            self.created = json["created"] as? Bool
-            self.errorMessage = json["errorMessage"] as? String
+            if let event = Event(json: json) {
+                self.event = event
+            } else {
+                self.errorMessage = json["errorMessage"] as? String
+            }
         }
         
         init(errorMessage: String) {
@@ -151,7 +154,7 @@ extension API {
 }
 
 extension API {
-
+    
     static func addEvent(body: AddEventRequest, with completion: @escaping (AddEventResponse) -> (Void)) {
         let request = API.request(to: .addEvent, with: body, how: "POST")
         
@@ -195,8 +198,6 @@ extension API {
         let request = API.request(to: .confirmFriend, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
-            
-            
             
         }
         task.resume()

@@ -24,6 +24,25 @@ class Event: Timeblock {
         super.init(start: start, end: end)
     }
     
+    convenience init?(json: [String : Any]) {
+        guard let name = json["name"]  as? String,
+            let details = json["details"]  as? String,
+            let timezoneCreatedIn = json["timezoneCreatedIn"] as? String else {
+                return nil
+        }
+        
+        guard let start = DateTools.localTimeFormatter.date(from: (json["startDate"] as? String)!),
+              let end = DateTools.localTimeFormatter.date(from: (json["endDate"] as? String)!) else {
+                return nil
+        }
+        
+        guard let owner = User(json: (json["owner"] as? [String: Any])!) else {
+            return nil
+        }
+        
+        self.init(name: name, details: details, start: start, end: end, timezoneCreatedIn: timezoneCreatedIn, owner: owner)
+    }
+    
 }
 
 extension Event {

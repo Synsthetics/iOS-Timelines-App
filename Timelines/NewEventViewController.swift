@@ -68,11 +68,14 @@ class NewEventViewController: UIViewController {
         print("✅\(request)")
         
         API.addEvent(body: request) { addEventResponse in
-            guard addEventResponse.created == true else {
+            guard let event = addEventResponse.event else {
                 let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
                 self.present(alert, animated: true, completion: nil)
                 return
             }
+            
+            TimeblockStore.timeblocks.append(event)
+            
             self.dismiss(animated: true, completion: nil)
         }
     }
