@@ -94,7 +94,7 @@ struct AddEventRequest: Request  {
     let name: String
     let start: String
     let end: String
-    let owner: Int
+    let owner: String
     let details: String
     let timeZoneCreatedIn: String
     
@@ -103,7 +103,9 @@ struct AddEventRequest: Request  {
             JSONKeys.EventRequest.name.key : name,
             JSONKeys.EventRequest.start.key : start,
             JSONKeys.EventRequest.end.key : end,
-            JSONKeys.EventRequest.owner.key : owner,
+            JSONKeys.EventRequest.owner.key : [
+                JSONKeys.RegisterRequest.username.key : owner
+            ],
             JSONKeys.EventRequest.details.key : details,
             JSONKeys.EventRequest.timeZoneCreatedIn.key : timeZoneCreatedIn
         ]

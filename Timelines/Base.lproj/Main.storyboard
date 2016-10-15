@@ -154,7 +154,6 @@
                                         <connections>
                                             <outlet property="endTime" destination="qGG-az-qgd" id="4kD-LH-98O"/>
                                             <outlet property="startTime" destination="hH4-lv-Ucn" id="Yjh-1X-eDi"/>
-                                            <segue destination="yuA-cC-Oeg" kind="show" id="sPW-dr-lCp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" id="4iA-nt-1Bz" customClass="EventCell" customModule="Timelines" customModuleProvider="target">
@@ -221,7 +220,7 @@
         <!--New Event View Controller-->
         <scene sceneID="cdX-W7-7Fi">
             <objects>
-                <viewController storyboardIdentifier="CreateEventController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yuA-cC-Oeg" customClass="NewEventViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewEventViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yuA-cC-Oeg" customClass="NewEventViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hm3-Ve-LIJ"/>
                         <viewControllerLayoutGuide type="bottom" id="quj-i2-2g2"/>

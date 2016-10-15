@@ -11,5 +11,15 @@ import Foundation
 class TimeblockStore {
     
     static var timeblocks: [Timeblock] = []
+    
+    static func insert(timeblock: Timeblock, at index: Int) -> Bool {
+        TimeblockStore.timeblocks.remove(at: index)
+        TimeblockStore.timeblocks.insert(timeblock, at: index)
+        
+        if TimeblockStore.timeblocks.contains(timeblock) {
+            return true
+        }
+        return false
+    }
 
 }
