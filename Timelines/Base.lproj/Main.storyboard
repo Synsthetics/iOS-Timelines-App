@@ -86,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="2924" y="150"/>
         </scene>
-        <!--Item-->
+        <!--Requests-->
         <scene sceneID="lFU-KD-lxn">
             <objects>
                 <viewController id="Ewa-MH-tzB" customClass="PendingRequestsViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="qnI-D2-tTK"/>
+                    <tabBarItem key="tabBarItem" title="Requests" id="qnI-D2-tTK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oC3-AE-EMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,7 +124,7 @@
                                         <rect key="frame" x="0.0" y="92" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50q-aW-Hcj" id="WGe-m4-rQU">
-                                            <frame key="frameInset" width="343" height="43"/>
+                                            <frame key="frameInset" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3KC-Mz-VFY">
@@ -160,7 +160,7 @@
                                         <rect key="frame" x="0.0" y="136" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4iA-nt-1Bz" id="TO0-O6-g4C">
-                                            <frame key="frameInset" width="343" height="43"/>
+                                            <frame key="frameInset" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-NC-2Rx">
@@ -207,7 +207,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bBh-cY-Qq8" secondAttribute="trailing" id="xGM-tz-M6z"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="e7I-yT-GgJ"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" id="e7I-yT-GgJ"/>
                     <navigationItem key="navigationItem" title="Synsthetic Timelines" id="iws-oe-x51"/>
                     <connections>
                         <outlet property="tableView" destination="bBh-cY-Qq8" id="dBJ-P9-lCD"/>
@@ -380,10 +380,10 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttendeeCell" id="T8l-Ow-w4j">
-                                                        <rect key="frame" x="0.0" y="28" width="327" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T8l-Ow-w4j" id="lZY-Y8-xsI">
-                                                            <frame key="frameInset" width="327" height="43"/>
+                                                            <frame key="frameInset" width="1000" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
@@ -416,7 +416,7 @@
             </objects>
             <point key="canvasLocation" x="4428" y="859"/>
         </scene>
-        <!--Item-->
+        <!--Friends-->
         <scene sceneID="pZq-jT-eoY">
             <objects>
                 <viewController storyboardIdentifier="FriendsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ugy-Ic-BVy" sceneMemberID="viewController">
@@ -432,10 +432,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="hcY-ie-4tY">
-                                        <rect key="frame" x="0.0" y="92" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcY-ie-4tY" id="RuV-QM-lXM">
-                                            <frame key="frameInset" width="343" height="43"/>
+                                            <frame key="frameInset" width="1000" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -464,7 +464,7 @@
                             <constraint firstItem="4Ll-hl-oUU" firstAttribute="height" secondItem="6gs-h1-LeO" secondAttribute="height" multiplier="2:3" id="ok5-dW-1sU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="KyT-Te-63G"/>
+                    <tabBarItem key="tabBarItem" title="Friends" id="KyT-Te-63G"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4n-pV-ob9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -63,7 +63,7 @@ class NewEventViewController: UIViewController {
         
         print(TimeZone
             .autoupdatingCurrent.abbreviation()!)
-        let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: (UserStore.mainUser?.username)!, details: details!, timeZoneCreatedIn: TimeZone
+        let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: UserStore.mainUser!, details: details!, timeZoneCreatedIn: TimeZone
             .autoupdatingCurrent.abbreviation()!)
         
         print("✅\(request)")
@@ -75,9 +75,9 @@ class NewEventViewController: UIViewController {
                 return
             }
             
-            if TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!) {
-                self.dismiss(animated: true, completion: nil)
-            }
+            TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

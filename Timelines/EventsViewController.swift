@@ -16,12 +16,22 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.getRecentEvents()
         self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getRecentEvents()
         self.tableView.reloadData()
+    }
+    
+    private func getRecentEvents() {
+        if UserStore.mainUser != nil {
+            API.events(body: EventsRequest(username: (UserStore.mainUser?.username)!)) { eventsResponse in
+                TimeblockStore.timeblocks = eventsResponse.events!
+            }
+        }
     }
     
 }

@@ -18,6 +18,7 @@ struct API {
     enum Endpoint: String {
         case login = "/login"
         case register = "/register"
+        case events = "/events"
         case addEvent = "/addEvent"
         case requestFriend = "/requestFriend"
         case confirmFriend = "/confirmFriend"
@@ -30,7 +31,7 @@ struct API {
         init(json: [String: Any]) {
             if let user = User(json: json) {
                 self.user = user
-            } else if let errorMessage = json["errorMessage"] as? String {
+            } else if let errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String {
                 self.errorMessage = errorMessage
             }
         }
@@ -47,7 +48,7 @@ struct API {
         
         init(json: [String: Any]) {
             self.sent = json["sent"] as? Bool
-            self.errorMessage = json["errorMessage"] as? String
+            self.errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
         }
         
         init(errorMessage: String) {
@@ -63,7 +64,24 @@ struct API {
             if let event = Event(json: json) {
                 self.event = event
             } else {
-                self.errorMessage = json["errorMessage"] as? String
+                self.errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
+            }
+        }
+        
+        init(errorMessage: String) {
+            self.errorMessage = errorMessage
+        }
+    }
+    
+    struct EventsResponse {
+        var events: [Event]?
+        var errorMessage: String?
+        
+        init(json: [[String: Any]]) {
+            if let events = json.flatMap(Event.init(json:)) as [Event]? {
+                self.events = events
+            } else {
+                self.errorMessage = json.first?[JSONKeys.ResponseKeys.errorMessage.key] as? String
             }
         }
         
@@ -155,6 +173,30 @@ extension API {
 
 extension API {
     
+    static func events(body: EventsRequest, with completion: @escaping (EventsResponse) -> (Void)) {
+        let request = API.request(to: .events, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var eventsResponse: EventsResponse?
+            
+            guard let data = optData else {
+                eventsResponse = EventsResponse(errorMessage: "Could not deserialize server response")
+                completion(eventsResponse!)
+                return
+            }
+            
+            if let responseJSON = JSONTools.dataToArrayOfDictionaries(data) {
+                eventsResponse = EventsResponse(json: responseJSON)
+            } else if let responseJSON = JSONTools.dataToDictionary(data) {
+                eventsResponse = EventsResponse(errorMessage: responseJSON[JSONKeys.ResponseKeys.errorMessage.key] as! String)
+            }
+            
+            completion(eventsResponse!)
+        }
+        task.resume()
+        
+    }
+    
     static func addEvent(body: AddEventRequest, with completion: @escaping (AddEventResponse) -> (Void)) {
         let request = API.request(to: .addEvent, with: body, how: "POST")
         
@@ -168,7 +210,6 @@ extension API {
             }
             
             completion(addEventResponse)
-            
         }
         task.resume()
     }
@@ -204,5 +245,3 @@ extension API {
     }
     
 }
-
-

@@ -9,14 +9,15 @@
 import Foundation
 
 class Event: Timeblock {
-    var id: Int?
+    var id: Int
     var name: String
     var owner: User
     var attendees: [User]?
     var details: String
     var timezoneCreatedIn: String
     
-    init(name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
+    init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
+        self.id = id
         self.name = name
         self.details = details
         self.timezoneCreatedIn = timezoneCreatedIn
@@ -25,22 +26,35 @@ class Event: Timeblock {
     }
     
     convenience init?(json: [String : Any]) {
-        guard let name = json["name"]  as? String,
-            let details = json["details"]  as? String,
-            let timezoneCreatedIn = json["timezoneCreatedIn"] as? String else {
-                return nil
-        }
-        
-        guard let start = DateTools.localTimeFormatter.date(from: (json["startDate"] as? String)!),
-              let end = DateTools.localTimeFormatter.date(from: (json["endDate"] as? String)!) else {
-                return nil
-        }
-        
-        guard let owner = User(json: (json["owner"] as? [String: Any])!) else {
+        guard let id = json[JSONKeys.EventRequest.id.key]  as? Int else {
             return nil
         }
         
-        self.init(name: name, details: details, start: start, end: end, timezoneCreatedIn: timezoneCreatedIn, owner: owner)
+        guard let name = json[JSONKeys.EventRequest.name.key] as? String else {
+            return nil
+        }
+
+        guard let details = json[JSONKeys.EventRequest.details.key]  as? String else {
+            return nil
+        }
+        
+        guard let timezoneCreatedIn = json[JSONKeys.EventRequest.timeZoneCreatedIn.key] as? String else {
+            return nil
+        }
+        
+        guard let start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.start.key] as? String)!) else {
+            return nil
+        }
+        
+        guard let end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.end.key] as? String)!) else {
+            return nil
+        }
+        
+        guard let owner = User(json: (json[JSONKeys.EventRequest.owner.key] as? [String: Any])!) else {
+            return nil
+        }
+        
+        self.init(id: id, name: name, details: details, start: start, end: end, timezoneCreatedIn: timezoneCreatedIn, owner: owner)
     }
     
 }
@@ -56,5 +70,5 @@ extension Event {
         
         return true
     }
-
+    
 }
