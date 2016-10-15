@@ -40,12 +40,21 @@ enum JSONKeys {
     }
     
     enum EventRequest: String {
+        case id = "id"
         case name = "name"
         case start = "startDate"
         case end = "endDate"
         case owner = "owner"
         case details = "details"
-        case timeZoneCreatedIn = "timeZoneCreatedIn"
+        case timeZoneCreatedIn = "timezoneCreatedIn"
+        
+        var key: String {
+            return self.rawValue
+        }
+    }
+    
+    enum ResponseKeys: String {
+        case errorMessage = "errorMessage"
         
         var key: String {
             return self.rawValue

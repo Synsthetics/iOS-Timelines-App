@@ -11,5 +11,10 @@ import Foundation
 class TimeblockStore {
     
     static var timeblocks: [Timeblock] = []
+    
+    static func insert(timeblock: Timeblock, at index: Int) {
+        TimeblockStore.timeblocks.remove(at: index)
+        TimeblockStore.timeblocks.insert(timeblock, at: index)
+    }
 
 }

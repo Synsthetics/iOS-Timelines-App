@@ -16,12 +16,22 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.getRecentEvents()
         self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getRecentEvents()
         self.tableView.reloadData()
+    }
+    
+    private func getRecentEvents() {
+        if UserStore.mainUser != nil {
+            API.events(body: EventsRequest(username: (UserStore.mainUser?.username)!)) { eventsResponse in
+                TimeblockStore.timeblocks = eventsResponse.events!
+            }
+        }
     }
     
 }
@@ -29,12 +39,16 @@ class EventsViewController: UIViewController {
 extension EventsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
         if let _ = tableView.cellForRow(at: indexPath) as? EventCell {
-            print("✅✅✅✅✅✅✅✅")
-            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let eventInfoView = storyBoard.instantiateViewController(withIdentifier: "EventInfoViewController") as! EventInfoViewController
             eventInfoView.event = TimeblockStore.timeblocks[indexPath.row] as? Event
             show(eventInfoView, sender: nil)
+        } else {
+            let newEventView = storyBoard.instantiateViewController(withIdentifier: "NewEventViewController") as! NewEventViewController
+            newEventView.timeblockIndex = TimeblockStore.timeblocks.index(of: TimeblockStore.timeblocks[indexPath.row])
+            show(newEventView, sender: nil)
         }
     }
     

@@ -18,6 +18,7 @@ class NewEventViewController: UIViewController {
     
     var startDate: Date?
     var endDate: Date?
+    var timeblockIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +46,13 @@ class NewEventViewController: UIViewController {
         self.detailsTextView.resignFirstResponder()
         
         guard name != nil && !name!.isEmpty,
-              details != nil && !details!.isEmpty,
-              start != nil,
-              end != nil,
-              start! < end! else {
-            let alert = AlertView.createAlert(title: "Event creation error", message: "Please fill out all the fields correctly to create an event.", actionTitle: "OK")
-            present(alert, animated: true, completion: nil)
-            return
+            details != nil && !details!.isEmpty,
+            start != nil,
+            end != nil,
+            start! < end! else {
+                let alert = AlertView.createAlert(title: "Event creation error", message: "Please fill out all the fields correctly to create an event.", actionTitle: "OK")
+                present(alert, animated: true, completion: nil)
+                return
         }
         
         let isoStart = DateTools.gmtFormatter.string(from: start!)
@@ -62,17 +63,20 @@ class NewEventViewController: UIViewController {
         
         print(TimeZone
             .autoupdatingCurrent.abbreviation()!)
-        let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: UserStore.mainUser!.id!, details: details!, timeZoneCreatedIn: TimeZone
+        let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: UserStore.mainUser!, details: details!, timeZoneCreatedIn: TimeZone
             .autoupdatingCurrent.abbreviation()!)
         
         print("✅\(request)")
         
         API.addEvent(body: request) { addEventResponse in
-            guard addEventResponse.created == true else {
+            guard let event = addEventResponse.event else {
                 let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
                 self.present(alert, animated: true, completion: nil)
                 return
             }
+            
+            TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
+            
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -80,7 +84,7 @@ class NewEventViewController: UIViewController {
 }
 
 extension NewEventViewController: UITextFieldDelegate {
-
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
