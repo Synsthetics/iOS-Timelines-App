@@ -32,8 +32,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let privateQueue = OperationQueue.init()
-        
+        let privateQueue = OperationQueue() 
         privateQueue.addOperation {
             API.register(body: registerRequest) { authResponse in
                 guard let user = authResponse.user else {
@@ -103,7 +102,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         return RegisterRequest(email: email, username: username, password: password)
-    
     }
     
     private func loginSuccess(user: User) {
