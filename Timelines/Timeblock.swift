@@ -15,7 +15,15 @@ class Timeblock {
         return end.timeIntervalSince(start)
     }
     
-    init(start: Date, end: Date) {
+    init?(json: [String : Any]) {
+        guard let start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.start.key] as? String)!) else {
+            return nil
+        }
+        
+        guard let end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.end.key] as? String)!) else {
+            return nil
+        }
+    
         self.start = start
         self.end = end
     }

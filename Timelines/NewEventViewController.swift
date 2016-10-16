@@ -77,7 +77,7 @@ class NewEventViewController: UIViewController {
             
             TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
             
-            self.dismiss(animated: true, completion: nil)
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     
