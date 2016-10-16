@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //            authResponse in
         //        }
         
-        API.login(body: LoginRequest(username: "sampson", password : "sampson")) { authResponse in
-            UserStore.mainUser = authResponse.user!
-        }
+//        API.login(body: LoginRequest(username: "sampson", password : "sampson")) { authResponse in
+//            UserStore.mainUser = authResponse.user!
+//        }
         
         return true
     }

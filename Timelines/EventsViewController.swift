@@ -30,6 +30,9 @@ class EventsViewController: UIViewController {
         if UserStore.mainUser != nil {
             API.events(body: EventsRequest(username: (UserStore.mainUser?.username)!)) { eventsResponse in
                 TimeblockStore.timeblocks = eventsResponse.events!
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
