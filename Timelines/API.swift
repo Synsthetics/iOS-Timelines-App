@@ -74,12 +74,24 @@ struct API {
     }
     
     struct EventsResponse {
-        var events: [Event]?
+        var timeblocks: [Timeblock]?
         var errorMessage: String?
         
         init(json: [[String: Any]]) {
-            if let events = json.flatMap(Event.init(json:)) as [Event]? {
-                self.events = events
+            
+            let deserialized: [Timeblock]? = json.flatMap {
+                let currentID = $0[JSONKeys.EventRequest.id.key] as? Int
+                let currentName = $0[JSONKeys.EventRequest.name.key] as? String
+                
+                if currentID == 0 && currentName == "timeblock" {
+                    return Timeblock(json: $0)
+                } else {
+                    return Event(json: $0)
+                }
+            }
+            
+            if let timeblocks = deserialized {
+                self.timeblocks = timeblocks
             } else {
                 self.errorMessage = json.first?[JSONKeys.ResponseKeys.errorMessage.key] as? String
             }

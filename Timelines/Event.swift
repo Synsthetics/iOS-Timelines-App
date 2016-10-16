@@ -16,16 +16,7 @@ class Event: Timeblock {
     var details: String
     var timezoneCreatedIn: String
     
-    init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
-        self.id = id
-        self.name = name
-        self.details = details
-        self.timezoneCreatedIn = timezoneCreatedIn
-        self.owner = owner
-        super.init(start: start, end: end)
-    }
-    
-    convenience init?(json: [String : Any]) {
+    override init?(json: [String : Any]) {
         guard let id = json[JSONKeys.EventRequest.id.key]  as? Int else {
             return nil
         }
@@ -42,19 +33,17 @@ class Event: Timeblock {
             return nil
         }
         
-        guard let start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.start.key] as? String)!) else {
-            return nil
-        }
-        
-        guard let end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.end.key] as? String)!) else {
-            return nil
-        }
-        
         guard let owner = User(json: (json[JSONKeys.EventRequest.owner.key] as? [String: Any])!) else {
             return nil
         }
         
-        self.init(id: id, name: name, details: details, start: start, end: end, timezoneCreatedIn: timezoneCreatedIn, owner: owner)
+        self.id = id
+        self.name = name
+        self.details = details
+        self.timezoneCreatedIn = timezoneCreatedIn
+        self.owner = owner
+        
+        super.init(json: json)
     }
     
 }

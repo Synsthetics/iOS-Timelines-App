@@ -35,11 +35,11 @@ class EventsViewController: UIViewController {
             let request = EventsRequest(username: user.username)
             
             API.events(body: request) { eventsResponse in
-                guard let events = eventsResponse.events else {
+                guard let timeblocks = eventsResponse.timeblocks else {
                     return
                 }
                 
-                TimeblockStore.timeblocks = events
+                TimeblockStore.timeblocks = timeblocks
                 
                 OperationQueue.main.addOperation {
                     self.tableView.reloadData()
