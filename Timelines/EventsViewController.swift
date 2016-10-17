@@ -16,7 +16,6 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.getRecentEvents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,25 +24,21 @@ class EventsViewController: UIViewController {
     }
     
     private func getRecentEvents() {
-        guard let user = UserStore.mainUser else {
+        guard UserStore.mainUser != nil else {
             return
         }
         
-        let privateQueue = OperationQueue()
+        let request = MergeTimelinesRequest(usernames: UserStore.selectedFriends)
         
-        privateQueue.addOperation {
-            let request = EventsRequest(username: user.username)
+        API.mergeTimelines(body: request) { eventsResponse in
+            guard let timeblocks = eventsResponse.timeblocks else {
+                return
+            }
             
-            API.events(body: request) { eventsResponse in
-                guard let timeblocks = eventsResponse.timeblocks else {
-                    return
-                }
-                
-                TimeblockStore.timeblocks = timeblocks
-                
-                OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                }
+            TimeblockStore.timeblocks = timeblocks
+            
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
             }
         }
     }

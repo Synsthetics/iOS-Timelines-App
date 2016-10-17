@@ -69,15 +69,22 @@ class NewEventViewController: UIViewController {
             .autoupdatingCurrent.abbreviation()!)
         
         API.addEvent(body: request) { addEventResponse in
-            guard let event = addEventResponse.event else {
-                let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
-                self.present(alert, animated: true, completion: nil)
-                return
+            
+            OperationQueue.main.addOperation {
+                
+                guard let event = addEventResponse.event else {
+                    let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
+                let privateQueue = OperationQueue()
+                privateQueue.addOperation {
+                    TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
+                }
+                
+                self.dismiss(animated: true, completion: nil)
             }
-            
-            TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
-            
-            self.dismiss(animated: true, completion: nil)
         }
     }
     

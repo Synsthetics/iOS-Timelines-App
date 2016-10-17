@@ -12,11 +12,11 @@ import Foundation
 struct JSONTools {
     
     /// If provided data can be serialized to JSON, it casts JSON to [String: Any]
-    static func dataToDictionary(_ data: Data) -> [String : Any]? {
+    static func dictionary(from data: Data) -> [String : Any]? {
         return (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : Any]
     }
     
-    static func dataToArrayOfDictionaries(_ data: Data) -> [[String : Any]]? {
+    static func arrayOfDictionaries(from data: Data) -> [[String : Any]]? {
         return (try? JSONSerialization.jsonObject(with: data, options: [])) as? [[String : Any]]
     }
     

@@ -20,6 +20,23 @@ class UserStore {
             writeMainUserToSystem()
         }
     }
+    static var friends = [(user: User, selected: Bool)]()
+    static var selectedFriends: [String] = {
+        var selected: [String] = friends.flatMap {
+            if $0.selected {
+                return $0.user.username
+            } else {
+                return nil
+            }
+        }
+        
+        guard let user = mainUser else {
+            return selected
+        }
+        
+        selected.insert(user.username, at: 0)
+        return selected
+    }()
     
     private static var userPlistPath: URL = {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first

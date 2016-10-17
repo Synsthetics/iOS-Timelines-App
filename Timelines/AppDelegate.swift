@@ -30,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        let mtr = MergeTimelinesRequest(usernames: ["sampson", "sampson2"])
+        API.mergeTimelines(body: mtr) { response in
+
+        }
 
         
         return true
