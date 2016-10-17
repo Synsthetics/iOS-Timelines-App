@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		333FC1211DB53F10006A45D2 /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 333FC1201DB53F10006A45D2 /* User.plist */; };
 		33A182C41DAD3F2B00D9DC53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */; };
 		33A182C61DAD40E800D9DC53 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C51DAD40E800D9DC53 /* UserStore.swift */; };
 		33A182C81DB00B6600D9DC53 /* Timeblock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C71DB00B6600D9DC53 /* Timeblock.swift */; };
@@ -42,7 +43,6 @@
 		746114541DAE898000DF170B /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114531DAE898000DF170B /* TableViewCells.swift */; };
 		746114561DAE8C3700DF170B /* DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114551DAE8C3700DF170B /* DateTools.swift */; };
 		74B056291DB5185400A5F1C7 /* MergeTimelinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */; };
-		74EA1ADF1DB42630008E3CBA /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA1ADE1DB42630008E3CBA /* User.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		333FC1201DB53F10006A45D2 /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33A182C51DAD40E800D9DC53 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		33A182C71DB00B6600D9DC53 /* Timeblock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeblock.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		746114531DAE898000DF170B /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
 		746114551DAE8C3700DF170B /* DateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTools.swift; sourceTree = "<group>"; };
 		74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeTimelinesViewController.swift; sourceTree = "<group>"; };
-		74EA1ADE1DB42630008E3CBA /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +182,7 @@
 				65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */,
 				33A182C71DB00B6600D9DC53 /* Timeblock.swift */,
 				33A182C91DB0198000D9DC53 /* EventInfoViewController.swift */,
-				74EA1ADE1DB42630008E3CBA /* User.plist */,
+				333FC1201DB53F10006A45D2 /* User.plist */,
 				74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */,
 			);
 			path = Timelines;
@@ -325,7 +325,7 @@
 				652792E71DAC1291006BC707 /* LaunchScreen.storyboard in Resources */,
 				652792E41DAC1291006BC707 /* Assets.xcassets in Resources */,
 				652792E21DAC1291006BC707 /* Main.storyboard in Resources */,
-				74EA1ADF1DB42630008E3CBA /* User.plist in Resources */,
+				333FC1211DB53F10006A45D2 /* User.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

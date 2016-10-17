@@ -30,28 +30,10 @@ class MergeTimelinesViewController: ViewController {
     }
     
     @IBAction func mergeTimelines(_ sender: UIButton) {
-        
-        let request = MergeTimelinesRequest(usernames: UserStore.selectedFriends)
-        
-        API.mergeTimelines(body: request) { eventResponse in
-            guard let timeblocks = eventResponse.timeblocks else {
-                OperationQueue.main.addOperation {
-                    let alertViewController = AlertView.createAlert(title: "Error", message: eventResponse.errorMessage ?? "Internal server error", actionTitle: "Try again")
-                    self.present(alertViewController, animated: true, completion: nil)
-                }
-                return
-            }
-            
-            
-            TimeblockStore.timeblocks = timeblocks
-            
-            let eventsViewController = self.tabBarController?.viewControllers?.first
-            
-            self.show(eventsViewController!, sender:nil)
-            
+        OperationQueue.main.addOperation {
+            self.tabBarController?.selectedIndex = 0
         }
     }
-    
     
 }
 
