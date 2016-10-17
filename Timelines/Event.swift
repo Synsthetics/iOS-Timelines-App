@@ -46,6 +46,16 @@ class Event: Timeblock {
         super.init(json: json)
     }
     
+    init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
+        self.id = id
+        self.name = name
+        self.details = details
+        self.timezoneCreatedIn = timezoneCreatedIn
+        self.owner = owner
+        
+        super.init(start: start, end: end)
+    }
+    
 }
 
 extension Event {

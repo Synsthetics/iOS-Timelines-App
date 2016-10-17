@@ -16,22 +16,32 @@ class Timeblock {
     }
     
     init?(json: [String : Any]) {
-        guard let start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.start.key] as? String)!) else {
+        guard var start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.start.key] as? String)!) else {
             return nil
         }
         
-        guard let end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.end.key] as? String)!) else {
+        guard var end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.end.key] as? String)!) else {
             return nil
         }
-    
+        
+        Timeblock.scrubToMinute(start: &start, end: &end)
         self.start = start
         self.end = end
     }
     
     init(start: Date, end: Date) {
-        self.start = start
-        self.end = end
+        var newStart = start
+        var newEnd = end
+        Timeblock.scrubToMinute(start: &newStart, end: &newEnd)
+        self.start = newStart
+        self.end = newEnd
     }
+    
+    private static func scrubToMinute(start: inout Date, end: inout Date) {
+        start = Date(timeIntervalSinceReferenceDate: floor((start.timeIntervalSinceReferenceDate / 60.0)) * 60)
+        end = Date(timeIntervalSinceReferenceDate: floor((end.timeIntervalSinceReferenceDate / 60.0)) * 60)
+    }
+    
 }
 
 extension Timeblock {
