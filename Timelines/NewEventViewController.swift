@@ -19,11 +19,18 @@ class NewEventViewController: UIViewController {
     var startDate: Date?
     var endDate: Date?
     var timeblockIndex: Int?
+    var timeblock: Timeblock?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameTextField.delegate = self
         self.detailsTextView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.datePicker.minimumDate = timeblock?.start
+        self.datePicker.maximumDate = timeblock?.end
     }
     
     @IBAction func changeDateStateToStart(_ sender: UIButton) {
@@ -58,26 +65,26 @@ class NewEventViewController: UIViewController {
         let isoStart = DateTools.gmtFormatter.string(from: start!)
         let isoEnd = DateTools.gmtFormatter.string(from: end!)
         
-        print(isoStart)
-        print(isoEnd)
-        
-        print(TimeZone
-            .autoupdatingCurrent.abbreviation()!)
         let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: UserStore.mainUser!, details: details!, timeZoneCreatedIn: TimeZone
             .autoupdatingCurrent.abbreviation()!)
         
-        print("✅\(request)")
-        
         API.addEvent(body: request) { addEventResponse in
-            guard let event = addEventResponse.event else {
-                let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
-                self.present(alert, animated: true, completion: nil)
-                return
+            
+            OperationQueue.main.addOperation {
+                
+                guard let event = addEventResponse.event else {
+                    let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
+                let privateQueue = OperationQueue()
+                privateQueue.addOperation {
+                    TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
+                }
+                
+                self.dismiss(animated: true, completion: nil)
             }
-            
-            TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
-            
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     

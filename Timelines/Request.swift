@@ -127,3 +127,30 @@ struct EventsRequest: Request {
     }
     
 }
+
+struct MergeTimelinesRequest: Request {
+    var usernames: [String]
+    
+    func dictionary() -> [String : Any] {
+        return [:]
+    }
+    
+    func array() -> [[String : Any]] {
+        var users = [[String : Any]]()
+        
+        for username in usernames {
+            let user = [
+                JSONKeys.RegisterRequest.username.key : username
+            ]
+            
+            users.append(user)
+        }
+        
+        return users
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: array(), options: [])
+    }
+    
+}

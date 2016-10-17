@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 
-                self.loginSuccess(user: user)
+                self.registerSuccess(user: user)
             }
         }
         
@@ -104,11 +104,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return RegisterRequest(email: email, username: username, password: password)
     }
     
-    private func loginSuccess(user: User) {
+    private func registerSuccess(user: User) {
         UserStore.mainUser = user
-        let bundle = Bundle.main
-        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        let appNav = storyboard.instantiateViewController(withIdentifier: "AppNavController") as! UINavigationController
-        show(appNav, sender: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

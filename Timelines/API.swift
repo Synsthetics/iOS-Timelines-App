@@ -20,6 +20,7 @@ struct API {
         case register = "/register"
         case events = "/events"
         case addEvent = "/addEvent"
+        case mergeTimelines = "/mergeTimelines"
         case requestFriend = "/requestFriend"
         case confirmFriend = "/confirmFriend"
     }
@@ -101,7 +102,6 @@ struct API {
             self.errorMessage = errorMessage
         }
     }
-    
 }
 
 extension API {
@@ -144,10 +144,10 @@ extension API {
     static func register(body: RegisterRequest, with completion: @escaping (AuthResponse) -> (Void)) {
         let request = API.request(to: .register, with: body, how: "POST")
         
-        let registerTask = API.session.dataTask(with: request) { (optData, optResponse, optError) in
+        let registerTask = API.session.dataTask(with: request) { optData, optResponse, optError in
             var authResponse: AuthResponse
             
-            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+            if let data = optData, let responseJSON = JSONTools.dictionary(from: data) {
                 authResponse = AuthResponse(json: responseJSON)
             } else {
                 authResponse = AuthResponse(errorMessage: "Could not deserialize server response")
@@ -159,17 +159,13 @@ extension API {
         registerTask.resume()
     }
     
-}
-
-extension API {
-    
     static func login(body: LoginRequest, with completion: @escaping (AuthResponse) -> (Void)) {
         let request = API.request(to: .login, with: body, how: "POST")
         
-        let task = API.session.dataTask(with: request) { (optData, optResponse, optError) in
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
             var authResponse: AuthResponse
             
-            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+            if let data = optData, let responseJSON = JSONTools.dictionary(from: data) {
                 authResponse = AuthResponse(json: responseJSON)
             } else {
                 authResponse = AuthResponse(errorMessage: "Could not deserialize server response")
@@ -197,9 +193,9 @@ extension API {
                 return
             }
             
-            if let responseJSON = JSONTools.dataToArrayOfDictionaries(data) {
+            if let responseJSON = JSONTools.arrayOfDictionaries(from: data) {
                 eventsResponse = EventsResponse(json: responseJSON)
-            } else if let responseJSON = JSONTools.dataToDictionary(data) {
+            } else if let responseJSON = JSONTools.dictionary(from: data) {
                 eventsResponse = EventsResponse(errorMessage: responseJSON[JSONKeys.ResponseKeys.errorMessage.key] as! String)
             }
             
@@ -215,7 +211,7 @@ extension API {
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
             var addEventResponse: AddEventResponse
             
-            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+            if let data = optData, let responseJSON = JSONTools.dictionary(from: data) {
                 addEventResponse = AddEventResponse(json: responseJSON)
             } else {
                 addEventResponse = AddEventResponse(errorMessage: "Could not deserialize server response")
@@ -230,13 +226,34 @@ extension API {
 
 extension API {
     
+    static func mergeTimelines(body: MergeTimelinesRequest, with completion: @escaping (EventsResponse) -> (Void)) {
+        let request = API.request(to: .mergeTimelines, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var mergeTimelinesResponse: EventsResponse
+            
+            if let data = optData, let responseJSON = JSONTools.arrayOfDictionaries(from: data) {
+                mergeTimelinesResponse = EventsResponse(json: responseJSON)
+            } else {
+                mergeTimelinesResponse = EventsResponse(errorMessage: "Could not deserialize server response")
+            }
+            
+            completion(mergeTimelinesResponse)
+        }
+        task.resume()
+        
+    }
+}
+
+extension API {
+    
     static func requestFriend(body: FriendRequest, with completion: @escaping (Bool) -> (Void)) {
         let request = API.request(to: .requestFriend, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
             var friendRequestRepsonse: RequestFriendResponse
             
-            if let data = optData, let responseJSON = JSONTools.dataToDictionary(data) {
+            if let data = optData, let responseJSON = JSONTools.dictionary(from: data) {
                 friendRequestRepsonse = RequestFriendResponse(json: responseJSON)
             } else {
                 friendRequestRepsonse = RequestFriendResponse(errorMessage: "Could not deserialize server response")

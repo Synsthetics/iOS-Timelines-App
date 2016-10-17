@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
     @IBOutlet var userNameField: UITextField!
     
     @IBOutlet var passwordField: UITextField!
@@ -31,14 +31,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 guard let user = authResponse.user else {
                     guard let error = authResponse.errorMessage else {
                         OperationQueue.main.addOperation {
-                        let alert = AlertView.createAlert(title: "Error", message: "Something Unexpected Happened, Please Try Again", actionTitle: "Okay")
-                        self.present(alert, animated: true, completion: nil)
+                            let alert = AlertView.createAlert(title: "Error", message: "Something Unexpected Happened, Please Try Again", actionTitle: "Okay")
+                            self.present(alert, animated: true, completion: nil)
                         }
                         return
                     }
+                    
                     OperationQueue.main.addOperation {
-                    let alert = AlertView.createAlert(title: "Invalid Login", message: error, actionTitle: "Okay")
-                    self.present(alert, animated: true, completion: nil)
+                        let alert = AlertView.createAlert(title: "Invalid Login", message: error, actionTitle: "Okay")
+                        self.present(alert, animated: true, completion: nil)
                     }
                     return
                 }
@@ -49,12 +50,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private func loginSuccess(user: User) {
         UserStore.mainUser = user
-        
-        let bundle = Bundle.main
-        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        let appNav = storyboard.instantiateViewController(withIdentifier: "AppNavController") as! UINavigationController
-        show(appNav, sender: nil)
+        self.dismiss(animated: true, completion: nil)
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -64,6 +64,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
-    
-    
 }
