@@ -22,20 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case let .success(user):
                     UserStore.mainUser = user
                 case .failure(_):
-                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
                     OperationQueue.main.addOperation {
+                        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
                         self.window!.rootViewController!.present(authNavController, animated: false)
                     }
                 }
             }
         }
-        
-        let mtr = MergeTimelinesRequest(usernames: ["sampson", "sampson2"])
-        API.mergeTimelines(body: mtr) { response in
-
-        }
-
         
         return true
     }

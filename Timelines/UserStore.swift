@@ -21,7 +21,7 @@ class UserStore {
         }
     }
     static var friends = [(user: User, selected: Bool)]()
-    static var selectedFriends: [String] = {
+    static var selectedFriends: [String] {
         var selected: [String] = friends.flatMap {
             if $0.selected {
                 return $0.user.username
@@ -36,7 +36,7 @@ class UserStore {
         
         selected.insert(user.username, at: 0)
         return selected
-    }()
+    }
     
     private static var userPlistPath: URL = {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first

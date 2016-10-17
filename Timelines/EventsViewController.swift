@@ -11,6 +11,41 @@ import UIKit
 class EventsViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
+    var weeklyTimeblocks: [Timeblock] {
+        let now = Date()
+        let endOfWeek = now.addingTimeInterval(60 * 60 * 24 * 7)
+        
+        var timeblocks: [Timeblock] = TimeblockStore.timeblocks.flatMap {
+            let timeblock = $0
+            
+            if timeblock.end < now {
+                return nil
+            }
+            
+            if timeblock.start < now {
+                return Timeblock(start: now, end: timeblock.end)
+            }
+            
+            if timeblock.start > endOfWeek {
+                return nil
+            }
+            
+            if timeblock.end > endOfWeek {
+                return Timeblock(start: timeblock.start, end: endOfWeek)
+            }
+            
+            return timeblock
+        }
+        
+        let timeblock = timeblocks.last
+        
+        if (timeblock?.end)! < endOfWeek {
+            let lastTimeblock = Timeblock(start: (timeblock?.end)!, end: endOfWeek)
+            timeblocks.append(lastTimeblock)
+        }
+        
+        return timeblocks
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +70,16 @@ class EventsViewController: UIViewController {
                 return
             }
             
-            TimeblockStore.timeblocks = timeblocks
+            if !(eventsResponse.timeblocks?.isEmpty)! {
+                TimeblockStore.timeblocks = timeblocks
+            }
             
             OperationQueue.main.addOperation {
                 self.tableView.reloadData()
             }
         }
     }
+    
 }
 
 extension EventsViewController: UITableViewDelegate {
@@ -51,12 +89,12 @@ extension EventsViewController: UITableViewDelegate {
         
         if let _ = tableView.cellForRow(at: indexPath) as? EventCell {
             let eventInfoView = storyBoard.instantiateViewController(withIdentifier: "EventInfoViewController") as! EventInfoViewController
-            eventInfoView.event = TimeblockStore.timeblocks[indexPath.row] as? Event
+            eventInfoView.event = self.weeklyTimeblocks[indexPath.row] as? Event
             show(eventInfoView, sender: nil)
         } else {
             let newEventView = storyBoard.instantiateViewController(withIdentifier: "NewEventViewController") as! NewEventViewController
-            newEventView.timeblock = TimeblockStore.timeblocks[indexPath.row]
-            newEventView.timeblockIndex = TimeblockStore.timeblocks.index(of: TimeblockStore.timeblocks[indexPath.row])
+            newEventView.timeblock = self.weeklyTimeblocks[indexPath.row]
+            newEventView.timeblockIndex = self.weeklyTimeblocks.index(of: self.weeklyTimeblocks[indexPath.row])
             show(newEventView, sender: nil)
         }
     }
@@ -66,12 +104,12 @@ extension EventsViewController: UITableViewDelegate {
 extension EventsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TimeblockStore.timeblocks.count
+        return self.weeklyTimeblocks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
-        let timeblock = TimeblockStore.timeblocks[indexPath.row]
+        let timeblock = self.weeklyTimeblocks[indexPath.row]
         
         if let event = timeblock as? Event {
             let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell

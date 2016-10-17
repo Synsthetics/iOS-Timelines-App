@@ -27,6 +27,11 @@ class Timeblock {
         self.start = start
         self.end = end
     }
+    
+    init(start: Date, end: Date) {
+        self.start = start
+        self.end = end
+    }
 }
 
 extension Timeblock {

@@ -10,12 +10,8 @@ import Foundation
 
 protocol Request {
     func dictionary() -> [String : Any]
-}
-
-extension Request {
-    func json() -> Data? {
-        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
-    }
+    
+    func json() -> Data?
 }
 
 struct RegisterRequest: Request {
@@ -31,6 +27,10 @@ struct RegisterRequest: Request {
         ]
         
         return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
 }
 
@@ -50,6 +50,10 @@ struct LoginRequest: Request {
         ]
         
         return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
     
 }
@@ -72,6 +76,10 @@ struct FriendRequest: Request {
         return data
     }
     
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
+    }
+    
 }
 
 struct AcceptFriendRequest: Request {
@@ -85,6 +93,10 @@ struct AcceptFriendRequest: Request {
         ]
         
         return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
     
 }
@@ -113,6 +125,10 @@ struct AddEventRequest: Request  {
         return data
     }
     
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
+    }
+    
 }
 
 struct EventsRequest: Request {
@@ -124,6 +140,10 @@ struct EventsRequest: Request {
         ]
         
         return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
     
 }
