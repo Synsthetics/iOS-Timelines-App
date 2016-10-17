@@ -41,6 +41,7 @@
 		746114521DAE895700DF170B /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114511DAE895700DF170B /* NewEventViewController.swift */; };
 		746114541DAE898000DF170B /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114531DAE898000DF170B /* TableViewCells.swift */; };
 		746114561DAE8C3700DF170B /* DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114551DAE8C3700DF170B /* DateTools.swift */; };
+		74EA1ADF1DB42630008E3CBA /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EA1ADE1DB42630008E3CBA /* User.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		746114511DAE895700DF170B /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		746114531DAE898000DF170B /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
 		746114551DAE8C3700DF170B /* DateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTools.swift; sourceTree = "<group>"; };
+		74EA1ADE1DB42630008E3CBA /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */,
 				33A182C71DB00B6600D9DC53 /* Timeblock.swift */,
 				33A182C91DB0198000D9DC53 /* EventInfoViewController.swift */,
+				74EA1ADE1DB42630008E3CBA /* User.plist */,
 			);
 			path = Timelines;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				652792E71DAC1291006BC707 /* LaunchScreen.storyboard in Resources */,
 				652792E41DAC1291006BC707 /* Assets.xcassets in Resources */,
 				652792E21DAC1291006BC707 /* Main.storyboard in Resources */,
+				74EA1ADF1DB42630008E3CBA /* User.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

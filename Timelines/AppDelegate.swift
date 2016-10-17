@@ -16,13 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        API.register(body: RegisterRequest(email: "sampson", username: "sampson", password: "sampson")) {
-//            authResponse in
-//        }
-//        
-//        API.login(body: LoginRequest(username: "sampson", password : "sampson")) { authResponse in
-//            UserStore.mainUser = authResponse.user!
-//        }
+        if UserStore.mainUser == nil {
+            UserStore.fetchMainUserFromSystem { userResult in
+                switch userResult {
+                case let .success(user):
+                    UserStore.mainUser = user
+                case .failure(_):
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
+                    OperationQueue.main.addOperation {
+                        self.window!.rootViewController!.present(authNavController, animated: false)
+                    }
+                }
+            }
+        }
+
         
         return true
     }

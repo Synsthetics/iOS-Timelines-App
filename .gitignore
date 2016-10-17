@@ -161,3 +161,7 @@ iOSInjectionProject/
 
 ### Objective-C Patch ###
 *.xcscmblueprint
+
+### Custom ###
+
+Timelines/User.plist

@@ -60,6 +60,7 @@ extension EventsViewController: UITableViewDelegate {
             show(eventInfoView, sender: nil)
         } else {
             let newEventView = storyBoard.instantiateViewController(withIdentifier: "NewEventViewController") as! NewEventViewController
+            newEventView.timeblock = TimeblockStore.timeblocks[indexPath.row]
             newEventView.timeblockIndex = TimeblockStore.timeblocks.index(of: TimeblockStore.timeblocks[indexPath.row])
             show(newEventView, sender: nil)
         }
