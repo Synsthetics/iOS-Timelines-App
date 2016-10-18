@@ -16,15 +16,23 @@ enum FetchUserResult {
 class UserStore {
     
     static var mainUser: User? {
-        didSet {
+        willSet(user) {
             writeMainUserToSystem()
+            
+            if user == nil {
+                UserStore.shouldPoll = false
+            } else {
+                UserStore.shouldPoll = true
+            }
         }
     }
-    static var friends = [(user: User, selected: Bool)]()
-    static var selectedFriends: [String] {
-        var selected: [String] = friends.flatMap {
+    static var contacts = [(username: String, selected: Bool)]()
+    static var pendingContacts = [String]()
+    static var pendingRequests = [String]()
+    static var selectedContacts: [String] {
+        var selected: [String] = contacts.flatMap {
             if $0.selected {
-                return $0.user.username
+                return $0.username
             } else {
                 return nil
             }
@@ -37,12 +45,12 @@ class UserStore {
         selected.insert(user.username, at: 0)
         return selected
     }
-    
     private static var userPlistPath: URL = {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let path = documentsDirectory?.appendingPathComponent("User.plist")
         return path!
     }()
+    static var shouldPoll: Bool = false
     
     static func fetchMainUserFromSystem(completion: (FetchUserResult) -> Void) {
         do {
@@ -56,6 +64,54 @@ class UserStore {
         } catch {
             print("💜Could not fetch user because: \(error.localizedDescription)")
             completion(.failure(error))
+        }
+    }
+    
+    static func addContact(username: String) {
+        let userFound: [String] = UserStore.contacts.flatMap {
+            let contact = $0
+            
+            if username == contact.username {
+                return username
+            }
+            
+            return nil
+        }
+        
+        if userFound.isEmpty {
+            UserStore.contacts.append((username: username, selected: false))
+        }
+    }
+    
+    static func addPendingContact(username: String) {
+        let userFound: [String] = UserStore.pendingContacts.flatMap {
+            let contact = $0
+            
+            if username == contact {
+                return username
+            }
+            
+            return nil
+        }
+        
+        if userFound.isEmpty {
+            UserStore.pendingContacts.append(username)
+        }
+    }
+    
+    static func addPendingRequest(username: String) {
+        let userFound: [String] = UserStore.pendingRequests.flatMap {
+            let contact = $0
+            
+            if username == contact {
+                return username
+            }
+            
+            return nil
+        }
+        
+        if userFound.isEmpty {
+            UserStore.pendingRequests.append(username)
         }
     }
     

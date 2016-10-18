@@ -101,7 +101,7 @@
         <!--Requests-->
         <scene sceneID="lFU-KD-lxn">
             <objects>
-                <viewController id="Ewa-MH-tzB" customClass="PendingRequestsViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PendingRequestsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ewa-MH-tzB" customClass="PendingRequestsViewController" customModule="Timelines" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1k9-AN-lWT"/>
                         <viewControllerLayoutGuide type="bottom" id="pFg-eW-Yfi"/>
@@ -136,7 +136,7 @@
                                         <rect key="frame" x="0.0" y="92" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50q-aW-Hcj" id="WGe-m4-rQU">
-                                            <frame key="frameInset" width="343" height="43"/>
+                                            <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3KC-Mz-VFY">
@@ -172,7 +172,7 @@
                                         <rect key="frame" x="0.0" y="136" width="343" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4iA-nt-1Bz" id="TO0-O6-g4C">
-                                            <frame key="frameInset" width="343" height="65"/>
+                                            <frame key="frameInset" width="343" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-NC-2Rx">
@@ -392,10 +392,10 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AttendeeCell" id="T8l-Ow-w4j">
-                                                        <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28" width="327" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T8l-Ow-w4j" id="lZY-Y8-xsI">
-                                                            <frame key="frameInset" width="1000" height="44"/>
+                                                            <frame key="frameInset" width="327" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
@@ -447,7 +447,7 @@
                                         <rect key="frame" x="0.0" y="92" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcY-ie-4tY" id="RuV-QM-lXM">
-                                            <frame key="frameInset" width="343" height="43"/>
+                                            <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjM-UF-QXg">

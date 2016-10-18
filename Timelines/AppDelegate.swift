@@ -18,14 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserStore.mainUser == nil {
             UserStore.fetchMainUserFromSystem { userResult in
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+
                 switch userResult {
                 case let .success(user):
                     UserStore.mainUser = user
+                    let prvc = storyboard.instantiateViewController(withIdentifier: "PendingRequestsViewController") as! PendingRequestsViewController
+                    prvc.pollForContacts()
                 case .failure(_):
                     OperationQueue.main.addOperation {
-                        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                         let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
-                        self.window!.rootViewController!.present(authNavController, animated: false)
+                        self.window!.rootViewController!.show(authNavController, sender: nil)
                     }
                 }
             }

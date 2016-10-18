@@ -1,0 +1,109 @@
+//
+//  Response.swift
+//  Timelines
+//
+//  Created by Rodney Sampson on 10/18/16.
+//  Copyright © 2016 Arcore. All rights reserved.
+//
+
+import Foundation
+
+struct AuthResponse {
+    var user: User?
+    var errorMessage: String?
+    
+    init(json: [String: Any]) {
+        if let user = User(json: json) {
+            self.user = user
+        } else if let errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String {
+            self.errorMessage = errorMessage
+        }
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+    
+}
+
+struct AddEventResponse {
+    var event: Event?
+    var errorMessage: String?
+    
+    init(json: [String: Any]) {
+        if let event = Event(json: json) {
+            self.event = event
+        } else {
+            self.errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
+        }
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+}
+
+struct EventsResponse {
+    var timeblocks: [Timeblock]?
+    var errorMessage: String?
+    
+    init(json: [[String : Any]] ) {
+        let deserialized: [Timeblock]? = json.flatMap {
+            let currentID = $0[JSONKeys.Event.id.key] as? Int
+            let currentName = $0[JSONKeys.Event.name.key] as? String
+            
+            if currentID == 0 && currentName == "timeblock" {
+                return Timeblock(json: $0)
+            } else {
+                return Event(json: $0)
+            }
+        }
+        
+        if let timeblocks = deserialized {
+            self.timeblocks = timeblocks
+        }
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+}
+
+
+struct RequestFriendResponse {
+    var sent: Bool?
+    var errorMessage: String?
+    
+    init(json: [String: Any]) {
+        self.sent = json[JSONKeys.FriendRequest.sent.key] as? Bool
+        self.errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+}
+
+struct GetContactsResponse {
+    var contacts: [(username: String, accepted: Bool)]?
+    var errorMessage: String?
+    
+    init(json: [[String: Any]]) {
+        let deserialized: [(username: String, accepted: Bool)]? = json.map {
+            let users = $0
+            let contact = users[JSONKeys.FriendRequest.reciever.key] as? [String : Any]
+            let username = contact?[JSONKeys.User.username.key] as? String
+            let accepted = contact?[JSONKeys.GetContacts.accepted.key] as? Bool
+            return (username: username!, accepted: accepted!)
+        }
+        
+        if let contacts = deserialized {
+            self.contacts = contacts
+        }
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+}
+

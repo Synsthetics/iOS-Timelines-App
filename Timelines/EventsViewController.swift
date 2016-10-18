@@ -75,7 +75,7 @@ class EventsViewController: UIViewController {
             return
         }
         
-        let request = MergeTimelinesRequest(usernames: UserStore.selectedFriends)
+        let request = MergeTimelinesRequest(usernames: UserStore.selectedContacts)
         
         API.mergeTimelines(body: request) { eventsResponse in
             guard let timeblocks = eventsResponse.timeblocks else {

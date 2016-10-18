@@ -16,11 +16,11 @@ class Timeblock {
     }
     
     init?(json: [String : Any]) {
-        guard var start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.start.key] as? String)!) else {
+        guard var start = DateTools.localTimeFormatter.date(from: (json[JSONKeys.Event.start.key] as? String)!) else {
             return nil
         }
         
-        guard var end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.EventRequest.end.key] as? String)!) else {
+        guard var end = DateTools.localTimeFormatter.date(from: (json[JSONKeys.Event.end.key] as? String)!) else {
             return nil
         }
         

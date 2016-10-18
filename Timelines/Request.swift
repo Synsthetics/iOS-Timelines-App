@@ -10,7 +10,6 @@ import Foundation
 
 protocol Request {
     func dictionary() -> [String : Any]
-    
     func json() -> Data?
 }
 
@@ -21,9 +20,9 @@ struct RegisterRequest: Request {
     
     func dictionary() -> [String : Any] {
         let data: [String : Any] = [
-            JSONKeys.RegisterRequest.email.key :  email,
-            JSONKeys.RegisterRequest.username.key : username,
-            JSONKeys.RegisterRequest.password.key : password
+            JSONKeys.User.email.key :  email,
+            JSONKeys.User.username.key : username,
+            JSONKeys.User.password.key : password
         ]
         
         return data
@@ -45,8 +44,8 @@ struct LoginRequest: Request {
     
     func dictionary() -> [String : Any] {
         let data: [String: Any] = [
-            JSONKeys.RegisterRequest.username.key : username,
-            JSONKeys.RegisterRequest.password.key : password
+            JSONKeys.User.username.key : username,
+            JSONKeys.User.password.key : password
         ]
         
         return data
@@ -55,52 +54,7 @@ struct LoginRequest: Request {
     func json() -> Data? {
         return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
-    
 }
-
-struct FriendRequest: Request {
-    var contactor: User
-    var contactee: User
-    
-    init(contactor: User, contactee: User) {
-        self.contactor = contactor
-        self.contactee = contactee
-    }
-    
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.FriendRequest.contactor.key : contactor.id,
-            JSONKeys.FriendRequest.contactee.key : contactee.id
-        ]
-        
-        return data
-    }
-    
-    func json() -> Data? {
-        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
-    }
-    
-}
-
-struct AcceptFriendRequest: Request {
-    var accept: Bool
-    var username: String
-    
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.AcceptFriend.accept.key : accept,
-            JSONKeys.AcceptFriend.username.key : username
-        ]
-        
-        return data
-    }
-    
-    func json() -> Data? {
-        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
-    }
-    
-}
-
 
 struct AddEventRequest: Request  {
     let name: String
@@ -112,14 +66,14 @@ struct AddEventRequest: Request  {
     
     func dictionary() -> [String : Any] {
         let data: [String : Any] = [
-            JSONKeys.EventRequest.name.key : name,
-            JSONKeys.EventRequest.start.key : start,
-            JSONKeys.EventRequest.end.key : end,
-            JSONKeys.EventRequest.owner.key : [
-                JSONKeys.RegisterRequest.username.key : owner.username
+            JSONKeys.Event.name.key : name,
+            JSONKeys.Event.start.key : start,
+            JSONKeys.Event.end.key : end,
+            JSONKeys.Event.owner.key : [
+                JSONKeys.User.username.key : owner.username
             ],
-            JSONKeys.EventRequest.details.key : details,
-            JSONKeys.EventRequest.timeZoneCreatedIn.key : timeZoneCreatedIn
+            JSONKeys.Event.details.key : details,
+            JSONKeys.Event.timeZoneCreatedIn.key : timeZoneCreatedIn
         ]
         
         return data
@@ -128,7 +82,6 @@ struct AddEventRequest: Request  {
     func json() -> Data? {
         return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
-    
 }
 
 struct EventsRequest: Request {
@@ -136,7 +89,7 @@ struct EventsRequest: Request {
     
     func dictionary() -> [String : Any] {
         let data: [String : Any] = [
-            JSONKeys.RegisterRequest.username.key : username
+            JSONKeys.User.username.key : username
         ]
         
         return data
@@ -145,7 +98,6 @@ struct EventsRequest: Request {
     func json() -> Data? {
         return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
     }
-    
 }
 
 struct MergeTimelinesRequest: Request {
@@ -160,7 +112,7 @@ struct MergeTimelinesRequest: Request {
         
         for username in usernames {
             let user = [
-                JSONKeys.RegisterRequest.username.key : username
+                JSONKeys.User.username.key : username
             ]
             
             users.append(user)
@@ -172,5 +124,65 @@ struct MergeTimelinesRequest: Request {
     func json() -> Data? {
         return try? JSONSerialization.data(withJSONObject: array(), options: [])
     }
+}
+
+struct FriendRequest: Request {
+    var sender: String
+    var reciever: String
     
+    init(sender: String, reciever: String) {
+        self.sender = sender
+        self.reciever = reciever
+    }
+    
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.FriendRequest.sender.key : [
+                JSONKeys.User.username.key : sender
+            ],
+            JSONKeys.FriendRequest.reciever.key : [
+                JSONKeys.User.username.key : reciever
+            ]
+        ]
+        
+        return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
+    }
+}
+
+struct AcceptFriendRequest: Request {
+    var id: Int
+    var accepted: Bool
+    
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.FriendRequest.id.key : id,
+            JSONKeys.GetContacts.accepted.key : accepted
+        ]
+        
+        return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
+    }
+}
+
+struct GetContactsRequest: Request {
+    var username: String
+    
+    func dictionary() -> [String : Any] {
+        let data: [String : Any] = [
+            JSONKeys.User.username.key : username
+        ]
+        
+        return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
+    }
 }

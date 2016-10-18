@@ -19,7 +19,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func attemptLogin(_ sender: UIButton) {
-        
         self.userNameField.resignFirstResponder()
         self.passwordField.resignFirstResponder()
         
@@ -50,6 +49,9 @@ class LoginViewController: UIViewController {
     
     private func loginSuccess(user: User) {
         UserStore.mainUser = user
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let prvc = storyboard.instantiateViewController(withIdentifier: "PendingRequestsViewController") as! PendingRequestsViewController
+        prvc.pollForContacts()
         self.dismiss(animated: true, completion: nil)
     }
 }

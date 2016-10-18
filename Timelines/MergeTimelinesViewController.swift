@@ -8,20 +8,16 @@
 
 import UIKit
 
-class MergeTimelinesViewController: ViewController {
+class MergeTimelinesViewController: UIViewController {
     @IBOutlet var friendsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
-        
-        let sampson = User(id: 0, username: "sampson", email: nil)
-        let sampson2 = User(id: 69, username: "sampson2", email: nil)
-        
-        
-        UserStore.friends.append((user: sampson, selected: false))
-        UserStore.friends.append((user: sampson2, selected: false))
+
+        UserStore.contacts.append((username: "sampson", selected: false))
+        UserStore.contacts.append((username: "sampson2", selected: false))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,16 +36,16 @@ class MergeTimelinesViewController: ViewController {
 extension MergeTimelinesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserStore.friends.count
+        return UserStore.contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let friendTuple = UserStore.friends[indexPath.row]
+        let friendTuple = UserStore.contacts[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell") as! FriendCell
         cell.accessoryType = .none
-        cell.username.text = friendTuple.user.username
+        cell.username.text = friendTuple.username
         
         if friendTuple.selected {
             cell.accessoryType = .checkmark
@@ -64,11 +60,11 @@ extension MergeTimelinesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var friend = UserStore.friends[indexPath.row]
+        var friend = UserStore.contacts[indexPath.row]
         friend.selected = !friend.selected
         
-        UserStore.friends.remove(at: indexPath.row)
-        UserStore.friends.insert(friend, at: indexPath.row)
+        UserStore.contacts.remove(at: indexPath.row)
+        UserStore.contacts.insert(friend, at: indexPath.row)
         
         tableView.reloadData()
     }
