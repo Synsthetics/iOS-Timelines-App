@@ -10,11 +10,6 @@ import UIKit
 
 class PendingRequestsViewController: UIViewController {
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        pollForContacts()
-    }
-    
     func pollForContacts() {
         guard let user = UserStore.mainUser else {
             return
