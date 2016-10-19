@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate : class {
+    func loginViewController(_ vc: LoginViewController, didFinishLogin user: User)
+}
+
 class LoginViewController: UIViewController {
     @IBOutlet var userNameField: UITextField!
-    
     @IBOutlet var passwordField: UITextField!
+    var loginCompletion: ((User) -> (Void))?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameField.delegate = self
@@ -48,11 +53,7 @@ class LoginViewController: UIViewController {
     }
     
     private func loginSuccess(user: User) {
-        UserStore.mainUser = user
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let prvc = storyboard.instantiateViewController(withIdentifier: "PendingRequestsViewController") as! PendingRequestsViewController
-        prvc.pollForContacts()
-        self.dismiss(animated: true, completion: nil)
+        loginCompletion!(user)
     }
 }
 

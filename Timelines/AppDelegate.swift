@@ -16,23 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        if UserStore.mainUser == nil {
-            UserStore.fetchMainUserFromSystem { userResult in
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
-                switch userResult {
-                case let .success(user):
-                    UserStore.mainUser = user
-                    let prvc = storyboard.instantiateViewController(withIdentifier: "PendingRequestsViewController") as! PendingRequestsViewController
-                    prvc.pollForContacts()
-                case .failure(_):
-                    OperationQueue.main.addOperation {
-                        let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
-                        self.window!.rootViewController!.show(authNavController, sender: nil)
-                    }
-                }
-            }
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let appTabBarController = storyboard.instantiateViewController(withIdentifier: "AppTabBarController") as! UITabBarController
+        let appNavigationController = UINavigationController(rootViewController: appTabBarController)
+        
+        window?.rootViewController = appNavigationController
+        
+        let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
+        let loginViewController = authNavController.topViewController as! LoginViewController
+        
+        loginViewController.loginCompletion = { user in
+            UserStore.mainUser = user
+            let pendingRequestsViewController = appTabBarController.viewControllers?[2] as! PendingRequestsViewController
+            pendingRequestsViewController.pollForContacts()
+            loginViewController.dismiss(animated: true, completion: nil)
         }
+       
+        appNavigationController.present(authNavController, animated: false, completion: nil)
+        
+        window?.makeKeyAndVisible()
         
         return true
     }

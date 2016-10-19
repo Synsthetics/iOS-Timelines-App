@@ -10,14 +10,9 @@ import UIKit
 
 class PendingRequestsViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarItem.badgeValue = "\(UserStore.pendingContacts.count)"
-        self.tabBarItem.badgeColor = UIColor.blue
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        pollForContacts()
     }
     
     func pollForContacts() {
@@ -37,13 +32,17 @@ class PendingRequestsViewController: UIViewController {
                     }
                     
                     for contact in contacts {
-                        UserStore.addPendingRequest(username: contact.username)
+                        UserStore.addPendingRequest(username: contact)
                     }
                 }
             }
-            self.tabBarController?.viewControllers?[2].tabBarItem.badgeValue = "\(UserStore.pendingContacts.count)"
-            self.tabBarController?.viewControllers?[2].tabBarItem.badgeColor = UIColor.blue
+            OperationQueue.main.addOperation {
+                print(self.tabBarController)
+                print(self.tabBarController?.tabBarItem)
+                self.tabBarItem.badgeColor = UIColor.red
+                self.tabBarItem.badgeValue = "\(UserStore.pendingRequests.count)"
+            }
         }
-//        RunLoop.main.add(timer, forMode: .commonModes)
+        RunLoop.main.add(timer, forMode: .commonModes)
     }
 }

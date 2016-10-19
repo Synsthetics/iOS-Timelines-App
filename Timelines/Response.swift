@@ -83,16 +83,20 @@ struct RequestFriendResponse {
 }
 
 struct ContactsResponse {
-    var contacts: [(username: String, accepted: Bool)]?
+    var contacts: [String]?
     var errorMessage: String?
     
     init(json: [[String: Any]]) {
-        let deserialized: [(username: String, accepted: Bool)]? = json.map {
+        let deserialized: [String]? = json.map {
             let users = $0
-            let contact = users[JSONKeys.FriendRequest.reciever.key] as? [String : Any]
+            var contact = users[JSONKeys.FriendRequest.reciever.key] as? [String : Any]
+            
+            if contact?[JSONKeys.User.username.key] as? String == UserStore.mainUser?.username {
+                contact = users[JSONKeys.FriendRequest.sender.key] as? [String : Any]
+            }
+            
             let username = contact?[JSONKeys.User.username.key] as? String
-            let accepted = contact?[JSONKeys.GetContacts.accepted.key] as? Bool
-            return (username: username!, accepted: accepted!)
+            return username!
         }
         
         if let contacts = deserialized {
