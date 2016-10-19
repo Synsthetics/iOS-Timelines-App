@@ -71,20 +71,18 @@ struct EventsResponse {
 
 
 struct RequestFriendResponse {
-    var sent: Bool?
-    var errorMessage: String?
+    var message: String?
     
     init(json: [String: Any]) {
-        self.sent = json[JSONKeys.FriendRequest.sent.key] as? Bool
-        self.errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
+        self.message = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
     }
     
     init(errorMessage: String) {
-        self.errorMessage = errorMessage
+        self.message = errorMessage
     }
 }
 
-struct GetContactsResponse {
+struct ContactsResponse {
     var contacts: [(username: String, accepted: Bool)]?
     var errorMessage: String?
     

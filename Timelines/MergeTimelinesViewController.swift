@@ -15,14 +15,50 @@ class MergeTimelinesViewController: UIViewController {
         super.viewDidLoad()
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
-
+        
         UserStore.contacts.append((username: "sampson", selected: false))
         UserStore.contacts.append((username: "sampson2", selected: false))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard let user = UserStore.mainUser else {
+            return
+        }
+        
+        let request = ContactsRequest(username: user.username)
+        
+        API.contacts(body: request) { contactsResponse in
+            guard let contacts = contactsResponse.contacts as? [(username: String, selected: Bool)] else {
+                print(contactsResponse.errorMessage)
+                return
+            }
+            
+            UserStore.contacts = contacts
+        }
+        
         friendsTableView.reloadData()
+    }
+    
+    @IBAction func attemptContactRequest(_ sender: UIButton) {
+        guard let user = UserStore.mainUser else {
+            return
+        }
+        
+        let alert = AlertView.createAlertWithTextField(title: "Add contact", message: "Input username of contact", actionTitle: "Send") { receiver in
+            let request = FriendRequest(sender: user.username, reciever: receiver)
+            
+            API.requestFriend(body: request) { message in
+                OperationQueue.main.addOperation {
+                    let messageAlert = AlertView.createAlert(title: "", message: message, actionTitle: "OK")
+                    
+                    self.present(messageAlert, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func mergeTimelines(_ sender: UIButton) {

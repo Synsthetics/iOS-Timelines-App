@@ -22,9 +22,11 @@ struct API {
         case events = "/events"
         case addEvent = "/addEvent"
         case mergeTimelines = "/mergeTimelines"
-        case requestFriend = "/requestFriend"
-        case confirmFriend = "/confirmFriend"
-        case getContacts = "/contacts"
+        case requestContact = "/requestContact"
+        case confirmContact = "/confirmContact"
+        case contacts = "/contacts"
+        case pendingContacts = "/pendingContacts"
+        case contactRequests = "/contactRequests"
     }
     
 }
@@ -171,25 +173,25 @@ extension API {
 
 extension API {
     
-    static func requestFriend(body: FriendRequest, with completion: @escaping (Bool) -> (Void)) {
-        let request = API.request(to: .requestFriend, with: body, how: "POST")
+    static func requestFriend(body: FriendRequest, with completion: @escaping (String) -> (Void)) {
+        let request = API.request(to: .requestContact, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
-            var friendRequestRepsonse: RequestFriendResponse
+            var friendRequestResponse: RequestFriendResponse
             
             if let data = optData, let responseJSON = JSONTools.dictionary(from: data) {
-                friendRequestRepsonse = RequestFriendResponse(json: responseJSON)
+                friendRequestResponse = RequestFriendResponse(json: responseJSON)
             } else {
-                friendRequestRepsonse = RequestFriendResponse(errorMessage: "Could not deserialize server response")
+                friendRequestResponse = RequestFriendResponse(errorMessage: "Could not deserialize server response")
             }
             
-            completion(friendRequestRepsonse.sent!)
+            completion(friendRequestResponse.message!)
         }
         task.resume()
     }
     
     static func acceptFriend(body: AcceptFriendRequest, with completion: @escaping (User) -> (Void)) {
-        let request = API.request(to: .confirmFriend, with: body, how: "POST")
+        let request = API.request(to: .confirmContact, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
             
@@ -197,25 +199,81 @@ extension API {
         task.resume()
     }
     
-    static func getContacts(body: GetContactsRequest, with completion: @escaping (GetContactsResponse) -> (Void)) {
-        let request = API.request(to: .getContacts, with: body, how: "POST")
+}
+
+extension API {
+    
+    static func contacts(body: ContactsRequest, with completion: @escaping (ContactsResponse) -> (Void)) {
+        let request = API.request(to: .contacts, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
-            var getContactsResponse: GetContactsResponse?
+            var getContactsResponse: ContactsResponse?
             
             guard let data = optData else {
-                getContactsResponse = GetContactsResponse(errorMessage: "Could not deserialize server response")
+                getContactsResponse = ContactsResponse(errorMessage: "Could not deserialize server response")
                 completion(getContactsResponse!)
                 return
             }
             
             if let responseJSON = JSONTools.arrayOfDictionaries(from: data) {
-                getContactsResponse = GetContactsResponse(json: responseJSON)
+                getContactsResponse = ContactsResponse(json: responseJSON)
             } else if let responseJSON = JSONTools.dictionary(from: data),
                 let message = responseJSON[JSONKeys.ResponseKeys.errorMessage.key] as? String {
-                getContactsResponse = GetContactsResponse(errorMessage: message)
+                getContactsResponse = ContactsResponse(errorMessage: message)
             } else {
-                getContactsResponse = GetContactsResponse(errorMessage: "Unexpected server response")
+                getContactsResponse = ContactsResponse(errorMessage: "Unexpected server response")
+            }
+            
+            completion(getContactsResponse!)
+        }
+        task.resume()
+    }
+
+    static func pendingContacts(body: ContactsRequest, with completion: @escaping (ContactsResponse) -> (Void)) {
+        let request = API.request(to: .pendingContacts, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var getContactsResponse: ContactsResponse?
+            
+            guard let data = optData else {
+                getContactsResponse = ContactsResponse(errorMessage: "Could not deserialize server response")
+                completion(getContactsResponse!)
+                return
+            }
+            
+            if let responseJSON = JSONTools.arrayOfDictionaries(from: data) {
+                getContactsResponse = ContactsResponse(json: responseJSON)
+            } else if let responseJSON = JSONTools.dictionary(from: data),
+                let message = responseJSON[JSONKeys.ResponseKeys.errorMessage.key] as? String {
+                getContactsResponse = ContactsResponse(errorMessage: message)
+            } else {
+                getContactsResponse = ContactsResponse(errorMessage: "Unexpected server response")
+            }
+            
+            completion(getContactsResponse!)
+        }
+        task.resume()
+    }
+    
+    static func contactRequests(body: ContactsRequest, with completion: @escaping (ContactsResponse) -> (Void)) {
+        let request = API.request(to: .contactRequests, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var getContactsResponse: ContactsResponse?
+            
+            guard let data = optData else {
+                getContactsResponse = ContactsResponse(errorMessage: "Could not deserialize server response")
+                completion(getContactsResponse!)
+                return
+            }
+            
+            if let responseJSON = JSONTools.arrayOfDictionaries(from: data) {
+                getContactsResponse = ContactsResponse(json: responseJSON)
+            } else if let responseJSON = JSONTools.dictionary(from: data),
+                let message = responseJSON[JSONKeys.ResponseKeys.errorMessage.key] as? String {
+                getContactsResponse = ContactsResponse(errorMessage: message)
+            } else {
+                getContactsResponse = ContactsResponse(errorMessage: "Unexpected server response")
             }
             
             completion(getContactsResponse!)

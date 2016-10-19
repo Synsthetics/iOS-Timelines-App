@@ -171,7 +171,7 @@ struct AcceptFriendRequest: Request {
     }
 }
 
-struct GetContactsRequest: Request {
+struct ContactsRequest: Request {
     var username: String
     
     func dictionary() -> [String : Any] {
