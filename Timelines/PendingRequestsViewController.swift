@@ -34,13 +34,15 @@ class PendingRequestsViewController: UIViewController {
                     for contact in contacts {
                         UserStore.addPendingRequest(username: contact)
                     }
+                    OperationQueue.main.addOperation {
+                        self.tabBarItem.badgeColor = UIColor.red
+                        if UserStore.pendingRequests.isEmpty {
+                            self.tabBarItem.badgeValue = nil
+                        } else {
+                            self.tabBarItem.badgeValue = "\(UserStore.pendingRequests.count)"
+                        }
+                    }
                 }
-            }
-            OperationQueue.main.addOperation {
-                print(self.tabBarController)
-                print(self.tabBarController?.tabBarItem)
-                self.tabBarItem.badgeColor = UIColor.red
-                self.tabBarItem.badgeValue = "\(UserStore.pendingRequests.count)"
             }
         }
         RunLoop.main.add(timer, forMode: .commonModes)

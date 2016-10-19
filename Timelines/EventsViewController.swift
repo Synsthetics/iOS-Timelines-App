@@ -149,6 +149,8 @@ extension EventsViewController: UITableViewDataSource {
     func loginViewController(_ vc: LoginViewController, didFinishLogin user: User) {
         UserStore.mainUser = user
         vc.dismiss(animated: true, completion: nil)
+        let pendingVC = self.tabBarController?.viewControllers?[2] as! PendingRequestsViewController
+        pendingVC.pollForContacts()
     }
     
 }
