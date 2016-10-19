@@ -109,3 +109,26 @@ struct ContactsResponse {
     }
 }
 
+struct ContactRequestsResponse {
+    var requests: [PendingContactRequest]?
+    var errorMessage: String?
+    
+    init(json: [[String : Any]]) {
+        let deserialized: [(username: String, requestID: Int)]? = json.flatMap {
+            let request = $0
+            guard let username = request[JSONKeys.User.username.key] as? String,
+                let id = request[JSONKeys.FriendRequest.id.key] as? Int else {
+                    return nil
+            }
+            
+            return PendingContactRequest(username: username, requestID: id)
+        }
+        
+        self.requests = deserialized
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+}
+

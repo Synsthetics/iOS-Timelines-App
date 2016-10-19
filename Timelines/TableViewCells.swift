@@ -23,3 +23,14 @@ class EventCell: UITableViewCell {
 class FriendCell: UITableViewCell {
     @IBOutlet var username: UILabel!
 }
+
+class PendingRequestCell: UITableViewCell {
+    @IBOutlet var username: UILabel!
+    
+
+}
+
+class PendingContactCell: UITableViewCell {
+    @IBOutlet var message: UILabel!
+    
+}
