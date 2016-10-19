@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate : class {
+    func loginViewController(_ vc: LoginViewController, didFinishLogin user: User)
+}
+
 class LoginViewController: UIViewController {
     @IBOutlet var userNameField: UITextField!
-    
     @IBOutlet var passwordField: UITextField!
+    var loginCompletion: ((User) -> (Void))?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameField.delegate = self
@@ -19,7 +24,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func attemptLogin(_ sender: UIButton) {
-        
         self.userNameField.resignFirstResponder()
         self.passwordField.resignFirstResponder()
         
@@ -49,8 +53,7 @@ class LoginViewController: UIViewController {
     }
     
     private func loginSuccess(user: User) {
-        UserStore.mainUser = user
-        self.dismiss(animated: true, completion: nil)
+        loginCompletion!(user)
     }
 }
 

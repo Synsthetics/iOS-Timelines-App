@@ -8,25 +8,63 @@
 
 import UIKit
 
-class MergeTimelinesViewController: ViewController {
+class MergeTimelinesViewController: UIViewController {
     @IBOutlet var friendsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
-        
-        let sampson = User(id: 0, username: "sampson", email: nil)
-        let sampson2 = User(id: 69, username: "sampson2", email: nil)
-        
-        
-        UserStore.friends.append((user: sampson, selected: false))
-        UserStore.friends.append((user: sampson2, selected: false))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard let user = UserStore.mainUser else {
+            return
+        }
+        
+        let request = ContactsRequest(username: user.username)
+        
+        API.contacts(body: request) { contactsResponse in
+            guard let contacts = contactsResponse.contacts else {
+                print(contactsResponse.errorMessage)
+                return
+            }
+            
+            for username in contacts {
+                UserStore.addContact(username: username)
+            }
+        }
+        
         friendsTableView.reloadData()
+    }
+    
+    @IBAction func attemptContactRequest(_ sender: UIButton) {
+        guard let user = UserStore.mainUser else {
+            return
+        }
+        
+        let alert = AlertView.createAlertWithTextField(title: "Add contact", message: "Input username of contact", actionTitle: "Send") { receiver in
+            
+            guard receiver != user.username else {
+                let errorAlert = AlertView.createAlert(title: "Error", message: "Could not send request to self", actionTitle: "OK")
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+            }
+        
+            let request = FriendRequest(sender: user.username, reciever: receiver)
+            
+            API.requestFriend(body: request) { message in
+                OperationQueue.main.addOperation {
+                    let messageAlert = AlertView.createAlert(title: "", message: message, actionTitle: "OK")
+                    
+                    self.present(messageAlert, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func mergeTimelines(_ sender: UIButton) {
@@ -40,16 +78,16 @@ class MergeTimelinesViewController: ViewController {
 extension MergeTimelinesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserStore.friends.count
+        return UserStore.contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let friendTuple = UserStore.friends[indexPath.row]
+        let friendTuple = UserStore.contacts[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell") as! FriendCell
         cell.accessoryType = .none
-        cell.username.text = friendTuple.user.username
+        cell.username.text = friendTuple.username
         
         if friendTuple.selected {
             cell.accessoryType = .checkmark
@@ -64,11 +102,11 @@ extension MergeTimelinesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var friend = UserStore.friends[indexPath.row]
+        var friend = UserStore.contacts[indexPath.row]
         friend.selected = !friend.selected
         
-        UserStore.friends.remove(at: indexPath.row)
-        UserStore.friends.insert(friend, at: indexPath.row)
+        UserStore.contacts.remove(at: indexPath.row)
+        UserStore.contacts.insert(friend, at: indexPath.row)
         
         tableView.reloadData()
     }

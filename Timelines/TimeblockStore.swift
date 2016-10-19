@@ -10,14 +10,14 @@ import Foundation
 
 class TimeblockStore {
     
-    static var timeblocks: [Timeblock] = [TimeblockStore.emptyWeek]
-    static var emptyWeek: Timeblock {
-        let now = Date()
-        let endOfWeek = now.addingTimeInterval(60 * 60 * 24 * 7)
-        return Timeblock(start: now, end: endOfWeek)
-    }
+    static var timeblocks: [Timeblock] = []
     
     static func insert(timeblock: Timeblock, at index: Int) {
+        guard !TimeblockStore.timeblocks.isEmpty else {
+            TimeblockStore.timeblocks.insert(timeblock, at: index)
+            return
+        }
+        
         TimeblockStore.timeblocks.remove(at: index)
         TimeblockStore.timeblocks.insert(timeblock, at: index)
     }

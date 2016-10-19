@@ -10,36 +10,17 @@ import Foundation
 
 enum JSONKeys {
     
-    enum RegisterRequest: String {
-        case email = "email"
+    enum User: String {
         case username = "username"
+        case email = "email"
         case password = "password"
         
         var key: String {
             return self.rawValue
         }
-        
     }
     
-    enum FriendRequest: String {
-        case contactor = "contactor"
-        case contactee = "contactee"
-        
-        var key: String {
-            return self.rawValue
-        }
-    }
-    
-    enum AcceptFriend: String {
-        case accept = "accept"
-        case username = "username"
-        
-        var key: String {
-            return self.rawValue
-        }
-    }
-    
-    enum EventRequest: String {
+    enum Event: String {
         case id = "id"
         case name = "name"
         case start = "startDate"
@@ -47,6 +28,25 @@ enum JSONKeys {
         case owner = "owner"
         case details = "details"
         case timeZoneCreatedIn = "timezoneCreatedIn"
+        
+        var key: String {
+            return self.rawValue
+        }
+    }
+    
+    enum FriendRequest: String {
+        case id = "id"
+        case sent = "sent"
+        case sender = "sender"
+        case reciever = "receiver"
+        
+        var key: String {
+            return self.rawValue
+        }
+    }
+    
+    enum GetContacts: String {
+        case accepted = "accepted"
         
         var key: String {
             return self.rawValue

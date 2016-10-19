@@ -12,7 +12,9 @@ class EventsViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     var weeklyTimeblocks: [Timeblock] {
-        let now = Date()
+        let now: Date = {
+            return Date(timeIntervalSinceReferenceDate: floor((Date().timeIntervalSinceReferenceDate / 60.0)) * 60)
+        }()
         let endOfWeek = now.addingTimeInterval(60 * 60 * 24 * 7)
         
         var timeblocks: [Timeblock] = TimeblockStore.timeblocks.flatMap {
@@ -23,25 +25,35 @@ class EventsViewController: UIViewController {
             }
             
             if timeblock.start < now {
-                return Timeblock(start: now, end: timeblock.end)
+                if let event = timeblock as? Event {
+                    return event
+                } else {
+                    return Timeblock(start: now, end: timeblock.end)
+                }
             }
             
             if timeblock.start > endOfWeek {
                 return nil
             }
             
-            if timeblock.end > endOfWeek {
-                return Timeblock(start: timeblock.start, end: endOfWeek)
-            }
-            
             return timeblock
         }
         
-        let timeblock = timeblocks.last
+        let firstTimeblock = timeblocks.first
+        let lastTimeblock = timeblocks.last
         
-        if (timeblock?.end)! < endOfWeek {
-            let lastTimeblock = Timeblock(start: (timeblock?.end)!, end: endOfWeek)
-            timeblocks.append(lastTimeblock)
+        guard !timeblocks.isEmpty else {
+            return [Timeblock(start: now, end: endOfWeek)]
+        }
+        
+        if (firstTimeblock?.start)! > now {
+            let newFirstTimeblock = Timeblock(start: now, end: (firstTimeblock?.start)!)
+            timeblocks.insert(newFirstTimeblock, at: 0)
+        }
+        
+        if (lastTimeblock?.end)! < endOfWeek {
+            let newLastTimeblock = Timeblock(start: (lastTimeblock?.end)!, end: endOfWeek)
+            timeblocks.append(newLastTimeblock)
         }
         
         return timeblocks
@@ -63,7 +75,7 @@ class EventsViewController: UIViewController {
             return
         }
         
-        let request = MergeTimelinesRequest(usernames: UserStore.selectedFriends)
+        let request = MergeTimelinesRequest(usernames: UserStore.selectedContacts)
         
         API.mergeTimelines(body: request) { eventsResponse in
             guard let timeblocks = eventsResponse.timeblocks else {

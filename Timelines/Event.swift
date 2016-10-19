@@ -17,23 +17,23 @@ class Event: Timeblock {
     var timezoneCreatedIn: String
     
     override init?(json: [String : Any]) {
-        guard let id = json[JSONKeys.EventRequest.id.key]  as? Int else {
+        guard let id = json[JSONKeys.Event.id.key]  as? Int else {
             return nil
         }
         
-        guard let name = json[JSONKeys.EventRequest.name.key] as? String else {
+        guard let name = json[JSONKeys.Event.name.key] as? String else {
             return nil
         }
 
-        guard let details = json[JSONKeys.EventRequest.details.key]  as? String else {
+        guard let details = json[JSONKeys.Event.details.key]  as? String else {
             return nil
         }
         
-        guard let timezoneCreatedIn = json[JSONKeys.EventRequest.timeZoneCreatedIn.key] as? String else {
+        guard let timezoneCreatedIn = json[JSONKeys.Event.timeZoneCreatedIn.key] as? String else {
             return nil
         }
         
-        guard let owner = User(json: (json[JSONKeys.EventRequest.owner.key] as? [String: Any])!) else {
+        guard let owner = User(json: (json[JSONKeys.Event.owner.key] as? [String: Any])!) else {
             return nil
         }
         
@@ -44,6 +44,16 @@ class Event: Timeblock {
         self.owner = owner
         
         super.init(json: json)
+    }
+    
+    init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User) {
+        self.id = id
+        self.name = name
+        self.details = details
+        self.timezoneCreatedIn = timezoneCreatedIn
+        self.owner = owner
+        
+        super.init(start: start, end: end)
     }
     
 }

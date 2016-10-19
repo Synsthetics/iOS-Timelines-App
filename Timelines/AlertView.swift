@@ -19,4 +19,15 @@ struct AlertView {
         return controller
     }
     
+    static func createAlertWithTextField(title: String, message: String, actionTitle: String, completionForText: @escaping (String) -> Void) -> UIAlertController {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        controller.addTextField(configurationHandler: nil)
+        let textfield = controller.textFields?[0]
+        controller.addAction(UIAlertAction(title: actionTitle, style: .default){ _ in
+            completionForText((textfield?.text)!)
+            controller.dismiss(animated: true, completion: nil)
+        })
+        return controller
+    }
+    
 }
