@@ -13,7 +13,13 @@ enum FetchUserResult {
     case failure(Error)
 }
 
+typealias PendingContactRequest = (username: String, requestID: Int)
+
 class UserStore {
+    static var shouldPoll: Bool = false
+    static var contacts = [(username: String, selected: Bool)]()
+    static var pendingContacts = [String]()
+    static var pendingRequests = [PendingContactRequest]()
     
     static var mainUser: User? {
         willSet(user) {
@@ -26,9 +32,7 @@ class UserStore {
             }
         }
     }
-    static var contacts = [(username: String, selected: Bool)]()
-    static var pendingContacts = [String]()
-    static var pendingRequests = [String]()
+    
     static var selectedContacts: [String] {
         var selected: [String] = contacts.flatMap {
             if $0.selected {
@@ -45,27 +49,16 @@ class UserStore {
         selected.insert(user.username, at: 0)
         return selected
     }
-    private static var userPlistPath: URL = {
+    
+    fileprivate static var userPlistPath: URL = {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let path = documentsDirectory?.appendingPathComponent("User.plist")
         return path!
     }()
-    static var shouldPoll: Bool = false
     
-    static func fetchMainUserFromSystem(completion: (FetchUserResult) -> Void) {
-        do {
-            let data = try Data(contentsOf: userPlistPath)
-            let userData = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String : Any]
-            
-            if let user = User(json: userData!) {
-                completion(.success(user))
-            }
-            
-        } catch {
-            print("💜Could not fetch user because: \(error.localizedDescription)")
-            completion(.failure(error))
-        }
-    }
+}
+
+extension UserStore {
     
     static func addContact(username: String) {
         let userFound: [String] = UserStore.contacts.flatMap {
@@ -99,24 +92,43 @@ class UserStore {
         }
     }
     
-    static func addPendingRequest(username: String) {
+    static func addPending(request: PendingContactRequest) {
         let userFound: [String] = UserStore.pendingRequests.flatMap {
             let contact = $0
             
-            if username == contact {
-                return username
+            if request.username == contact.username  {
+                return request.username
             }
             
             return nil
         }
         
         if userFound.isEmpty {
-            UserStore.pendingRequests.append(username)
+            UserStore.pendingRequests.append(request)
+        }
+    }
+    
+}
+
+extension UserStore {
+    
+    static func fetchMainUserFromSystem(completion: (FetchUserResult) -> Void) {
+        do {
+            let data = try Data(contentsOf: userPlistPath)
+            let userData = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String : Any]
+            
+            if let user = User(json: userData!) {
+                completion(.success(user))
+            }
+            
+        } catch {
+            print("💜Could not fetch user because: \(error.localizedDescription)")
+            completion(.failure(error))
         }
     }
     
     @discardableResult
-    private static func writeMainUserToSystem() -> Bool {
+    fileprivate static func writeMainUserToSystem() -> Bool {
         guard let user = mainUser else {
             return false
         }
