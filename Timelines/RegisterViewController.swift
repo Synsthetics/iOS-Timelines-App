@@ -108,4 +108,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         UserStore.mainUser = user
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
 }
