@@ -13,29 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow()
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let appTabBarController = storyboard.instantiateViewController(withIdentifier: "AppTabBarController") as! UITabBarController
-        let appNavigationController = UINavigationController(rootViewController: appTabBarController)
         
-        window?.rootViewController = appNavigationController
-        
-        let authNavController = storyboard.instantiateViewController(withIdentifier: "AuthNavController") as! UINavigationController
-        let loginViewController = authNavController.topViewController as! LoginViewController
-        
-        loginViewController.loginCompletion = { user in
-            UserStore.mainUser = user
-            let pendingRequestsViewController = appTabBarController.viewControllers?[2] as! PendingRequestsViewController
-            pendingRequestsViewController.pollForContacts()
-            loginViewController.dismiss(animated: true, completion: nil)
-        }
-       
-        appNavigationController.present(authNavController, animated: false, completion: nil)
-        
+        let appVC = UINavigationController.init(rootViewController: (storyboard.instantiateViewController(withIdentifier:"AppTabBarController")))
+        window?.rootViewController = appVC
         window?.makeKeyAndVisible()
-        
         return true
     }
     
@@ -61,6 +46,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
 }
-

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventsViewController: UIViewController {
+class EventsViewController: UIViewController, LoginViewControllerDelegate {
     
     @IBOutlet var tableView: UITableView!
     var weeklyTimeblocks: [Timeblock] {
@@ -67,6 +67,13 @@ class EventsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard UserStore.mainUser != nil else {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            loginVC.delegate = self
+            present(UINavigationController.init(rootViewController: (loginVC)), animated: false, completion: nil)
+            return
+        }
         self.getRecentEvents()
     }
     
@@ -137,6 +144,13 @@ extension EventsViewController: UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func loginViewController(_ vc: LoginViewController, didFinishLogin user: User) {
+        UserStore.mainUser = user
+        vc.dismiss(animated: true, completion: nil)
+        let pendingVC = self.tabBarController?.viewControllers?[2] as! PendingRequestsViewController
+        pendingVC.pollForContacts()
     }
     
 }

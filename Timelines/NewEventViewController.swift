@@ -69,7 +69,6 @@ class NewEventViewController: UIViewController {
             .autoupdatingCurrent.abbreviation()!)
         
         API.addEvent(body: request) { addEventResponse in
-            
             OperationQueue.main.addOperation {
                 guard let event = addEventResponse.event else {
                     let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
@@ -78,8 +77,7 @@ class NewEventViewController: UIViewController {
                 }
                 
                 TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
-                
-                self.dismiss(animated: true, completion: nil)
+                let _ = self.navigationController?.popViewController(animated: true)
             }
         }
     }

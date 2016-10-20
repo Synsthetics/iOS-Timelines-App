@@ -15,7 +15,7 @@ protocol LoginViewControllerDelegate : class {
 class LoginViewController: UIViewController {
     @IBOutlet var userNameField: UITextField!
     @IBOutlet var passwordField: UITextField!
-    var loginCompletion: ((User) -> (Void))?
+    var delegate: LoginViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +47,12 @@ class LoginViewController: UIViewController {
                     }
                     return
                 }
-                self.loginSuccess(user: user)
+                self.delegate?.loginViewController(self, didFinishLogin: user)
             }
         }
     }
     
-    private func loginSuccess(user: User) {
-        loginCompletion!(user)
-    }
+    
 }
 
 extension LoginViewController: UITextFieldDelegate {

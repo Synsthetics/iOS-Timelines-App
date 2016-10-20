@@ -17,15 +17,33 @@ class PendingRequestsViewController: UIViewController {
     @IBOutlet var tableControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        pollForContacts()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         tableControl.addTarget(tableView, action: #selector(UITableView.reloadData), for: .valueChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let user = UserStore.mainUser else {
+            return
+        }
+        
+        let request = ContactsRequest(username: user.username)
+        
+        API.pendingContacts(body: request) { pendingContactsResponse in
+            
+            guard let pendingContact = pendingContactsResponse.pendingContacts else {
+                print(pendingContactsResponse.errorMessage)
+                return
+            }
+            
+            for username in pendingContact {
+                UserStore.addPendingContact(username: username)
+            }
+        }
     }
     
     func pollForContacts() {
@@ -52,15 +70,21 @@ class PendingRequestsViewController: UIViewController {
             }
             
             OperationQueue.main.addOperation {
-                print(self.tabBarController)
-                print(self.tabBarController?.tabBarItem)
                 self.tabBarItem.badgeColor = UIColor.red
-                self.tabBarItem.badgeValue = "\(UserStore.pendingRequests.count)"
+                if UserStore.pendingRequests.isEmpty {
+                    self.tabBarItem.badgeValue = nil
+                } else {
+                    self.tabBarItem.badgeValue = "\(UserStore.pendingRequests.count)"
+                }
             }
         }
         
         RunLoop.main.add(timer, forMode: .commonModes)
     }
+}
+
+extension PendingRequestsViewController: UITableViewDelegate {
+    
 }
 
 extension PendingRequestsViewController: UITableViewDataSource {
