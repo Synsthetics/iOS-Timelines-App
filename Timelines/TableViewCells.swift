@@ -26,11 +26,9 @@ class FriendCell: UITableViewCell {
 
 class PendingRequestCell: UITableViewCell {
     @IBOutlet var username: UILabel!
-    
-
+    var requestID: Int?
 }
 
 class PendingContactCell: UITableViewCell {
     @IBOutlet var message: UILabel!
-    
 }

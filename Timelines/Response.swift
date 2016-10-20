@@ -132,7 +132,6 @@ struct PendingContactsResponse {
     }
 }
 
-
 struct ContactRequestsResponse {
     var requests: [PendingContactRequest]?
     var errorMessage: String?
@@ -156,4 +155,3 @@ struct ContactRequestsResponse {
         self.errorMessage = errorMessage
     }
 }
-

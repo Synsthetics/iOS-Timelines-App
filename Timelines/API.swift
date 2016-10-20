@@ -190,17 +190,25 @@ extension API {
         task.resume()
     }
     
-    static func acceptOrDenyContact(body: AcceptOrDenyContactRequest, with completion: @escaping (User) -> (Void)) {
+    static func acceptOrDenyContact(body: AcceptOrDenyContactRequest, with completion: @escaping (String) -> (Void)) {
         let request = API.request(to: .confirmContact, with: body, how: "POST")
         
         let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var confirmContactResponse: String
             
+            if let data = optData,
+                let responseJSON = JSONTools.dictionary(from: data),
+                let message = responseJSON[JSONKeys.ResponseKeys.errorMessage.key] as? String {
+                confirmContactResponse = message
+            } else {
+                confirmContactResponse = "Could not deserialize server response"
+            }
             
-            
+            completion(confirmContactResponse)
         }
+        
         task.resume()
     }
-    
 }
 
 extension API {

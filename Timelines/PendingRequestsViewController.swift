@@ -81,7 +81,45 @@ class PendingRequestsViewController: UIViewController {
         
         RunLoop.main.add(timer, forMode: .commonModes)
     }
+    
+    @IBAction func acceptRequest(_ sender: UIButton) {
+        let cellAndStoreIndex = cellAndPendingRequestStoreIndex(for: sender)
+        let request = AcceptOrDenyContactRequest(id: cellAndStoreIndex.cell.requestID!, accepted: true)
+        
+        confirmOrDenyContact(request: request, storeIndex: cellAndStoreIndex.storeIndex)
+    }
+    
+    @IBAction func denyRequest(_ sender: UIButton) {
+        let cellAndStoreIndex = cellAndPendingRequestStoreIndex(for: sender)
+        let request = AcceptOrDenyContactRequest(id: cellAndStoreIndex.cell.requestID!, accepted: false)
+        
+        confirmOrDenyContact(request: request, storeIndex: cellAndStoreIndex.storeIndex)
+    }
+    
 }
+
+extension PendingRequestsViewController {
+    
+    fileprivate func cellAndPendingRequestStoreIndex(for button: UIButton) -> (cell: PendingRequestCell, storeIndex: Int) {
+        let cell = button.superview?.superview?.superview?.superview as! PendingRequestCell
+        let cellIndexPath = tableView.indexPath(for: cell)!
+        
+        return (cell: cell, storeIndex: cellIndexPath.row)
+    }
+    
+    fileprivate func confirmOrDenyContact(request: AcceptOrDenyContactRequest, storeIndex: Int) {
+        
+        API.acceptOrDenyContact(body: request) { acceptOrDenyContactResponse in
+            print("💜\(acceptOrDenyContactResponse)")
+            
+            OperationQueue.main.addOperation {
+                UserStore.pendingRequests.remove(at: storeIndex)
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
 
 extension PendingRequestsViewController: UITableViewDelegate {
     
@@ -92,11 +130,11 @@ extension PendingRequestsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tableControl.selectedSegmentIndex {
-            
         case tableControlSelected.received.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PendingRequestCell") as! PendingRequestCell
             let pendingRequest = UserStore.pendingRequests[indexPath.row]
             cell.username.text = pendingRequest.username
+            cell.requestID = pendingRequest.requestID
             
             return cell
         case tableControlSelected.sent.rawValue:
