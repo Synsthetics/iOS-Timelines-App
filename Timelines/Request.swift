@@ -153,7 +153,7 @@ struct FriendRequest: Request {
     }
 }
 
-struct AcceptFriendRequest: Request {
+struct AcceptOrDenyContactRequest: Request {
     var id: Int
     var accepted: Bool
     
