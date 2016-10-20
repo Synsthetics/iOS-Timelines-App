@@ -244,11 +244,7 @@
                                         <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50q-aW-Hcj" id="WGe-m4-rQU">
-<<<<<<< HEAD
                                             <frame key="frameInset" width="343" height="43.5"/>
-=======
-                                            <frame key="frameInset" width="1000" height="44"/>
->>>>>>> 280304253f3bf83ea857a00acb3aa1dab34e68c1
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3KC-Mz-VFY">
@@ -284,11 +280,7 @@
                                         <rect key="frame" x="0.0" y="72" width="1000" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4iA-nt-1Bz" id="TO0-O6-g4C">
-<<<<<<< HEAD
                                             <frame key="frameInset" width="343" height="65.5"/>
-=======
-                                            <frame key="frameInset" width="1000" height="66"/>
->>>>>>> 280304253f3bf83ea857a00acb3aa1dab34e68c1
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-NC-2Rx">
@@ -563,11 +555,7 @@
                                         <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcY-ie-4tY" id="RuV-QM-lXM">
-<<<<<<< HEAD
                                             <frame key="frameInset" width="343" height="43.5"/>
-=======
-                                            <frame key="frameInset" width="1000" height="44"/>
->>>>>>> 280304253f3bf83ea857a00acb3aa1dab34e68c1
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjM-UF-QXg">

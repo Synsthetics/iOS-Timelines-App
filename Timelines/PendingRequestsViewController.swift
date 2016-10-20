@@ -24,8 +24,6 @@ class PendingRequestsViewController: UIViewController {
         tableControl.addTarget(tableView, action: #selector(UITableView.reloadData), for: .valueChanged)
     }
     
-<<<<<<< HEAD
-=======
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -48,7 +46,6 @@ class PendingRequestsViewController: UIViewController {
         }
     }
     
->>>>>>> 280304253f3bf83ea857a00acb3aa1dab34e68c1
     func pollForContacts() {
         guard let user = UserStore.mainUser else {
             return
@@ -79,8 +76,6 @@ class PendingRequestsViewController: UIViewController {
                     }
                 }
             }
-<<<<<<< HEAD
-=======
             
             OperationQueue.main.addOperation {
                 self.tabBarItem.badgeColor = UIColor.red
@@ -90,7 +85,6 @@ class PendingRequestsViewController: UIViewController {
                     self.tabBarItem.badgeValue = "\(UserStore.pendingRequests.count)"
                 }
             }
->>>>>>> 280304253f3bf83ea857a00acb3aa1dab34e68c1
         }
         
         RunLoop.main.add(timer, forMode: .commonModes)
