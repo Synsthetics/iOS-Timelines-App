@@ -15,6 +15,7 @@ class NewEventViewController: UIViewController {
     @IBOutlet var startDateLabel: UILabel!
     @IBOutlet var endDateLabel: UILabel!
     @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var eventIsPublic: UISwitch!
     
     var startDate: Date?
     var endDate: Date?
@@ -66,7 +67,7 @@ class NewEventViewController: UIViewController {
         let isoEnd = DateTools.gmtFormatter.string(from: end!)
         
         let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: UserStore.mainUser!, details: details!, timeZoneCreatedIn: TimeZone
-            .autoupdatingCurrent.abbreviation()!)
+            .autoupdatingCurrent.abbreviation()!, isPublic: eventIsPublic.isOn)
         
         API.addEvent(body: request) { addEventResponse in
             OperationQueue.main.addOperation {

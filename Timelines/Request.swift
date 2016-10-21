@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Request {
-    func dictionary() -> [String : Any]
+    func dictionary() -> [String: Any]
     func json() -> Data?
 }
 
@@ -18,11 +18,11 @@ struct RegisterRequest: Request {
     let username: String
     let password: String
     
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.User.email.key :  email,
-            JSONKeys.User.username.key : username,
-            JSONKeys.User.password.key : password
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.User.email.key:  email,
+            JSONKeys.User.username.key: username,
+            JSONKeys.User.password.key: password
         ]
         
         return data
@@ -42,10 +42,10 @@ struct LoginRequest: Request {
         self.password = password
     }
     
-    func dictionary() -> [String : Any] {
+    func dictionary() -> [String: Any] {
         let data: [String: Any] = [
-            JSONKeys.User.username.key : username,
-            JSONKeys.User.password.key : password
+            JSONKeys.User.username.key: username,
+            JSONKeys.User.password.key: password
         ]
         
         return data
@@ -63,17 +63,19 @@ struct AddEventRequest: Request  {
     let owner: User
     let details: String
     let timeZoneCreatedIn: String
+    let isPublic: Bool
     
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.Event.name.key : name,
-            JSONKeys.Event.start.key : start,
-            JSONKeys.Event.end.key : end,
-            JSONKeys.Event.owner.key : [
-                JSONKeys.User.username.key : owner.username
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.Event.name.key: name,
+            JSONKeys.Event.start.key: start,
+            JSONKeys.Event.end.key: end,
+            JSONKeys.Event.owner.key: [
+                JSONKeys.User.username.key: owner.username
             ],
-            JSONKeys.Event.details.key : details,
-            JSONKeys.Event.timeZoneCreatedIn.key : timeZoneCreatedIn
+            JSONKeys.Event.details.key: details,
+            JSONKeys.Event.timeZoneCreatedIn.key: timeZoneCreatedIn,
+            JSONKeys.Event.isPublic.key: isPublic
         ]
         
         return data
@@ -85,11 +87,11 @@ struct AddEventRequest: Request  {
 }
 
 struct EventsRequest: Request {
-    var username: String
+    let username: String
     
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.User.username.key : username
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.User.username.key: username
         ]
         
         return data
@@ -101,18 +103,18 @@ struct EventsRequest: Request {
 }
 
 struct MergeTimelinesRequest: Request {
-    var usernames: [String]
+    let usernames: [String]
     
-    func dictionary() -> [String : Any] {
+    func dictionary() -> [String: Any] {
         return [:]
     }
     
-    func array() -> [[String : Any]] {
-        var users = [[String : Any]]()
+    func array() -> [[String: Any]] {
+        var users = [[String: Any]]()
         
         for username in usernames {
             let user = [
-                JSONKeys.User.username.key : username
+                JSONKeys.User.username.key: username
             ]
             
             users.append(user)
@@ -135,13 +137,13 @@ struct FriendRequest: Request {
         self.reciever = reciever
     }
     
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.FriendRequest.sender.key : [
-                JSONKeys.User.username.key : sender
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.FriendRequest.sender.key: [
+                JSONKeys.User.username.key: sender
             ],
-            JSONKeys.FriendRequest.reciever.key : [
-                JSONKeys.User.username.key : reciever
+            JSONKeys.FriendRequest.reciever.key: [
+                JSONKeys.User.username.key: reciever
             ]
         ]
         
@@ -157,10 +159,10 @@ struct AcceptOrDenyContactRequest: Request {
     var id: Int
     var accepted: Bool
     
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.FriendRequest.id.key : id,
-            JSONKeys.GetContacts.accepted.key : accepted
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.FriendRequest.id.key: id,
+            JSONKeys.GetContacts.accepted.key: accepted
         ]
         
         return data
@@ -174,9 +176,9 @@ struct AcceptOrDenyContactRequest: Request {
 struct ContactsRequest: Request {
     var username: String
     
-    func dictionary() -> [String : Any] {
-        let data: [String : Any] = [
-            JSONKeys.User.username.key : username
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.User.username.key: username
         ]
         
         return data
