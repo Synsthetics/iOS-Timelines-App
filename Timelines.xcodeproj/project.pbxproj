@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332635151DBBEA3800CD96AE /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 332635141DBBEA3800CD96AE /* User.plist */; };
 		333FC1231DB65D64006A45D2 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FC1221DB65D63006A45D2 /* Response.swift */; };
 		33A182C41DAD3F2B00D9DC53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */; };
 		33A182C61DAD40E800D9DC53 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A182C51DAD40E800D9DC53 /* UserStore.swift */; };
@@ -32,7 +33,6 @@
 		65482F9B1DAFD6C000CE5C04 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */; };
 		65482F9D1DAFD7DE00CE5C04 /* TimeblockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65482F9C1DAFD7DE00CE5C04 /* TimeblockStore.swift */; };
 		6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592CAA31DAE7797003E7100 /* AlertView.swift */; };
-		65A7D1301DB7EBB80060210F /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A7D12F1DB7EBB80060210F /* User.plist */; };
 		65AE15351DB0DF1000E89DFF /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AE15341DB0DF1000E89DFF /* APITests.swift */; };
 		65AE15381DB12EFC00E89DFF /* JSONKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AE15361DB12EAA00E89DFF /* JSONKeysTests.swift */; };
 		65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F695251DAE84BE0048BFCF /* RegisterViewController.swift */; };
@@ -60,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		332635141DBBEA3800CD96AE /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		333FC1221DB65D63006A45D2 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		33A182C31DAD3F2B00D9DC53 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33A182C51DAD40E800D9DC53 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		65482F9C1DAFD7DE00CE5C04 /* TimeblockStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeblockStore.swift; sourceTree = "<group>"; };
 		6592CAA31DAE7797003E7100 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		65A7D12F1DB7EBB80060210F /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		65AE15341DB0DF1000E89DFF /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		65AE15361DB12EAA00E89DFF /* JSONKeysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONKeysTests.swift; path = ../JSONKeysTests.swift; sourceTree = "<group>"; };
 		65F695251DAE84BE0048BFCF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				65482F9A1DAFD6C000CE5C04 /* EventsViewController.swift */,
 				33A182C71DB00B6600D9DC53 /* Timeblock.swift */,
 				33A182C91DB0198000D9DC53 /* EventInfoViewController.swift */,
-				65A7D12F1DB7EBB80060210F /* User.plist */,
+				332635141DBBEA3800CD96AE /* User.plist */,
 				74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */,
 			);
 			path = Timelines;
@@ -271,6 +271,7 @@
 				TargetAttributes = {
 					652792D81DAC1291006BC707 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QPX29C6Z92;
 						ProvisioningStyle = Automatic;
 					};
 					652792EC1DAC1291006BC707 = {
@@ -315,7 +316,7 @@
 				652792E71DAC1291006BC707 /* LaunchScreen.storyboard in Resources */,
 				652792E41DAC1291006BC707 /* Assets.xcassets in Resources */,
 				652792E21DAC1291006BC707 /* Main.storyboard in Resources */,
-				65A7D1301DB7EBB80060210F /* User.plist in Resources */,
+				332635151DBBEA3800CD96AE /* User.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,10 +517,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QPX29C6Z92;
 				INFOPLIST_FILE = Timelines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.psamp.Timelines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rsampdev.Timelines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -529,10 +530,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QPX29C6Z92;
 				INFOPLIST_FILE = Timelines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.psamp.Timelines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rsampdev.Timelines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
