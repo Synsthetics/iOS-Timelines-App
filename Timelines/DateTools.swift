@@ -30,12 +30,21 @@ struct DateTools {
         return formatter
     }
     
-    static func localTimes(for event: Event) -> (start: String, end: String) {
-        let start = DateTools.localTimeFormatter.date(from: event.startAsGMT())?.description(with: Locale.autoupdatingCurrent)
-        let end = DateTools.localTimeFormatter.date(from: event.endAsGMT())?.description(with: Locale.autoupdatingCurrent)
+    static func localTimes(for timeblock: Timeblock) -> (start: String, end: String) {
+        let start = DateTools.localTimeFormatter.date(from: timeblock.startAsGMT())?.description(with: Locale.autoupdatingCurrent)
+        let end = DateTools.localTimeFormatter.date(from: timeblock.endAsGMT())?.description(with: Locale.autoupdatingCurrent)
         let times = (start: start!, end: end!)
         return times
     }
     
+//    static func simpleLocalDate(from date: Date) -> String {
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents(in: TimeZone.autoupdatingCurrent, from: date)
+//        
+////        let test = calendar.
+//        
+//        let simpleLocalDateString = "\(components)"
+//        
+//    }
     
 }

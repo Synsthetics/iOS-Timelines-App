@@ -51,7 +51,7 @@ class PendingRequestsViewController: UIViewController {
             return
         }
         
-        let timer = Timer(timeInterval: 5.0, repeats: true) { _ in
+        let timer = Timer(timeInterval: 1.0, repeats: true) { _ in
             print("💜timer ran")
             
             if UserStore.shouldPoll {

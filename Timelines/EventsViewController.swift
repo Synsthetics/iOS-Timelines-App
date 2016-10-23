@@ -63,6 +63,7 @@ class EventsViewController: UIViewController, LoginViewControllerDelegate {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +104,10 @@ class EventsViewController: UIViewController, LoginViewControllerDelegate {
 
 extension EventsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
@@ -127,21 +132,24 @@ extension EventsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
         let timeblock = self.weeklyTimeblocks[indexPath.row]
+        let times = DateTools.localTimes(for: timeblock)
+        let cell: TimeblockCell
         
         if let event = timeblock as? Event {
             let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
-            eventCell.title.text = event.name
-            eventCell.startTime.text = event.start.description
-            eventCell.endTime.text = event.end.description
+            eventCell.title.text = "You have scheduled \(event.name)"
             cell = eventCell
         } else {
-            let freeCell = tableView.dequeueReusableCell(withIdentifier: "FreeCell") as! FreeCell
-            freeCell.startTime.text = timeblock.start.description
-            freeCell.endTime.text = timeblock.end.description
-            cell = freeCell
+            cell = tableView.dequeueReusableCell(withIdentifier: "TimeblockCell") as! TimeblockCell
         }
+        
+        cell.startTime.text = "From: \(times.start)"
+        cell.endTime.text = "To: \(times.end)"
+        cell.startTime.numberOfLines = 2
+        cell.endTime.numberOfLines = 2
+        cell.startTime.lineBreakMode = .byWordWrapping
+        cell.endTime.lineBreakMode = .byWordWrapping
         
         return cell
     }

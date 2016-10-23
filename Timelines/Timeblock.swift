@@ -9,6 +9,7 @@
 import Foundation
 
 class Timeblock {
+    var name: String
     var start: Date
     var end: Date
     var duration: TimeInterval {
@@ -24,17 +25,23 @@ class Timeblock {
             return nil
         }
         
+        guard let name = json[JSONKeys.Event.name.key] as? String else {
+            return nil
+        }
+        
+        self.name = name
         Timeblock.scrubToMinute(start: &start, end: &end)
         self.start = start
         self.end = end
     }
     
-    init(start: Date, end: Date) {
-        var newStart = start
-        var newEnd = end
-        Timeblock.scrubToMinute(start: &newStart, end: &newEnd)
-        self.start = newStart
-        self.end = newEnd
+    init(name: String = "You have free time", start: Date, end: Date) {
+        self.name = name
+        var mutableStart = start
+        var mutableEnd = end
+        Timeblock.scrubToMinute(start: &mutableStart, end: &mutableEnd)
+        self.start = start
+        self.end = end
     }
     
     private static func scrubToMinute(start: inout Date, end: inout Date) {

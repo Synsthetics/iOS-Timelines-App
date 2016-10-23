@@ -8,16 +8,13 @@
 
 import UIKit
 
-class FreeCell: UITableViewCell {
+class TimeblockCell: UITableViewCell {
     @IBOutlet var startTime: UILabel!
     @IBOutlet var endTime: UILabel!
-    
 }
 
-class EventCell: UITableViewCell {
+class EventCell: TimeblockCell {
     @IBOutlet var title: UILabel!
-    @IBOutlet var startTime: UILabel!
-    @IBOutlet var endTime: UILabel!
 }
 
 class FriendCell: UITableViewCell {

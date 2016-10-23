@@ -10,7 +10,6 @@ import Foundation
 
 class Event: Timeblock {
     var id: Int
-    var name: String
     var details: String
     var owner: User
     var timezoneCreatedIn: String
@@ -19,7 +18,6 @@ class Event: Timeblock {
     
     override init?(json: [String : Any]) {
         guard let id = json[JSONKeys.Event.id.key]  as? Int,
-            let name = json[JSONKeys.Event.name.key] as? String,
             let details = json[JSONKeys.Event.details.key]  as? String,
             let timezoneCreatedIn = json[JSONKeys.Event.timeZoneCreatedIn.key] as? String,
             let owner = User(json: (json[JSONKeys.Event.owner.key] as? [String: Any])!) else {
@@ -31,7 +29,6 @@ class Event: Timeblock {
         }
         
         self.id = id
-        self.name = name
         self.details = details
         self.timezoneCreatedIn = timezoneCreatedIn
         self.owner = owner
@@ -42,13 +39,12 @@ class Event: Timeblock {
     
     init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User, isPublic: Bool) {
         self.id = id
-        self.name = name
         self.details = details
         self.owner = owner
         self.timezoneCreatedIn = timezoneCreatedIn
         self.isPublic = isPublic
         
-        super.init(start: start, end: end)
+        super.init(name: name, start: start, end: end)
     }
     
 }
