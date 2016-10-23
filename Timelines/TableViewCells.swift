@@ -9,9 +9,12 @@
 import UIKit
 
 class TimeblockCell: UITableViewCell {
-    @IBOutlet var title: UILabel!
     @IBOutlet var startTime: UILabel!
     @IBOutlet var endTime: UILabel!
+}
+
+class EventCell: TimeblockCell {
+    @IBOutlet var title: UILabel!
 }
 
 class FriendCell: UITableViewCell {

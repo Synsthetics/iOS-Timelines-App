@@ -48,18 +48,20 @@ class MergeTimelinesViewController: UIViewController {
         let alert = AlertView.createAlertWithTextField(title: "Add contact", message: "Input username of contact", actionTitle: "Send") { receiver in
             
             guard receiver != user.username else {
-                let errorAlert = AlertView.createAlert(title: "Error", message: "Could not send request to self", actionTitle: "OK")
+                let errorAlert = AlertView.createAlert(title: "Error", message: "Can not send request to self", actionTitle: "OK")
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
-        
+            
             let request = FriendRequest(sender: user.username, reciever: receiver)
             
             API.requestFriend(body: request) { message in
-                OperationQueue.main.addOperation {
-                    let messageAlert = AlertView.createAlert(title: "", message: message, actionTitle: "OK")
-                    
-                    self.present(messageAlert, animated: true, completion: nil)
+                if !receiver.isEmpty && !(receiver == "") {
+                    OperationQueue.main.addOperation {
+                        let messageAlert = AlertView.createAlert(title: "", message: message, actionTitle: "OK")
+                        
+                        self.present(messageAlert, animated: true, completion: nil)
+                    }
                 }
             }
         }
@@ -68,8 +70,10 @@ class MergeTimelinesViewController: UIViewController {
     }
     
     @IBAction func mergeTimelines(_ sender: UIButton) {
-        OperationQueue.main.addOperation {
-            self.tabBarController?.selectedIndex = 0
+        if UserStore.selectedContacts.count > 1 {
+            OperationQueue.main.addOperation {
+                self.tabBarController?.selectedIndex = 0
+            }
         }
     }
     
@@ -101,7 +105,6 @@ extension MergeTimelinesViewController: UITableViewDataSource {
 extension MergeTimelinesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         var friend = UserStore.contacts[indexPath.row]
         friend.selected = !friend.selected
         
