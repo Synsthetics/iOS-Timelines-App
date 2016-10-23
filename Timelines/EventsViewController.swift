@@ -90,9 +90,7 @@ class EventsViewController: UIViewController, LoginViewControllerDelegate {
                 return
             }
             
-            if !(eventsResponse.timeblocks?.isEmpty)! {
-                TimeblockStore.timeblocks = timeblocks
-            }
+            TimeblockStore.timeblocks = timeblocks
             
             OperationQueue.main.addOperation {
                 self.tableView.reloadData()

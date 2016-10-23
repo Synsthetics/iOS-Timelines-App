@@ -86,7 +86,6 @@ extension MergeTimelinesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let friendTuple = UserStore.contacts[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell") as! FriendCell

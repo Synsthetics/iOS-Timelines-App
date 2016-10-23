@@ -15,10 +15,10 @@ extension UIColor {
     }
 
     static var timelines_tabBarBackground: UIColor {
-        return UIColor(red:0.32, green:0.44, blue:1.00, alpha:1.00)
+        return UIColor(red:0.50, green:0.59, blue:1.00, alpha:1.00)
     }
     
-    static var timelines_tabBarIconColor: UIColor  {
+    static var timelines_tabBarItemColor: UIColor  {
         return UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.50)
     }
     
