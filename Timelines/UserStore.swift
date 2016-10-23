@@ -42,11 +42,7 @@ class UserStore {
             }
         }
         
-        guard let user = mainUser else {
-            return selected
-        }
-        
-        selected.insert(user.username, at: 0)
+        selected.insert(mainUser!.username, at: 0)
         return selected
     }
     

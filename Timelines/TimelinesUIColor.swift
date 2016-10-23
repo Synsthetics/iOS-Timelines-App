@@ -8,22 +8,22 @@
 
 import UIKit
 
-//extension UIColor {
-//
-//    static var timelines_mainBackgroundColor: UIColor  {
-//        return UIColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-//    }
-//    
-//    static var timelines_backgrounColor: UIColor  {
-//        return UIColor(
-//    }
-//    
-//    static var timelines_backgrounColor: UIColor  {
-//        return UIColor(
-//    }
-//    
-//    static var timelines_backgrounColor: UIColor  {
-//        return UIColor(
-//    }
-//    
-//}
+extension UIColor {
+    
+    static var timelines_background: UIColor {
+        return UIColor(red:0.57, green:0.65, blue:1.00, alpha:1.00)
+    }
+
+    static var timelines_tabBarBackground: UIColor {
+        return UIColor(red:0.50, green:0.59, blue:1.00, alpha:1.00)
+    }
+    
+    static var timelines_tabBarItemColor: UIColor  {
+        return UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.50)
+    }
+    
+    static var timelines_buttonColor: UIColor  {
+        return UIColor(red:0.50, green:0.59, blue:1.00, alpha:1.00)
+    }
+    
+}

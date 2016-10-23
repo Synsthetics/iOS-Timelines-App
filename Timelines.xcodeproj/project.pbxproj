@@ -40,6 +40,7 @@
 		746114521DAE895700DF170B /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114511DAE895700DF170B /* NewEventViewController.swift */; };
 		746114541DAE898000DF170B /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114531DAE898000DF170B /* TableViewCells.swift */; };
 		746114561DAE8C3700DF170B /* DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746114551DAE8C3700DF170B /* DateTools.swift */; };
+		74A604AE1DBD1F43008248C3 /* TimelinesStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A604AD1DBD1F43008248C3 /* TimelinesStyles.swift */; };
 		74B056291DB5185400A5F1C7 /* MergeTimelinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		746114511DAE895700DF170B /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		746114531DAE898000DF170B /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
 		746114551DAE8C3700DF170B /* DateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTools.swift; sourceTree = "<group>"; };
+		74A604AD1DBD1F43008248C3 /* TimelinesStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinesStyles.swift; sourceTree = "<group>"; };
 		74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeTimelinesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +180,7 @@
 				332635141DBBEA3800CD96AE /* User.plist */,
 				74B056281DB5185400A5F1C7 /* MergeTimelinesViewController.swift */,
 				332635161DBC09BB00CD96AE /* TimelinesUIColor.swift */,
+				74A604AD1DBD1F43008248C3 /* TimelinesStyles.swift */,
 			);
 			path = Timelines;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				746114541DAE898000DF170B /* TableViewCells.swift in Sources */,
 				65F695261DAE84BE0048BFCF /* RegisterViewController.swift in Sources */,
 				332635171DBC09BC00CD96AE /* TimelinesUIColor.swift in Sources */,
+				74A604AE1DBD1F43008248C3 /* TimelinesStyles.swift in Sources */,
 				652793231DAC132A006BC707 /* API.swift in Sources */,
 				746114561DAE8C3700DF170B /* DateTools.swift in Sources */,
 				6592CAA41DAE7797003E7100 /* AlertView.swift in Sources */,
