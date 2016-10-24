@@ -67,7 +67,6 @@ class PendingRequestsViewController: UIViewController {
                         UserStore.addPending(request: request)
                     }
                     OperationQueue.main.addOperation {
-                        self.tabBarItem.badgeColor = UIColor.red
                         if UserStore.pendingRequests.isEmpty {
                             self.tabBarItem.badgeValue = nil
                         } else {
@@ -78,7 +77,6 @@ class PendingRequestsViewController: UIViewController {
             }
             
             OperationQueue.main.addOperation {
-                self.tabBarItem.badgeColor = UIColor.red
                 if UserStore.pendingRequests.isEmpty {
                     self.tabBarItem.badgeValue = nil
                 } else {
