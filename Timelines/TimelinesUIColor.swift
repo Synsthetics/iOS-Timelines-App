@@ -10,24 +10,28 @@ import UIKit
 
 extension UIColor {
     
-    static var timelines_background: UIColor {
-        return UIColor(red:0.96, green:0.97, blue:0.98, alpha:1.00)
+    static var timelines_backgroundLight: UIColor {
+        return UIColor(red:0.94, green:0.95, blue:0.97, alpha:1.00)
+    }
+    
+    static var timelines_backgroundDark: UIColor {
+        return UIColor(red:0.18, green:0.23, blue:0.27, alpha:1.00)
     }
     
     static var timelines_tabBarBackground: UIColor {
-        return UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.50)
+        return UIColor(red:0.94, green:0.95, blue:0.97, alpha:1.00)
     }
     
-    static var timelines_tabBarItemColor: UIColor  {
-        return UIColor(red:0.50, green:0.59, blue:1.00, alpha:1.00)
+    static var timelines_tabBarTintColor: UIColor  {
+        return UIColor(red:0.22, green:0.61, blue:1.00, alpha:1.00)
     }
     
     static var timelines_buttonColor: UIColor  {
-        return UIColor(red:0.50, green:0.59, blue:1.00, alpha:1.00)
+        return UIColor(red:0.46, green:0.73, blue:1.00, alpha:1.00)
     }
     
     static var timelines_buttonTint: UIColor  {
-        return UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+        return UIColor(red:0.94, green:0.95, blue:0.97, alpha:1.00)
     }
     
 }

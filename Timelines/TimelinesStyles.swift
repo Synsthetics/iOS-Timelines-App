@@ -19,21 +19,19 @@ struct TimelinesStyles {
     
     private static func appView() {
         let appViewProxy = AppView.appearance()
-        appViewProxy.backgroundColor = UIColor.timelines_background
+        appViewProxy.backgroundColor = UIColor.timelines_backgroundLight
     }
     
     private static func navigationBar() {
         let navigationBarProxy = UINavigationBar.appearance()
-        navigationBarProxy.layer.borderWidth = 0.0
-        navigationBarProxy.backItem?.title = ""
+        navigationBarProxy.barTintColor = UIColor.timelines_tabBarBackground
+        navigationBarProxy.tintColor = UIColor.timelines_tabBarTintColor
     }
     
     private static func tabBar() {
         let tabBarProxy = UITabBar.appearance()
         tabBarProxy.barTintColor = UIColor.timelines_tabBarBackground
-        tabBarProxy.tintColor = UIColor.timelines_tabBarItemColor
-        tabBarProxy.barStyle = .default
-        tabBarProxy.layer.borderWidth = 0.0
+        tabBarProxy.tintColor = UIColor.timelines_tabBarTintColor
         
         let tabBarItemProxy = UITabBarItem.appearance()
         tabBarItemProxy.badgeColor = .red
@@ -41,7 +39,10 @@ struct TimelinesStyles {
     
     private static func tableView() {
         let tableViewProxy = UITableView.appearance()
-        tableViewProxy.backgroundColor = UIColor.timelines_background
+        tableViewProxy.backgroundColor = UIColor.timelines_backgroundLight
+        
+        let tableViewCellProxy = UITableViewCell.appearance()
+        tableViewCellProxy.backgroundColor = UIColor.timelines_backgroundLight
     }
     
     private static func buttons() {
