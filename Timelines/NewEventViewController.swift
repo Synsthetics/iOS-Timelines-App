@@ -12,10 +12,18 @@ class NewEventViewController: UIViewController {
     
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var detailsTextView: UITextView!
-    @IBOutlet var startDateLabel: UILabel!
-    @IBOutlet var endDateLabel: UILabel!
-    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var startDateTextField: UITextField!
+    @IBOutlet var endDateTextField: UITextField!
     @IBOutlet var eventIsPublic: UISwitch!
+    @IBOutlet var topViewConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomViewConstraint: NSLayoutConstraint!
+
+    
+    var topViewConstraintConstant: CGFloat?
+    var bottomViewConstraintConstant: CGFloat?
+    var startDatePickerView: UIDatePicker?
+    var endDatePickerView: UIDatePicker?
+    var selectedTextField: UITextField?
     
     var startDate: Date?
     var endDate: Date?
@@ -26,22 +34,47 @@ class NewEventViewController: UIViewController {
         super.viewDidLoad()
         self.nameTextField.delegate = self
         self.detailsTextView.delegate = self
+        self.startDateTextField.delegate = self
+        self.endDateTextField.delegate = self
+        
+        self.startDatePickerView = UIDatePicker()
+        self.endDatePickerView = UIDatePicker()
+        
+        self.setUp(datePicker: &self.startDatePickerView!)
+        self.setUp(datePicker: &self.endDatePickerView!)
+        
+        self.startDateTextField.inputView = self.startDatePickerView
+        self.endDateTextField.inputView = self.endDatePickerView
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
+        self.view.addGestureRecognizer(tap)
+        
+        self.topViewConstraintConstant = self.topViewConstraint.constant
+        self.bottomViewConstraintConstant = self.bottomViewConstraint.constant
+
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.datePicker.minimumDate = timeblock?.start
-        self.datePicker.maximumDate = timeblock?.end
+    func dismissKeyboard() {
+        self.selectedTextField?.resignFirstResponder()
     }
     
-    @IBAction func changeDateStateToStart(_ sender: UIButton) {
-        self.startDateLabel.text = self.datePicker.date.description(with: Locale.autoupdatingCurrent)
-        self.startDate = self.datePicker.date
+    private func setUp(datePicker: inout UIDatePicker) {
+        datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        datePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: UIControlEvents.valueChanged)
     }
     
-    @IBAction func changeDateStateToEnd(_ sender: UIButton) {
-        self.endDateLabel.text = self.datePicker.date.description(with: Locale.autoupdatingCurrent)
-        self.endDate = self.datePicker.date
+    func handleDatePicker(sender: UIDatePicker) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .short
+        timeFormatter.timeStyle = .short
+        
+        if sender == self.startDatePickerView {
+            startDateTextField.text = timeFormatter.string(for: sender.date)
+        } else if sender == endDatePickerView {
+            endDateTextField.text = timeFormatter.string(for: sender.date)
+        }
     }
     
     @IBAction func attemptEventCreation(_ sender: UIButton) {
@@ -87,8 +120,31 @@ class NewEventViewController: UIViewController {
 
 extension NewEventViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let _ = textField.inputView as? UIDatePicker {
+            self.selectedTextField = textField
+            
+            UIView.animate(withDuration: 0.5) {
+                self.topViewConstraint.constant -= ((self.selectedTextField?.inputView?.frame.height)! + 10)
+                self.bottomViewConstraint.constant += ((self.selectedTextField?.inputView?.frame.height)! + 10)
+            }
+        }
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let _ = textField.inputView as? UIDatePicker {
+            self.selectedTextField = textField
+            
+            UIView.animate(withDuration: 0.5) {
+                self.topViewConstraint.constant = self.topViewConstraintConstant!
+                self.bottomViewConstraint.constant = self.bottomViewConstraintConstant!
+
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

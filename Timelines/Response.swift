@@ -47,7 +47,7 @@ struct EventsResponse {
     var timeblocks: [Timeblock]?
     var errorMessage: String?
     
-    init(json: [[String : Any]] ) {
+    init(json: [[String: Any]] ) {
         let deserialized: [Timeblock]? = json.flatMap {
             let currentID = $0[JSONKeys.Event.id.key] as? Int
             let currentName = $0[JSONKeys.Event.name.key] as? String
@@ -113,10 +113,10 @@ struct PendingContactsResponse {
     var pendingContacts: [String]?
     var errorMessage: String?
     
-    init(json: [[String : Any]]) {
+    init(json: [[String: Any]]) {
         let deserialized: [String]? = json.flatMap {
             let request = $0
-            guard let receiver = request[JSONKeys.FriendRequest.reciever.key] as? [String : Any],
+            guard let receiver = request[JSONKeys.FriendRequest.reciever.key] as? [String: Any],
                 let username = receiver[JSONKeys.User.username.key] as? String else {
                     return nil
             }
@@ -136,7 +136,7 @@ struct ContactRequestsResponse {
     var requests: [PendingContactRequest]?
     var errorMessage: String?
     
-    init(json: [[String : Any]]) {
+    init(json: [[String: Any]]) {
         let deserialized: [(username: String, requestID: Int)]? = json.flatMap {
             let request = $0
             guard let id = request[JSONKeys.FriendRequest.id.key] as? Int,
