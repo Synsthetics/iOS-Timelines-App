@@ -64,10 +64,6 @@ class EventsViewController: UIViewController, LoginViewControllerDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         guard UserStore.mainUser != nil else {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -75,6 +71,11 @@ class EventsViewController: UIViewController, LoginViewControllerDelegate {
             present(UINavigationController.init(rootViewController: (loginVC)), animated: false, completion: nil)
             return
         }
+        self.getRecentEvents()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.getRecentEvents()
     }
     
@@ -131,24 +132,29 @@ extension EventsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let timeblock = self.weeklyTimeblocks[indexPath.row]
-        let times = DateTools.localTimes(for: timeblock)
         let cell: TimeblockCell
         
         if let event = timeblock as? Event {
             let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
-            eventCell.title.text = "You have scheduled \(event.name)"
+            
+            if UserStore.mainUser! == event.owner {
+                eventCell.title.text = "You have scheduled \(event.name)"
+            } else {
+                eventCell.title.text = "\(event.owner.username) has scheduled \(event.name)"
+            }
+            
             cell = eventCell
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "TimeblockCell") as! TimeblockCell
         }
         
-        cell.startTime.text = "From: \(times.start)"
-        cell.endTime.text = "To: \(times.end)"
-        cell.startTime.numberOfLines = 2
-        cell.endTime.numberOfLines = 2
-        cell.startTime.lineBreakMode = .byWordWrapping
-        cell.endTime.lineBreakMode = .byWordWrapping
+        cell.startTime.text = "From: \(DateTools.simpleDate(from: timeblock.start))"
+        cell.endTime.text = "To: \(DateTools.simpleDate(from: timeblock.end))"
         
+        cell.startTime.numberOfLines = 1
+        cell.endTime.numberOfLines = 1
+        cell.startTime.lineBreakMode = .byClipping
+        cell.endTime.lineBreakMode = .byClipping
         return cell
     }
     

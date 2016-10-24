@@ -134,7 +134,6 @@ extension PendingRequestsViewController: UITableViewDelegate {
 extension PendingRequestsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch tableControl.selectedSegmentIndex {
         case tableControlSelected.received.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PendingRequestCell") as! PendingRequestCell
@@ -155,7 +154,6 @@ extension PendingRequestsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch tableControl.selectedSegmentIndex {
         case tableControlSelected.received.rawValue:
             return UserStore.pendingRequests.count
