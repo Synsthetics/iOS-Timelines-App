@@ -19,7 +19,7 @@ struct DateTools {
     static let localTimeFormatter: ISO8601DateFormatter = {
         let localTimeFormatter = ISO8601DateFormatter()
         localTimeFormatter.timeZone = TimeZone.autoupdatingCurrent
-
+        
         return localTimeFormatter
     }()
     
@@ -37,14 +37,15 @@ struct DateTools {
         return times
     }
     
-//    static func simpleLocalDate(from date: Date) -> String {
-//        let calendar = Calendar.current
-//        let components = calendar.dateComponents(in: TimeZone.autoupdatingCurrent, from: date)
-//        
-////        let test = calendar.
-//        
-//        let simpleLocalDateString = "\(components)"
-//        
-//    }
+    static func simpleDate(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = .medium
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        formatter.dateFormat = "hh:mm a MMMM dd, yyyy"
+        let dateString = formatter.string(from: date)
+        return dateString
+    }
     
 }

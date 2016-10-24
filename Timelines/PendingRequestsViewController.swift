@@ -67,7 +67,6 @@ class PendingRequestsViewController: UIViewController {
                         UserStore.addPending(request: request)
                     }
                     OperationQueue.main.addOperation {
-                        self.tabBarItem.badgeColor = UIColor.red
                         if UserStore.pendingRequests.isEmpty {
                             self.tabBarItem.badgeValue = nil
                         } else {
@@ -78,7 +77,6 @@ class PendingRequestsViewController: UIViewController {
             }
             
             OperationQueue.main.addOperation {
-                self.tabBarItem.badgeColor = UIColor.red
                 if UserStore.pendingRequests.isEmpty {
                     self.tabBarItem.badgeValue = nil
                 } else {
@@ -136,7 +134,6 @@ extension PendingRequestsViewController: UITableViewDelegate {
 extension PendingRequestsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch tableControl.selectedSegmentIndex {
         case tableControlSelected.received.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PendingRequestCell") as! PendingRequestCell
@@ -157,7 +154,6 @@ extension PendingRequestsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch tableControl.selectedSegmentIndex {
         case tableControlSelected.received.rawValue:
             return UserStore.pendingRequests.count

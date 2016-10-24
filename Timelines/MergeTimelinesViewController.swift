@@ -15,11 +15,15 @@ class MergeTimelinesViewController: UIViewController {
         super.viewDidLoad()
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
+        self.fetchContacts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.fetchContacts()
+    }
+    
+    private func fetchContacts() {
         guard let user = UserStore.mainUser else {
             return
         }

@@ -28,3 +28,11 @@ class User {
 
     }
 }
+
+extension User: Equatable {
+
+    public static func ==(lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id && lhs.username == rhs.username
+    }
+    
+}
