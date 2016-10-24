@@ -219,7 +219,7 @@
                             <constraint firstItem="Li4-Xq-FL0" firstAttribute="top" secondItem="1k9-AN-lWT" secondAttribute="bottom" id="opr-V7-X4C"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Requests" id="qnI-D2-tTK"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="friendrequest@2x.png" id="qnI-D2-tTK"/>
                     <connections>
                         <outlet property="tableControl" destination="5zy-W5-iAM" id="h1x-C8-BdY"/>
                         <outlet property="tableView" destination="I43-m0-tsc" id="III-Hv-PSS"/>
@@ -241,31 +241,32 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bBh-cY-Qq8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bBh-cY-Qq8">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeblockCell" rowHeight="88" id="t7z-Qf-Gik" customClass="TimeblockCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="88"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t7z-Qf-Gik" id="MtG-ak-HjP">
-                                            <frame key="frameInset" width="343" height="87"/>
+                                            <frame key="frameInset" width="375" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="zms-3I-x3x">
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-19-16" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Brg-km-lYc" userLabel="Date">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="0.45882352941176469" green="0.72941176470588232" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="free time" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLC-WL-T8b">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="0.45882352941176469" green="0.72941176470588232" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7pm-9pm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7f-z8-lZv" userLabel="Time">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="0.45882352941176469" green="0.72941176470588232" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -284,27 +285,27 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserEventCell" rowHeight="88" id="4iA-nt-1Bz" customClass="UserEventCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="116" width="343" height="88"/>
+                                        <rect key="frame" x="0.0" y="116" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4iA-nt-1Bz" id="TO0-O6-g4C">
-                                            <frame key="frameInset" width="343" height="87"/>
+                                            <frame key="frameInset" width="375" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-NC-2Rx">
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-19-16" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip4-up-eS0" userLabel="Date">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="event title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGg-YA-WKP">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7pm-9pm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAh-fV-FbD" userLabel="Time">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -324,34 +325,34 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendEventCell" rowHeight="88" id="UuU-7m-oC3" customClass="FriendEventCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="204" width="343" height="88"/>
+                                        <rect key="frame" x="0.0" y="204" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UuU-7m-oC3" id="fD9-et-Zkd">
-                                            <frame key="frameInset" width="343" height="87"/>
+                                            <frame key="frameInset" width="375" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="98d-d3-O7j">
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-19-16" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2J-3l-MNN" userLabel="Date">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="friend event title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHv-nl-qJh">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TSa-8r-vG6">
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7pm-9pm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXf-Gb-G8S" userLabel="Time">
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@friend" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jap-rB-sw1">
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -377,13 +378,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bBh-cY-Qq8" firstAttribute="leading" secondItem="1OV-Vj-HlX" secondAttribute="leadingMargin" id="4gU-n3-UmD"/>
                             <constraint firstItem="cmk-16-YAz" firstAttribute="top" secondItem="bBh-cY-Qq8" secondAttribute="bottom" id="lxx-8m-qDD"/>
+                            <constraint firstAttribute="trailing" secondItem="bBh-cY-Qq8" secondAttribute="trailing" id="nkW-vF-3QP"/>
                             <constraint firstItem="bBh-cY-Qq8" firstAttribute="top" secondItem="2Qy-Lq-1pM" secondAttribute="bottom" id="pZp-p3-Zz4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bBh-cY-Qq8" secondAttribute="trailing" id="xGM-tz-M6z"/>
+                            <constraint firstItem="bBh-cY-Qq8" firstAttribute="leading" secondItem="1OV-Vj-HlX" secondAttribute="leading" id="ySX-hi-wKn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timeline" id="e7I-yT-GgJ"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" image="timeline@2x.png" id="e7I-yT-GgJ"/>
                     <navigationItem key="navigationItem" id="iws-oe-x51"/>
                     <connections>
                         <outlet property="tableView" destination="bBh-cY-Qq8" id="dBJ-P9-lCD"/>
@@ -639,7 +640,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rSQ-wY-Thd">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rSQ-wY-Thd">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwu-pp-fVm">
                                         <state key="normal" title="Add Friend"/>
@@ -668,7 +669,7 @@
                             <constraint firstItem="4Ll-hl-oUU" firstAttribute="height" secondItem="6gs-h1-LeO" secondAttribute="height" multiplier="2:3" id="ok5-dW-1sU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" id="KyT-Te-63G"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends@2x.png" id="KyT-Te-63G"/>
                     <connections>
                         <outlet property="friendsTableView" destination="4Ll-hl-oUU" id="mql-5D-j9w"/>
                     </connections>
@@ -750,9 +751,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="AppTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DsA-MD-RLl" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Timelines" id="kGi-mx-iId">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel Merge" id="LrK-5I-1Zs"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Timelines" id="kGi-mx-iId"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3Gw-X6-ep2">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -770,4 +769,9 @@
             <point key="canvasLocation" x="3652" y="150"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="friendrequest@2x.png" width="180" height="180"/>
+        <image name="friends@2x.png" width="180" height="180"/>
+        <image name="timeline@2x.png" width="180" height="180"/>
+    </resources>
 </document>

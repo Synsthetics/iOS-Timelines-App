@@ -151,6 +151,10 @@ extension EventsViewController: UITableViewDataSource {
                 friendEventCell.username.text = event.owner.username
                 friendEventCell.date.text = dates.date
                 friendEventCell.startAndEndTime.text = dates.startToEnd
+                
+                friendEventCell.backgroundColor = UIColor.timelines_darkBlue
+                friendEventCell.tintColor = UIColor.white
+                
                 return friendEventCell
             }
             
@@ -159,6 +163,8 @@ extension EventsViewController: UITableViewDataSource {
             eventCell.title.text = event.name
             eventCell.date.text = dates.date
             eventCell.startAndEndTime.text = dates.startToEnd
+            
+            eventCell.backgroundColor = UIColor.timelines_lightBlue
             return eventCell
         default:
             let timeblockCell = tableView.dequeueReusableCell(withIdentifier: "TimeblockCell") as! TimeblockCell
@@ -166,6 +172,10 @@ extension EventsViewController: UITableViewDataSource {
             
             timeblockCell.date.text = dates.date
             timeblockCell.startAndEndTime.text = dates.startToEnd
+            
+            timeblockCell.tintColor = UIColor.timelines_lightBlue
+            timeblockCell.backgroundColor = UIColor.white
+            
             return timeblockCell
         }
         

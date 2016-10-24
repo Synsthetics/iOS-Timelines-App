@@ -14,8 +14,8 @@ extension UIColor {
         return UIColor(red:0.94, green:0.95, blue:0.97, alpha:1.00)
     }
 
-    static var timelines_backgroundDark: UIColor {
-        return UIColor(red:0.18, green:0.23, blue:0.27, alpha:1.00)
+    static var timelines_darkBlue: UIColor {
+        return UIColor(red:0.06, green:0.16, blue:0.27, alpha:1.00)
     }
 
     static var timelines_tabBarBackground: UIColor {
@@ -26,7 +26,7 @@ extension UIColor {
         return UIColor(red:0.22, green:0.61, blue:1.00, alpha:1.00)
     }
 
-    static var timelines_buttonColor: UIColor  {
+    static var timelines_lightBlue: UIColor  {
         return UIColor(red:0.46, green:0.73, blue:1.00, alpha:1.00)
     }
 
