@@ -63,7 +63,7 @@ struct AddEventRequest: Request  {
     let owner: User
     let details: String
     let timeZoneCreatedIn: String
-    let isPublic: Bool
+    let isPrivate: Bool
     
     func dictionary() -> [String: Any] {
         let data: [String: Any] = [
@@ -75,7 +75,7 @@ struct AddEventRequest: Request  {
             ],
             JSONKeys.Event.details.key: details,
             JSONKeys.Event.timeZoneCreatedIn.key: timeZoneCreatedIn,
-            JSONKeys.Event.isPublic.key: isPublic
+            JSONKeys.Event.isPrivate.key: isPrivate
         ]
         
         return data
@@ -94,7 +94,7 @@ struct EditEventRequest: Request  {
     let owner: User
     let details: String
     let timeZoneCreatedIn: String
-    let isPublic: Bool
+    let isPrivate: Bool
     
     func dictionary() -> [String: Any] {
         let data: [String: Any] = [
@@ -107,7 +107,7 @@ struct EditEventRequest: Request  {
             ],
             JSONKeys.Event.details.key: details,
             JSONKeys.Event.timeZoneCreatedIn.key: timeZoneCreatedIn,
-            JSONKeys.Event.isPublic.key: isPublic
+            JSONKeys.Event.isPrivate.key: isPrivate
         ]
         
         return data

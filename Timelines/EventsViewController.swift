@@ -114,17 +114,25 @@ extension EventsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let cell = tableView.cellForRow(at: indexPath)
+        let timeblock = self.weeklyTimeblocks[indexPath.row]
         
         switch cell {
         case is UserEventCell, is FriendEventCell:
+            let event = timeblock as! Event
+            
+            if event.isPrivate {
+                return
+            }
+            
             let eventInfoView = storyBoard.instantiateViewController(withIdentifier: "EventInfoViewController") as! EventInfoViewController
-            eventInfoView.event = self.weeklyTimeblocks[indexPath.row] as? Event
+            eventInfoView.event = event
             show(eventInfoView, sender: nil)
         default:
             let newEventView = storyBoard.instantiateViewController(withIdentifier: "NewEventViewController") as! NewEventViewController
-            newEventView.timeblock = self.weeklyTimeblocks[indexPath.row]
+            newEventView.timeblock = timeblock
             newEventView.timeblockIndex = self.weeklyTimeblocks.index(of: self.weeklyTimeblocks[indexPath.row])
             show(newEventView, sender: nil)
         }
@@ -148,7 +156,8 @@ extension EventsViewController: UITableViewDataSource {
             guard UserStore.mainUser!.username == event.owner.username else {
                 let friendEventCell = tableView.dequeueReusableCell(withIdentifier: "FriendEventCell") as! FriendEventCell
                 
-                friendEventCell.title.text = event.name
+                friendEventCell.title.text = event.isPrivate ? "private event" : event.name
+                
                 friendEventCell.username.text = event.owner.username
                 friendEventCell.date.text = dates.date
                 friendEventCell.startAndEndTime.text = dates.startToEnd

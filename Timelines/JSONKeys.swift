@@ -28,7 +28,7 @@ enum JSONKeys {
         case owner = "owner"
         case details = "details"
         case timeZoneCreatedIn = "timezoneCreatedIn"
-        case isPublic = "privacyStatus"
+        case isPrivate = "privacyStatus"
         
         var key: String {
             return self.rawValue
