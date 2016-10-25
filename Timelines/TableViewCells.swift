@@ -17,7 +17,7 @@ class UserEventCell: TimeblockCell {
     @IBOutlet var title: UILabel!
 }
 
-class FriendEventCell: TimeblockCell {
+class FriendEventCell: UserEventCell {
     @IBOutlet var username: UILabel!
 }
 

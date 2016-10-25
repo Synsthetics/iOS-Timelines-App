@@ -277,6 +277,7 @@
 				TargetAttributes = {
 					652792D81DAC1291006BC707 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = PNRXK9S27K;
 						ProvisioningStyle = Automatic;
 					};
 					652792EC1DAC1291006BC707 = {
@@ -524,10 +525,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PNRXK9S27K;
 				INFOPLIST_FILE = Timelines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rsampdev.Timelines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.psamp.Timelines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -537,10 +538,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PNRXK9S27K;
 				INFOPLIST_FILE = Timelines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rsampdev.Timelines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.psamp.Timelines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
