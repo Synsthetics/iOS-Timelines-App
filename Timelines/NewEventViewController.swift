@@ -104,11 +104,11 @@ class NewEventViewController: UIViewController {
         let isoEnd = DateTools.gmtFormatter.string(from: end!)
         
         let request = AddEventRequest(name: name!, start: isoStart, end: isoEnd, owner: UserStore.mainUser!, details: details!, timeZoneCreatedIn: TimeZone
-            .autoupdatingCurrent.abbreviation()!, isPublic: !eventIsPublic.isOn)
+            .autoupdatingCurrent.abbreviation()!, isPrivate: eventIsPublic.isOn)
         
         API.addEvent(body: request) { addEventResponse in
             OperationQueue.main.addOperation {
-                guard let event = addEventResponse.event else {
+                guard addEventResponse.event != nil else {
                     let alert = AlertView.createAlert(title: "Event creation error", message: addEventResponse.errorMessage ?? "Internal server error.", actionTitle: "OK")
                     self.present(alert, animated: true, completion: nil)
                     return

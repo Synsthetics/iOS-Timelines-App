@@ -13,7 +13,7 @@ class Event: Timeblock {
     var details: String
     var owner: User
     var timezoneCreatedIn: String
-    var isPublic: Bool
+    var isPrivate: Bool
     var attendees: [User]?
     
     override init?(json: [String : Any]) {
@@ -24,7 +24,7 @@ class Event: Timeblock {
             return nil
         }
         
-        guard let isPublic = json[JSONKeys.Event.isPublic.key] as? Bool else {
+        guard let isPrivate = json[JSONKeys.Event.isPrivate.key] as? Bool else {
             return nil
         }
         
@@ -32,17 +32,17 @@ class Event: Timeblock {
         self.details = details
         self.timezoneCreatedIn = timezoneCreatedIn
         self.owner = owner
-        self.isPublic = isPublic
+        self.isPrivate = isPrivate
         
         super.init(json: json)
     }
     
-    init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User, isPublic: Bool) {
+    init(id: Int, name: String, details: String, start: Date, end: Date, timezoneCreatedIn: String, owner: User, isPrivate: Bool) {
         self.id = id
         self.details = details
         self.owner = owner
         self.timezoneCreatedIn = timezoneCreatedIn
-        self.isPublic = isPublic
+        self.isPrivate = isPrivate
         
         super.init(name: name, start: start, end: end)
     }
