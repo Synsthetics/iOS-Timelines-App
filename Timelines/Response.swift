@@ -43,6 +43,23 @@ struct AddEventResponse {
     }
 }
 
+struct EditEventResponse {
+    var event: Event?
+    var errorMessage: String?
+    
+    init(json: [String: Any]) {
+        if let event = Event(json: json) {
+            self.event = event
+        } else {
+            self.errorMessage = json[JSONKeys.ResponseKeys.errorMessage.key] as? String
+        }
+    }
+    
+    init(errorMessage: String) {
+        self.errorMessage = errorMessage
+    }
+}
+
 struct EventsResponse {
     var timeblocks: [Timeblock]?
     var errorMessage: String?

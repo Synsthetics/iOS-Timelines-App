@@ -17,18 +17,18 @@ class NewEventViewController: UIViewController {
     @IBOutlet var eventIsPublic: UISwitch!
     @IBOutlet var topViewConstraint: NSLayoutConstraint!
     @IBOutlet var bottomViewConstraint: NSLayoutConstraint!
-
     
     var topViewConstraintConstant: CGFloat?
     var bottomViewConstraintConstant: CGFloat?
+    
     var startDatePickerView: UIDatePicker?
     var endDatePickerView: UIDatePicker?
     var selectedTextField: UITextField?
     
-    var startDate: Date?
-    var endDate: Date?
     var timeblockIndex: Int?
     var timeblock: Timeblock?
+    var startDate: Date?
+    var endDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +62,8 @@ class NewEventViewController: UIViewController {
     private func setUp(datePicker: inout UIDatePicker) {
         datePicker.datePickerMode = UIDatePickerMode.dateAndTime
         datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        datePicker.minimumDate = self.timeblock?.start
+        datePicker.maximumDate = self.timeblock?.end
         datePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: UIControlEvents.valueChanged)
     }
     
@@ -71,9 +73,11 @@ class NewEventViewController: UIViewController {
         timeFormatter.timeStyle = .short
         
         if sender == self.startDatePickerView {
-            startDateTextField.text = timeFormatter.string(for: sender.date)
+            self.startDateTextField.text = timeFormatter.string(for: sender.date)
+            self.startDate = sender.date
         } else if sender == endDatePickerView {
             endDateTextField.text = timeFormatter.string(for: sender.date)
+            self.endDate = sender.date
         }
     }
     
@@ -110,7 +114,7 @@ class NewEventViewController: UIViewController {
                     return
                 }
                 
-                TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
+//                TimeblockStore.insert(timeblock: event, at: self.timeblockIndex!)
                 let _ = self.navigationController?.popViewController(animated: true)
             }
         }
