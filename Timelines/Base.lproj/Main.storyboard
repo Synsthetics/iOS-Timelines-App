@@ -219,7 +219,7 @@
                             <constraint firstItem="Li4-Xq-FL0" firstAttribute="top" secondItem="1k9-AN-lWT" secondAttribute="bottom" constant="8" symbolic="YES" id="opr-V7-X4C"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Requests" image="friendrequest@2x.png" id="qnI-D2-tTK"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="friendrequest@3x" id="qnI-D2-tTK"/>
                     <connections>
                         <outlet property="tableControl" destination="5zy-W5-iAM" id="h1x-C8-BdY"/>
                         <outlet property="tableView" destination="I43-m0-tsc" id="III-Hv-PSS"/>
@@ -385,7 +385,7 @@
                             <constraint firstItem="bBh-cY-Qq8" firstAttribute="leading" secondItem="1OV-Vj-HlX" secondAttribute="leading" id="ySX-hi-wKn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timeline" image="timeline@2x.png" id="e7I-yT-GgJ"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" image="timeline@3x" id="e7I-yT-GgJ"/>
                     <navigationItem key="navigationItem" id="iws-oe-x51"/>
                     <connections>
                         <outlet property="tableView" destination="bBh-cY-Qq8" id="dBJ-P9-lCD"/>
@@ -527,7 +527,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lUi-4R-r4D">
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKy-A6-D6x">
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -670,7 +670,7 @@
                             <constraint firstItem="4Ll-hl-oUU" firstAttribute="height" secondItem="6gs-h1-LeO" secondAttribute="height" multiplier="2:3" id="ok5-dW-1sU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" image="friends@2x.png" id="KyT-Te-63G"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends@3x" id="KyT-Te-63G"/>
                     <connections>
                         <outlet property="friendsTableView" destination="4Ll-hl-oUU" id="mql-5D-j9w"/>
                     </connections>
@@ -771,8 +771,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friendrequest@2x.png" width="180" height="180"/>
-        <image name="friends@2x.png" width="180" height="180"/>
-        <image name="timeline@2x.png" width="180" height="180"/>
+        <image name="friendrequest@3x" width="180" height="180"/>
+        <image name="friends@3x" width="180" height="180"/>
+        <image name="timeline@3x" width="180" height="180"/>
     </resources>
 </document>
