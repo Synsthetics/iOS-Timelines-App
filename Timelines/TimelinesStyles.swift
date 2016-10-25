@@ -52,7 +52,7 @@ struct TimelinesStyles {
     }
     
     private static func buttons() {
-        let buttonProxy = UIButton.appearance()
+        let buttonProxy = AppButton.appearance()
         buttonProxy.backgroundColor = .timelines_lightBlue
         buttonProxy.tintColor = .timelines_buttonTint
     }
@@ -60,4 +60,8 @@ struct TimelinesStyles {
 
 class AppView: UIView {
     
+}
+
+class AppButton: UIButton {
+
 }
