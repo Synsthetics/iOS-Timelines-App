@@ -20,19 +20,19 @@ struct TimelinesStyles {
     
     private static func appView() {
         let appViewProxy = AppView.appearance()
-        appViewProxy.backgroundColor = UIColor.timelines_backgroundLight
+        appViewProxy.backgroundColor = .timelines_backgroundLight
     }
     
     private static func navigationBar() {
         let navigationBarProxy = UINavigationBar.appearance()
-        navigationBarProxy.barTintColor = UIColor.timelines_tabBarBackground
-        navigationBarProxy.tintColor = UIColor.timelines_tabBarTintColor
+        navigationBarProxy.barTintColor = .white
+        navigationBarProxy.tintColor = .timelines_lightBlue
     }
     
     private static func tabBar() {
         let tabBarProxy = UITabBar.appearance()
-        tabBarProxy.barTintColor = UIColor.white
-        tabBarProxy.tintColor = UIColor.timelines_tabBarTintColor
+        tabBarProxy.barTintColor = .timelines_tabBarBackground
+        tabBarProxy.tintColor = .timelines_tabBarTintColor
         
         let tabBarItemProxy = UITabBarItem.appearance()
         tabBarItemProxy.badgeColor = .red
@@ -40,21 +40,21 @@ struct TimelinesStyles {
     
     private static func tableView() {
         let tableViewProxy = UITableView.appearance()
-        tableViewProxy.backgroundColor = UIColor.timelines_backgroundLight
+        tableViewProxy.backgroundColor = .timelines_backgroundLight
         
         let tableViewCellProxy = UITableViewCell.appearance()
-        tableViewCellProxy.backgroundColor = UIColor.timelines_backgroundLight
+        tableViewCellProxy.backgroundColor = .timelines_backgroundLight
     }
     
     private static func segmentedControl() {
         let segmentedControlProxy = UISegmentedControl.appearance()
-        segmentedControlProxy.tintColor = UIColor.timelines_lightBlue
+        segmentedControlProxy.tintColor = .timelines_lightBlue
     }
     
     private static func buttons() {
         let buttonProxy = UIButton.appearance()
-        buttonProxy.backgroundColor = UIColor.timelines_lightBlue
-        buttonProxy.tintColor = UIColor.timelines_buttonTint
+        buttonProxy.backgroundColor = .timelines_lightBlue
+        buttonProxy.tintColor = .timelines_buttonTint
     }
 }
 
