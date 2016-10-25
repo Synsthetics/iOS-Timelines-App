@@ -86,6 +86,38 @@ struct AddEventRequest: Request  {
     }
 }
 
+struct EditEventRequest: Request  {
+    let id: Int
+    let name: String
+    let start: String
+    let end: String
+    let owner: User
+    let details: String
+    let timeZoneCreatedIn: String
+    let isPublic: Bool
+    
+    func dictionary() -> [String: Any] {
+        let data: [String: Any] = [
+            JSONKeys.Event.id.key : id,
+            JSONKeys.Event.name.key: name,
+            JSONKeys.Event.start.key: start,
+            JSONKeys.Event.end.key: end,
+            JSONKeys.Event.owner.key: [
+                JSONKeys.User.username.key: owner.username
+            ],
+            JSONKeys.Event.details.key: details,
+            JSONKeys.Event.timeZoneCreatedIn.key: timeZoneCreatedIn,
+            JSONKeys.Event.isPublic.key: isPublic
+        ]
+        
+        return data
+    }
+    
+    func json() -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary(), options: [])
+    }
+}
+
 struct EventsRequest: Request {
     let username: String
     

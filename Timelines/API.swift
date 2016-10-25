@@ -21,6 +21,7 @@ struct API {
         case register = "/register"
         case events = "/events"
         case addEvent = "/addEvent"
+        case editEvent = "/editEvent"
         case mergeTimelines = "/mergeTimelines"
         case requestContact = "/requestContact"
         case confirmContact = "/confirmContact"
@@ -68,6 +69,9 @@ extension API {
 
 extension API {
     
+    /// Returns Void. Passes an AuthResponse object ready for use to the completion
+    /// - parameter body: RegisterRequest instance to serialize and add to request body
+    /// - parameter with: The completion that handles the AuthResponse
     static func register(body: RegisterRequest, with completion: @escaping (AuthResponse) -> (Void)) {
         let request = API.request(to: .register, with: body, how: "POST")
         
@@ -148,6 +152,23 @@ extension API {
         task.resume()
     }
     
+    static func editEvent(body: EditEventRequest, with completion: @escaping (EditEventResponse) -> (Void)) {
+        let request = API.request(to: .editEvent, with: body, how: "POST")
+        
+        let task = API.session.dataTask(with: request) { optData, optResponse, optError in
+            var editEventResponse: EditEventResponse
+            
+            if let data = optData, let responseJSON = JSONTools.dictionary(from: data) {
+                editEventResponse = EditEventResponse(json: responseJSON)
+            } else {
+                editEventResponse = EditEventResponse(errorMessage: "Could not deserialize server response")
+            }
+            
+            completion(editEventResponse)
+        }
+        task.resume()
+    }
+    
 }
 
 extension API {
@@ -167,7 +188,6 @@ extension API {
             completion(mergeTimelinesResponse)
         }
         task.resume()
-        
     }
 }
 
