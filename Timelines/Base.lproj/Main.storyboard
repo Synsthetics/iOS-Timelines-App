@@ -38,14 +38,14 @@
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="o05-R6-S4J">
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-ce-rvE">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-ce-rvE" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="Login"/>
                                                 <connections>
                                                     <action selector="attemptLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VDd-3p-tuc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKw-eX-dmy">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKw-eX-dmy" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="Register"/>
                                                 <connections>
@@ -103,10 +103,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PendingRequestCell" id="kQb-Eu-mgD" customClass="PendingRequestCell" customModule="Timelines" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="343" height="60"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kQb-Eu-mgD" id="gMy-ZO-8fW">
-                                                    <frame key="frameInset" width="343" height="59"/>
+                                                    <frame key="frameInset" width="1000" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PQZ-fP-wjK">
@@ -118,7 +118,7 @@
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2L1-21-bPL" userLabel="confirm/deny buttons">
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="war-dQ-o4d">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="war-dQ-o4d" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -129,7 +129,7 @@
                                                                                 <action selector="acceptRequest:" destination="Ewa-MH-tzB" eventType="touchUpInside" id="clK-RQ-HQW"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3A-Q5-KbW">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3A-Q5-KbW" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                                                             <state key="normal" title="×">
@@ -167,10 +167,10 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PendingContactCell" id="OmN-TT-oAS" customClass="PendingContactCell" customModule="Timelines" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="88" width="343" height="60"/>
+                                                <rect key="frame" x="0.0" y="88" width="1000" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OmN-TT-oAS" id="sNf-l5-RGH">
-                                                    <frame key="frameInset" width="343" height="59"/>
+                                                    <frame key="frameInset" width="1000" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you sent a request to @username" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7e-CI-sYS">
@@ -219,7 +219,7 @@
                             <constraint firstItem="Li4-Xq-FL0" firstAttribute="top" secondItem="1k9-AN-lWT" secondAttribute="bottom" constant="8" symbolic="YES" id="opr-V7-X4C"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Requests" image="friendrequest@2x.png" id="qnI-D2-tTK"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="friendrequest@3x" id="qnI-D2-tTK"/>
                     <connections>
                         <outlet property="tableControl" destination="5zy-W5-iAM" id="h1x-C8-BdY"/>
                         <outlet property="tableView" destination="I43-m0-tsc" id="III-Hv-PSS"/>
@@ -245,11 +245,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeblockCell" rowHeight="88" id="t7z-Qf-Gik" customClass="TimeblockCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimeblockCell" rowHeight="88" id="t7z-Qf-Gik" customClass="TimeblockCell" customModule="Timelines" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t7z-Qf-Gik" id="MtG-ak-HjP">
-                                            <frame key="frameInset" width="375" height="88"/>
+                                            <frame key="frameInset" width="342" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="zms-3I-x3x">
@@ -285,10 +285,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserEventCell" rowHeight="88" id="4iA-nt-1Bz" customClass="UserEventCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="116" width="375" height="88"/>
+                                        <rect key="frame" x="0.0" y="116" width="1000" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4iA-nt-1Bz" id="TO0-O6-g4C">
-                                            <frame key="frameInset" width="375" height="88"/>
+                                            <frame key="frameInset" width="1000" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-NC-2Rx">
@@ -325,10 +325,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendEventCell" rowHeight="88" id="UuU-7m-oC3" customClass="FriendEventCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="204" width="375" height="88"/>
+                                        <rect key="frame" x="0.0" y="204" width="1000" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UuU-7m-oC3" id="fD9-et-Zkd">
-                                            <frame key="frameInset" width="375" height="88"/>
+                                            <frame key="frameInset" width="1000" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="98d-d3-O7j">
@@ -370,6 +370,7 @@
                                         <connections>
                                             <outlet property="date" destination="l2J-3l-MNN" id="JcA-6a-7ya"/>
                                             <outlet property="startAndEndTime" destination="EXf-Gb-G8S" id="maa-kB-KTA"/>
+                                            <outlet property="title" destination="UHv-nl-qJh" id="MDX-Qx-CAa"/>
                                             <outlet property="username" destination="jap-rB-sw1" id="ycA-1v-Nzd"/>
                                         </connections>
                                     </tableViewCell>
@@ -384,7 +385,7 @@
                             <constraint firstItem="bBh-cY-Qq8" firstAttribute="leading" secondItem="1OV-Vj-HlX" secondAttribute="leading" id="ySX-hi-wKn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timeline" image="timeline@2x.png" id="e7I-yT-GgJ"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" image="timeline@3x" id="e7I-yT-GgJ"/>
                     <navigationItem key="navigationItem" id="iws-oe-x51"/>
                     <connections>
                         <outlet property="tableView" destination="bBh-cY-Qq8" id="dBJ-P9-lCD"/>
@@ -526,7 +527,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lUi-4R-r4D">
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKy-A6-D6x">
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -566,7 +567,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="327" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T8l-Ow-w4j" id="lZY-Y8-xsI">
-                                                            <frame key="frameInset" width="327" height="43"/>
+                                                            <frame key="frameInset" width="327" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
@@ -615,10 +616,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="hcY-ie-4tY" customClass="FriendCell" customModule="Timelines" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcY-ie-4tY" id="RuV-QM-lXM">
-                                            <frame key="frameInset" width="343" height="43"/>
+                                            <frame key="frameInset" width="1000" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjM-UF-QXg">
@@ -642,13 +643,13 @@
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rSQ-wY-Thd">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwu-pp-fVm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwu-pp-fVm" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                         <state key="normal" title="Add Friend"/>
                                         <connections>
                                             <action selector="attemptContactRequest:" destination="Ugy-Ic-BVy" eventType="touchUpInside" id="2ik-z6-24i"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUa-6h-RPm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUa-6h-RPm" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                         <state key="normal" title="Merge Timelines"/>
                                         <connections>
                                             <action selector="mergeTimelines:" destination="Ugy-Ic-BVy" eventType="touchUpInside" id="lxY-DX-rym"/>
@@ -669,7 +670,7 @@
                             <constraint firstItem="4Ll-hl-oUU" firstAttribute="height" secondItem="6gs-h1-LeO" secondAttribute="height" multiplier="2:3" id="ok5-dW-1sU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" image="friends@2x.png" id="KyT-Te-63G"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends@3x" id="KyT-Te-63G"/>
                     <connections>
                         <outlet property="friendsTableView" destination="4Ll-hl-oUU" id="mql-5D-j9w"/>
                     </connections>
@@ -714,7 +715,7 @@
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bP2-Fv-l4a">
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dt-Ag-Dnc">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dt-Ag-Dnc" customClass="AppButton" customModule="Timelines" customModuleProvider="target">
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="Register"/>
                                                 <connections>
@@ -770,8 +771,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friendrequest@2x.png" width="180" height="180"/>
-        <image name="friends@2x.png" width="180" height="180"/>
-        <image name="timeline@2x.png" width="180" height="180"/>
+        <image name="friendrequest@3x" width="180" height="180"/>
+        <image name="friends@3x" width="180" height="180"/>
+        <image name="timeline@3x" width="180" height="180"/>
     </resources>
 </document>

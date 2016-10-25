@@ -148,6 +148,7 @@ extension EventsViewController: UITableViewDataSource {
             guard UserStore.mainUser!.username == event.owner.username else {
                 let friendEventCell = tableView.dequeueReusableCell(withIdentifier: "FriendEventCell") as! FriendEventCell
                 
+                friendEventCell.title.text = event.name
                 friendEventCell.username.text = event.owner.username
                 friendEventCell.date.text = dates.date
                 friendEventCell.startAndEndTime.text = dates.startToEnd
