@@ -37,6 +37,28 @@ struct DateTools {
         return times
     }
     
+    static func eventsView(start: Date, end: Date) -> (date: String, startToEnd: String) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateStyle = .short
+        
+        let startTimeToEndTime = "\(timeFormatter.string(from: start)) to \(timeFormatter.string(from: end))"
+        
+        let date: String
+        let startDate = dayFormatter.string(from: start)
+        let endDate = dayFormatter.string(from: end)
+        
+        if startDate == endDate {
+            date = startDate
+        } else {
+            date = "\(startDate) - \(endDate)"
+        }
+        
+        return (date: date, startToEnd: startTimeToEndTime)
+    }
+    
     static func simpleDate(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long

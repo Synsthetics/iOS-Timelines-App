@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum CellForEvent {
+    case event(UserEventCell)
+    case friendEvent(FriendEventCell)
+    case privateFriendEvent
+}
+
 class EventsViewController: UIViewController, LoginViewControllerDelegate {
     
     @IBOutlet var tableView: UITableView!
@@ -109,19 +115,20 @@ extension EventsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let cell = tableView.cellForRow(at: indexPath)
         
-        if let _ = tableView.cellForRow(at: indexPath) as? EventCell {
+        switch cell {
+        case is UserEventCell, is FriendEventCell:
             let eventInfoView = storyBoard.instantiateViewController(withIdentifier: "EventInfoViewController") as! EventInfoViewController
             eventInfoView.event = self.weeklyTimeblocks[indexPath.row] as? Event
             show(eventInfoView, sender: nil)
-        } else {
+        default:
             let newEventView = storyBoard.instantiateViewController(withIdentifier: "NewEventViewController") as! NewEventViewController
             newEventView.timeblock = self.weeklyTimeblocks[indexPath.row]
             newEventView.timeblockIndex = self.weeklyTimeblocks.index(of: self.weeklyTimeblocks[indexPath.row])
             show(newEventView, sender: nil)
         }
     }
-    
 }
 
 extension EventsViewController: UITableViewDataSource {
@@ -132,30 +139,46 @@ extension EventsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let timeblock = self.weeklyTimeblocks[indexPath.row]
-        let cell: TimeblockCell
         
-        if let event = timeblock as? Event {
-            let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
+        switch timeblock {
+        case let event as Event:
             
-            if UserStore.mainUser! == event.owner {
-                eventCell.title.text = "You have scheduled \(event.name)"
-            } else {
-                eventCell.title.text = "\(event.owner.username) has scheduled \(event.name)"
+            let dates = DateTools.eventsView(start: event.start, end: event.end)
+            
+            guard UserStore.mainUser!.username == event.owner.username else {
+                let friendEventCell = tableView.dequeueReusableCell(withIdentifier: "FriendEventCell") as! FriendEventCell
+                
+                friendEventCell.username.text = event.owner.username
+                friendEventCell.date.text = dates.date
+                friendEventCell.startAndEndTime.text = dates.startToEnd
+                
+                friendEventCell.backgroundColor = UIColor.timelines_darkBlue
+                friendEventCell.tintColor = UIColor.white
+                
+                return friendEventCell
             }
             
-            cell = eventCell
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "TimeblockCell") as! TimeblockCell
+            let eventCell = tableView.dequeueReusableCell(withIdentifier: "UserEventCell") as! UserEventCell
+            
+            eventCell.title.text = event.name
+            eventCell.date.text = dates.date
+            eventCell.startAndEndTime.text = dates.startToEnd
+            
+            eventCell.backgroundColor = UIColor.timelines_lightBlue
+            return eventCell
+        default:
+            let timeblockCell = tableView.dequeueReusableCell(withIdentifier: "TimeblockCell") as! TimeblockCell
+            let dates = DateTools.eventsView(start: timeblock.start, end: timeblock.end)
+            
+            timeblockCell.date.text = dates.date
+            timeblockCell.startAndEndTime.text = dates.startToEnd
+            
+            timeblockCell.tintColor = UIColor.timelines_lightBlue
+            timeblockCell.backgroundColor = UIColor.white
+            
+            return timeblockCell
         }
         
-        cell.startTime.text = "From: \(DateTools.simpleDate(from: timeblock.start))"
-        cell.endTime.text = "To: \(DateTools.simpleDate(from: timeblock.end))"
-        
-        cell.startTime.numberOfLines = 1
-        cell.endTime.numberOfLines = 1
-        cell.startTime.lineBreakMode = .byClipping
-        cell.endTime.lineBreakMode = .byClipping
-        return cell
     }
     
     func loginViewController(_ vc: LoginViewController, didFinishLogin user: User) {
