@@ -216,7 +216,7 @@
                             <constraint firstItem="pFg-eW-Yfi" firstAttribute="top" secondItem="Li4-Xq-FL0" secondAttribute="bottom" id="6JT-I0-g7e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Li4-Xq-FL0" secondAttribute="trailing" id="D1G-Xo-2wK"/>
                             <constraint firstItem="Li4-Xq-FL0" firstAttribute="leading" secondItem="EuE-tm-JaG" secondAttribute="leadingMargin" id="Pyu-mL-6of"/>
-                            <constraint firstItem="Li4-Xq-FL0" firstAttribute="top" secondItem="1k9-AN-lWT" secondAttribute="bottom" id="opr-V7-X4C"/>
+                            <constraint firstItem="Li4-Xq-FL0" firstAttribute="top" secondItem="1k9-AN-lWT" secondAttribute="bottom" constant="8" symbolic="YES" id="opr-V7-X4C"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Requests" image="friendrequest@2x.png" id="qnI-D2-tTK"/>
