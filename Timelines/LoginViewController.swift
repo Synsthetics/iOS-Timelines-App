@@ -23,6 +23,11 @@ class LoginViewController: UIViewController {
         passwordField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Login"
+    }
+    
     @IBAction func attemptLogin(_ sender: UIButton) {
         self.userNameField.resignFirstResponder()
         self.passwordField.resignFirstResponder()

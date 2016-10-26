@@ -22,6 +22,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         pass2Field.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Register"
+    }
+    
     @IBAction func attemptRegistration() {
         emailField.resignFirstResponder()
         userNameField.resignFirstResponder()
