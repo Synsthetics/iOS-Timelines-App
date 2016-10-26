@@ -15,36 +15,39 @@ class MergeTimelinesViewController: UIViewController {
         super.viewDidLoad()
         friendsTableView.dataSource = self
         friendsTableView.delegate = self
+        
+        let timer = Timer(timeInterval: 1, repeats: true) { _ in
+            print("\n\n\nTimer Ran\n\n\n")
+            guard let user = UserStore.mainUser else {
+                return
+            }
+            print("\n\n\nuser not nil\n\n\n")
+            
+            let request = ContactsRequest(username: user.username)
+            
+            API.contacts(body: request) { contactsResponse in
+                guard let contacts = contactsResponse.contacts else {
+                    print(contactsResponse.errorMessage)
+                    return
+                }
+                
+                for username in contacts {
+                    UserStore.addContact(username: username)
+                }
+                
+                OperationQueue.main.addOperation {
+                    self.friendsTableView.reloadData()
+                }
+            }
+
+        }
+        
+        RunLoop.main.add(timer, forMode: .commonModes)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.title = "Friends"
-        
         super.viewWillAppear(animated)
-        self.fetchContacts()
-    }
-    
-    private func fetchContacts() {
-        guard let user = UserStore.mainUser else {
-            return
-        }
-        
-        let request = ContactsRequest(username: user.username)
-        
-        API.contacts(body: request) { contactsResponse in
-            guard let contacts = contactsResponse.contacts else {
-                print(contactsResponse.errorMessage)
-                return
-            }
-            
-            for username in contacts {
-                UserStore.addContact(username: username)
-            }
-            
-            OperationQueue.main.addOperation {
-                self.friendsTableView.reloadData()
-            }
-        }
+        self.tabBarController?.title = "Friends"
     }
     
     @IBAction func attemptContactRequest(_ sender: UIButton) {
