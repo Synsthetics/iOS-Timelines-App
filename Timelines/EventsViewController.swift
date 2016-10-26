@@ -82,6 +82,7 @@ class EventsViewController: UIViewController, LoginViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.title = "This Week"
         self.getRecentEvents()
     }
     

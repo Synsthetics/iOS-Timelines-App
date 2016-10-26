@@ -18,6 +18,8 @@ class MergeTimelinesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.title = "Friends"
+        
         super.viewWillAppear(animated)
         self.fetchContacts()
     }

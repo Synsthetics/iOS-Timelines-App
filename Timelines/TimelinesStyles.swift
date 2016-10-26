@@ -25,14 +25,14 @@ struct TimelinesStyles {
     
     private static func navigationBar() {
         let navigationBarProxy = UINavigationBar.appearance()
-        navigationBarProxy.barTintColor = .white
+        navigationBarProxy.barTintColor = .timelines_tabBarBackground
         navigationBarProxy.tintColor = .timelines_lightBlue
     }
     
     private static func tabBar() {
         let tabBarProxy = UITabBar.appearance()
         tabBarProxy.barTintColor = .timelines_tabBarBackground
-        tabBarProxy.tintColor = .timelines_tabBarTintColor
+        tabBarProxy.tintColor = .timelines_lightBlue
         
         let tabBarItemProxy = UITabBarItem.appearance()
         tabBarItemProxy.badgeColor = .red
@@ -63,5 +63,9 @@ class AppView: UIView {
 }
 
 class AppButton: UIButton {
+
+}
+
+class EventsTableView: UITableView {
 
 }
