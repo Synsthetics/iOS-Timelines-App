@@ -27,6 +27,8 @@ class PendingRequestsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBarController?.title = "Requests"
+        
         guard let user = UserStore.mainUser else {
             return
         }
